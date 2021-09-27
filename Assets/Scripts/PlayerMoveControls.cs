@@ -17,6 +17,13 @@ public class PlayerMoveControls : MonoBehaviour
     // var per la direzione del player effetto Mirow
     private int direction = 1;
 
+    // var booleano per il doppio salto
+    private bool doubleJump = true;
+
+
+    //È possibile impostare qualsiasi numero per salti aggiuntivi, quattro valori impostati per salti doppi su uno.
+    public int additionalJump = 2;
+
 
     public float rayLength; 
     public LayerMask groundLayer;
@@ -56,6 +63,7 @@ public class PlayerMoveControls : MonoBehaviour
     }
 
 
+    //FUNC  MOVIMENTO PLAYER
     private void Move()
         
     {
@@ -63,6 +71,8 @@ public class PlayerMoveControls : MonoBehaviour
         rb.velocity = new Vector2(speed * gI.valueX, rb.velocity.y);
     }
 
+
+    // FUNC SALTO PLAYER
     private void jumpPlayer()
     {
         if (gI.jumpInput)
@@ -70,8 +80,15 @@ public class PlayerMoveControls : MonoBehaviour
             if (grounded)
             {
                 rb.velocity = new Vector2(gI.valueX * speed, jumpForce);
+
+
+                doubleJump = true;
             }
-            
+            else if (doubleJump)
+            {
+                rb.velocity = new Vector2(gI.valueX * speed, jumpForce);
+                doubleJump = false;
+            }
         }
         gI.jumpInput = false;
     }
@@ -85,6 +102,7 @@ public class PlayerMoveControls : MonoBehaviour
         if (leftCheckHit || rightCheckHit)
         {
             grounded = true;
+            doubleJump = false;
         }
         else
         {
@@ -115,6 +133,7 @@ public class PlayerMoveControls : MonoBehaviour
     }
 
 
+    // FUNC SET ANIMAZIONI VARIABILI INTERNE UNITY
 
     private void SetAnimatorValues()
     {
