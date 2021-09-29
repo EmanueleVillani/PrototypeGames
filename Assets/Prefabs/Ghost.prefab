@@ -72,7 +72,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 707079139
+  m_SortingLayerID: 1015912337
   m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 2192450021786810173, guid: a5086ed9ec69c074fbe5c88d3c1a9aad, type: 3}
@@ -155,5 +155,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
-  maxDistanceEnemyPlayer: 10
+  maxDistanceEnemyPlayer: 6
   minDistanceEnemyPlayer: 1
