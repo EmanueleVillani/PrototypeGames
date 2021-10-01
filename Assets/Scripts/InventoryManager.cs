@@ -30,11 +30,6 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     public int HowMany(Item item)
     {
         if (Inventory.ContainsKey(item))
