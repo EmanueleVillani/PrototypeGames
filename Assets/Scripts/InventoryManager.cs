@@ -43,6 +43,18 @@ public class InventoryManager : MonoBehaviour
         }
         return 0;
     }
+    public bool CheckItem(Item item)
+    {
+        if (Inventory.ContainsKey(item))
+        {
+            return int.Parse(Inventory[item].GetComponentInChildren<Text>().text)>0;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
     public void ModifyInventory(Item item,bool adding)
     {
         if (adding)
