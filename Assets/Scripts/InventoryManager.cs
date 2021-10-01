@@ -30,6 +30,16 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    void FunzioneProva()
+    {
+        Debug.Log("Prova");
+
+
+    }
+
+
+
+
     // Update is called once per frame
     void Update()
     {
