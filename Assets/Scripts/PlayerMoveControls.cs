@@ -10,19 +10,22 @@ public class PlayerMoveControls : MonoBehaviour
 
     //INIZIALIZZIAMO LE VARIABILI
 
+
+    
     private GatherInput gI;
     private Rigidbody2D rb;
     private Animator anim;
 
-    // var per la direzione del player effetto Mirow
-    private int direction = 1;
 
-    // var booleano per il doppio salto
-    private bool doubleJump = true;
+    
+
+   
+    private int direction = 1;  // var per la direzione del player effetto Mirow
+    private bool doubleJump = true;  // var booleano per il doppio salto
 
 
-    //È possibile impostare qualsiasi numero per salti aggiuntivi, quattro valori impostati per salti doppi su uno.
-    public int additionalJump = 2;
+    
+    public int additionalJump = 2; //È possibile impostare qualsiasi numero per salti aggiuntivi, quattro valori impostati per salti doppi su uno.
 
 
     public float rayLength; 
@@ -34,12 +37,16 @@ public class PlayerMoveControls : MonoBehaviour
 
     private bool grounded = true;
 
-
+    public bool knokBack = false;
+    public bool hasControl = true;
 
     // Start is called before the first frame update
     void Start()
     {
-        // ASSEGNAZIONE VARIABILI 
+
+        // ASSEGNAZIONE VARIABILI
+
+        //pMc = GetComponent<PlayerMoveControls>();
         gI = GetComponent<GatherInput>();
 
         rb = GetComponent<Rigidbody2D>();
@@ -52,7 +59,10 @@ public class PlayerMoveControls : MonoBehaviour
     void Update()
     {
         SetAnimatorValues();
+       
     }
+
+   
 
     private void FixedUpdate()
     {

@@ -11,10 +11,14 @@ public class GatherInput : MonoBehaviour
     private Controls myControls;
 
 
-    // Inizializzazione variabili , Movimento , Jump 
+    // Inizializzazione variabile  Movimento 
     public float valueX;
 
+    //Inizializzazione variabile Jump 
     public bool jumpInput;
+
+   
+    public bool tryAttack;  //variabile Attacco prova a prendere sarà vero se stiamo premendo i pulsanti e provando 
 
     private void Awake()
     {
@@ -26,21 +30,20 @@ public class GatherInput : MonoBehaviour
 
     private void OnEnable()
     {
-        //Avvia il movimento del Player
-        myControls.Player.Move.performed += StartMove;
+        
+        myControls.Player.Move.performed += StartMove;//Avvia il movimento del Player
+        myControls.Player.Move.canceled += StopMove; //Ferma il movimento del Player
 
 
-        //Ferma il movimento del Player
-        myControls.Player.Move.canceled += StopMove;
+        myControls.Player.Jump.performed += JumpStar; //Avvia il Salto del Player
+        myControls.Player.Jump.canceled += JumpStop; //Stop il Salto del Player
 
 
-        myControls.Player.Jump.performed += JumpStar;
-        myControls.Player.Jump.canceled += JumpStop;
+        myControls.Player.Attack.performed += TryToAttack;  //Avvio l'Attaco del Player
+        myControls.Player.Attack.canceled += StopTryAttack;   //cancello l'Attaco del Player
 
-
-
-        // Attivo il player ai suoi commandi
-        myControls.Player.Enable();
+        
+        myControls.Player.Enable();  // Attivo il player ai suoi commandi
 
     }
     private void OnDisable()
@@ -53,8 +56,31 @@ public class GatherInput : MonoBehaviour
         myControls.Player.Jump.canceled -= JumpStop;
 
 
+        myControls.Player.Attack.performed -= TryToAttack;  
+        myControls.Player.Attack.canceled -= StopTryAttack;   
+
         myControls.Player.Disable();
-        //myControls.Disable();
+        myControls.Disable();
+
+    }
+
+    private void DisableControls()
+    {
+        myControls.Player.Move.performed -= StartMove;
+        myControls.Player.Move.canceled -= StopMove;
+
+
+        myControls.Player.Jump.performed -= JumpStar;
+        myControls.Player.Jump.canceled -= JumpStop;
+
+
+        myControls.Player.Attack.performed -= TryToAttack;
+        myControls.Player.Attack.canceled -= StopTryAttack;
+
+        myControls.Player.Disable();
+
+        valueX = 0;
+        myControls.Disable();
 
     }
 
@@ -78,6 +104,16 @@ public class GatherInput : MonoBehaviour
     private void JumpStop(InputAction.CallbackContext ctx)
     {
         jumpInput = false;
+    }
+
+    private void TryToAttack(InputAction.CallbackContext ctx)//Func Attacco
+    {
+        tryAttack = true;
+    }
+
+    private void StopTryAttack(InputAction.CallbackContext ctx) // Sto Attacco
+    {
+        tryAttack = false;
     }
 
 }
