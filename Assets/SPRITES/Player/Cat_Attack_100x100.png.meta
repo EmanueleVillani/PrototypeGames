@@ -14,6 +14,96 @@ TextureImporter:
   - first:
       213: -8279875408345810296
     second: Cat_Attack_100x100_3
+  - first:
+      213: 3942492160691374919
+    second: Cat_Attack_100x100_0
+  - first:
+      213: 2700532912939917787
+    second: Cat_Attack_100x100_1
+  - first:
+      213: 5815470813282698653
+    second: Cat_Attack_100x100_2
+  - first:
+      213: 8374382483341021632
+    second: Cat_Attack_100x100_3
+  - first:
+      213: 7290444764325307590
+    second: Cat_Attack_100x100_4
+  - first:
+      213: -9110348579690238519
+    second: Cat_Attack_100x100_5
+  - first:
+      213: 6353980352166877528
+    second: Cat_Attack_100x100_6
+  - first:
+      213: -3511080523174372813
+    second: Cat_Attack_100x100_7
+  - first:
+      213: -7419016195191795663
+    second: Cat_Attack_100x100_8
+  - first:
+      213: 6458304359104232938
+    second: Cat_Attack_100x100_9
+  - first:
+      213: 3314830928518473295
+    second: Cat_Attack_100x100_10
+  - first:
+      213: -324359424831610907
+    second: Cat_Attack_100x100_11
+  - first:
+      213: -1960693718586940125
+    second: Cat_Attack_100x100_12
+  - first:
+      213: -3970012534057055741
+    second: Cat_Attack_100x100_13
+  - first:
+      213: 7036195402385742032
+    second: Cat_Attack_100x100_14
+  - first:
+      213: -8439764036450253677
+    second: Cat_Attack_100x100_15
+  - first:
+      213: -995520001787453500
+    second: Cat_Attack_100x100_16
+  - first:
+      213: -3476406727332965635
+    second: Cat_Attack_100x100_17
+  - first:
+      213: -5976886678141756110
+    second: Cat_Attack_100x100_18
+  - first:
+      213: 5953862674012211044
+    second: Cat_Attack_100x100_19
+  - first:
+      213: 6099689498874004593
+    second: Cat_Attack_100x100_20
+  - first:
+      213: -3991392958203686957
+    second: Cat_Attack_100x100_21
+  - first:
+      213: 2694491777810933031
+    second: Cat_Attack_100x100_22
+  - first:
+      213: 3118335161945638176
+    second: Cat_Attack_100x100_23
+  - first:
+      213: 6321044736989872104
+    second: Cat_Attack_100x100_24
+  - first:
+      213: 3976435370099141129
+    second: Cat_Attack_100x100_25
+  - first:
+      213: -3136248449533297446
+    second: Cat_Attack_100x100_26
+  - first:
+      213: 3670149930688099167
+    second: Cat_Attack_100x100_27
+  - first:
+      213: -8500347364938029842
+    second: Cat_Attack_100x100_28
+  - first:
+      213: -1222776882531363501
+    second: Cat_Attack_100x100_29
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -139,8 +229,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a34f13faf18663920800000000000000
-      internalID: 2969675489589982266
+      spriteID: 74b85cf5bbb86b630800000000000000
+      internalID: 3942492160691374919
       vertices: []
       indices: 
       edges: []
@@ -153,15 +243,15 @@ TextureImporter:
         y: 34
         width: 51
         height: 41
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.349721}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 832b85e4a76c4f1d0800000000000000
-      internalID: -3317808796862467528
+      spriteID: bd1e80450683a7520800000000000000
+      internalID: 2700532912939917787
       vertices: []
       indices: 
       edges: []
@@ -181,8 +271,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 74e25a055b3dd8270800000000000000
-      internalID: 8254486467735531079
+      spriteID: d950e5b94e3b4b050800000000000000
+      internalID: 5815470813282698653
       vertices: []
       indices: 
       edges: []
@@ -202,8 +292,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 88a3e0d4f29f71d80800000000000000
-      internalID: -8279875408345810296
+      spriteID: 0c19bcccf78c73470800000000000000
+      internalID: 8374382483341021632
       vertices: []
       indices: 
       edges: []
