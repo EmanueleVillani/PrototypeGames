@@ -8,9 +8,9 @@ public class PlayerAttackControls : MonoBehaviour
     private GatherInput gI;
     private Animator anim;
 
-    public bool attacStaerted = false;
+    public bool attacStaerted = false; // memorizzare informazioni se abbiamo avviato con successo l'attaco
 
-    public PolygonCollider2D polyCol;
+    public PolygonCollider2D polyCol; // controllo dell'attacco 
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +27,7 @@ public class PlayerAttackControls : MonoBehaviour
     private void Attack()
     {
         // premi il pulsante attack
-        if (gI.tryAttack)
+        if (gI.tryAttack) // Quindi controlliamo il tentativo di attaccare una variabile da ottenere il loro input, quindi dobbiamo verificare alcune condizioni.
         {
             if (attacStaerted || pMc.hasControl == false || pMc.knokBack)
                 return;
@@ -40,7 +40,7 @@ public class PlayerAttackControls : MonoBehaviour
 
     public void ActiveteAttack()
     {
-        polyCol.enabled = true;
+        polyCol.enabled = true;  // attiviamo il polygon Colider quando attacchiamo
     }
     public void ResetAttack()
     {

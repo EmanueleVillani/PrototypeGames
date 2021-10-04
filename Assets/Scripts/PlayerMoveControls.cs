@@ -31,8 +31,8 @@ public class PlayerMoveControls : MonoBehaviour
     public float rayLength; 
     public LayerMask groundLayer;
 
-    // variabile per ancorare il player alla piattaforma senza sbavature
-    public Transform leftPoint;
+    
+    public Transform leftPoint;// variabile per ancorare il player alla piattaforma 
     public Transform rightPoint;
 
     private bool grounded = true;
