@@ -78,7 +78,11 @@ public class PlayerMoveControls : MonoBehaviour
         
     {
         flip();
-        rb.velocity = new Vector2(speed * gI.valueX, rb.velocity.y);
+        if (gI.runInput)
+            rb.velocity = new Vector2(speed*2 * gI.valueX, rb.velocity.y);
+        else
+            rb.velocity = new Vector2(speed * gI.valueX, rb.velocity.y);
+
     }
 
 

@@ -16,16 +16,14 @@ public class GatherInput : MonoBehaviour
 
     //Inizializzazione variabile Jump 
     public bool jumpInput;
+    public bool runInput;
 
-   
+
     public bool tryAttack;  //variabile Attacco prova a prendere sarà vero se stiamo premendo i pulsanti e provando 
 
     private void Awake()
     {
         myControls = new Controls();
-       
-
-      
     }
 
     private void OnEnable()
@@ -34,15 +32,15 @@ public class GatherInput : MonoBehaviour
         myControls.Player.Move.performed += StartMove;//Avvia il movimento del Player
         myControls.Player.Move.canceled += StopMove; //Ferma il movimento del Player
 
-
         myControls.Player.Jump.performed += JumpStar; //Avvia il Salto del Player
         myControls.Player.Jump.canceled += JumpStop; //Stop il Salto del Player
-
+       
+        myControls.Player.Run.performed +=RunStart; //Avvia il Salto del Player
+        myControls.Player.Run.canceled += RunStop; //Stop il Salto del Player
 
         myControls.Player.Attack.performed += TryToAttack;  //Avvio l'Attaco del Player
         myControls.Player.Attack.canceled += StopTryAttack;   //cancello l'Attaco del Player
 
-        
         myControls.Player.Enable();  // Attivo il player ai suoi commandi
 
     }
@@ -116,4 +114,13 @@ public class GatherInput : MonoBehaviour
         tryAttack = false;
     }
 
+    private void RunStart(InputAction.CallbackContext ctx)
+    {
+        runInput = true;
+    }
+
+    private void RunStop(InputAction.CallbackContext ctx)
+    {
+        runInput = false;
+    }
 }
