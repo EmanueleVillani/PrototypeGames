@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 502119998522664996}
   - component: {fileID: 502119998522664997}
   - component: {fileID: 4808991744735409049}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Ghost
   m_TagString: Ghost
   m_Icon: {fileID: 0}
@@ -157,3 +157,4 @@ MonoBehaviour:
   moveSpeed: 2
   maxDistanceEnemyPlayer: 6
   minDistanceEnemyPlayer: 1
+  damage: 20

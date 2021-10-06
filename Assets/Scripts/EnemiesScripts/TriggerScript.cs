@@ -5,7 +5,8 @@ using UnityEngine;
 public class TriggerScript : MonoBehaviour
 {
     [SerializeField]
-    private GameObject ghost;
+    private GameObject enemy;
+       
 
     [SerializeField]
     private float distanceSpawn = 5f;
@@ -23,9 +24,9 @@ public class TriggerScript : MonoBehaviour
             {
 
                 if (Random.Range(0, 2) == 1)
-                    Instantiate(ghost, new Vector3(transform.position.x - distanceSpawn, transform.position.y, 0), Quaternion.identity);
+                    Instantiate(enemy, new Vector3(transform.position.x - distanceSpawn, transform.position.y, 0), Quaternion.identity);
                 else
-                    Instantiate(ghost, new Vector3(transform.position.x + distanceSpawn, transform.position.y, 0), Quaternion.identity);
+                    Instantiate(enemy, new Vector3(transform.position.x + distanceSpawn, transform.position.y, 0), Quaternion.identity);
 
                 hasSpawned = true;
             }

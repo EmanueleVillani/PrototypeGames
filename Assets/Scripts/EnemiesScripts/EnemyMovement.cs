@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class EnemyMovement : MonoBehaviour
 {
     [SerializeField]
@@ -17,12 +18,22 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField]
     private float minDistanceEnemyPlayer = 0.2f; //When the Enemy is close to the player will starts to attack.
 
-    private GameObject player;
+    private PlayerHealth player;
 
+    [SerializeField]
+    private int damage = 20;
+
+    private bool canAttack=true;
+
+    private float attackTimerThreshold = 2f;
+    private float attackTimer;
+
+   
     private void Awake()
     {
         anim = GetComponent<Animator>();
-        player = GameObject.FindWithTag("Player");
+        player = GameObject.FindWithTag("Player").GetComponent<PlayerHealth>();
+        
 
         sr = GetComponent<SpriteRenderer>();
 
@@ -38,6 +49,10 @@ public class EnemyMovement : MonoBehaviour
 
     private void Update()
     {
+        if (!player)
+            return;
+
+
         if ((Vector2.Distance(transform.position, player.transform.position) < maxDistanceEnemyPlayer))
         {
             if((Vector2.Distance(transform.position, player.transform.position) > minDistanceEnemyPlayer))
@@ -51,9 +66,10 @@ public class EnemyMovement : MonoBehaviour
             }
             else
             {
-                AttackPlayer();
-                anim.SetBool("Walk", false);
 
+                AttackPlayer(); 
+                anim.SetBool("Walk", false);
+                
             }
 
         }
@@ -75,15 +91,25 @@ public class EnemyMovement : MonoBehaviour
     }
 
 
-    void AttackPlayer()
-    {
 
+
+
+    public void AttackPlayer()
+    {   
        
+        if (Time.time > attackTimer )
+        {
+            
+           Debug.Log("AttackPlayer");
+           player.currentHealth -= damage;
 
-          
+            attackTimer = Time.time + attackTimerThreshold;
+
+            if (player.currentHealth <= 0)
+                GameManager.gameManagerInstance.DestroyPlayer();
+           
+        }
+
     }
-
-
-
 
 }
