@@ -18,6 +18,7 @@ TagManager:
   - Ground
   - Enemy
   - 
+  - PlayerAttack
   - 
   - 
   - 
@@ -39,14 +40,14 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Default
-    uniqueID: 0
-    locked: 0
   - name: BacKround
     uniqueID: 2999993933
     locked: 0
   - name: MiddleGround
     uniqueID: 758130463
+    locked: 0
+  - name: Default
+    uniqueID: 0
     locked: 0
   - name: Ground
     uniqueID: 3805104695

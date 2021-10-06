@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
@@ -9,6 +10,8 @@ public class InventoryManager : MonoBehaviour
     public ItemLogic[] ItemSprites;
     public Dictionary<Item, GameObject> Inventory=new Dictionary<Item, GameObject>();
     public GameObject ItemUI,Bag;
+    public UnityEvent evento;
+
     private void Awake()
     {
         if (Instance == null|| Instance!=this)
@@ -30,20 +33,18 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    void FunzioneProva()
+    public void FunzioneProva()
     {
         Debug.Log("Prova");
-
-
     }
-
-
-
 
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            evento.Invoke();
+        }
     }
     public int HowMany(Item item)
     {
