@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ghost
+  - GemUI
+  - Stats
   layers:
   - Default
   - TransparentFX
@@ -17,10 +19,9 @@ TagManager:
   - Player
   - Ground
   - Enemy
-  - 
+  - PlayerStates
   - PlayerAttack
-  - 
-  - 
+  - EnemyAttack
   - 
   - 
   - 
@@ -60,4 +61,7 @@ TagManager:
     locked: 0
   - name: UI
     uniqueID: 2124640671
+    locked: 0
+  - name: ForeGround
+    uniqueID: 856258755
     locked: 0
