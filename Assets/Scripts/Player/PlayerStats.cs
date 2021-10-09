@@ -7,10 +7,16 @@ public class PlayerStats : MonoBehaviour
 
     public bool canTakeDamege = true;//un piccolo tempo di recupero in cui non è possibile subire danni.
 
+    private Animator anim;
+
     public float maxHealth;
     public float health;
+
+
     void Start()
     {
+        anim = GetComponentInParent<Animator>();
+
         // imposto la salute max del player per iniziare in piena salute
         health = maxHealth;
         
@@ -19,12 +25,14 @@ public class PlayerStats : MonoBehaviour
 
     // creo una funzione pubblica che può danneggiare
     // il giocatore e diminuire la salute.
-    public void TakeDemage(float demage)
+    public void TakeDemage(float damage)
     {
 
         if (canTakeDamege)
         {
-            health -= demage;
+            health -= damage;
+
+            anim.SetBool("Damage",true);
             
             //All'interno, la funzione ridurrà la salute in base al danno.
             if (health <= 0)
@@ -55,10 +63,12 @@ public class PlayerStats : MonoBehaviour
         if (health > 0)
         {
             canTakeDamege = true;
+            anim.SetBool("Damage", false);
         }
         else
         {
             // Player Death Animation
+            anim.SetBool("Death", true);
         }
              
     }
