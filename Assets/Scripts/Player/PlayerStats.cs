@@ -12,6 +12,8 @@ public class PlayerStats : MonoBehaviour
     public float maxHealth;
     public float health;
 
+    private PlayerAttackControls pAC;
+
 
     void Start()
     {
@@ -19,7 +21,9 @@ public class PlayerStats : MonoBehaviour
 
         // imposto la salute max del player per iniziare in piena salute
         health = maxHealth;
-        
+
+        pAC = GetComponentInParent<PlayerAttackControls>();
+
     }
 
 
@@ -33,7 +37,8 @@ public class PlayerStats : MonoBehaviour
             health -= damage;
 
             anim.SetBool("Damage",true);
-            
+
+            pAC.ResetAttack();
             //All'interno, la funzione ridurrà la salute in base al danno.
             if (health <= 0)
             {

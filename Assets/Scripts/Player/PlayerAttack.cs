@@ -9,7 +9,7 @@ public class PlayerAttack : MonoBehaviour
     
     void Start()
     {
-        enemyLayer = LayerMask.NameToLayer("Enemies");
+        enemyLayer = LayerMask.NameToLayer("Enemy");
     }
 
     // Update is called once per frame
@@ -22,6 +22,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if(collision.gameObject.layer == enemyLayer)
         {
+            collision.GetComponent<Enemy>().TakeDamage(attackDamege);
             Debug.Log("Colpisco il nemico");
         }
     }
