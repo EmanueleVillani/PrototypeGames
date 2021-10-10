@@ -1651,7 +1651,7 @@ Rigidbody2D:
   m_GravityScale: 3
   m_Material: {fileID: 6200000, guid: 95f862b2794cc44bc96f3fdbdd6a6735, type: 2}
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!212 &479670566
@@ -3411,7 +3411,7 @@ GameObject:
   - component: {fileID: 553366624}
   - component: {fileID: 553366623}
   - component: {fileID: 553366625}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: PlayerAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3481,7 +3481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4a2126d9d2b647b7aefd1a36db41c69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDamege: 0
+  attackDamege: 10
 --- !u!1001 &615680457
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4342,7 +4342,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 3714015224569861163, guid: a5086ed9ec69c074fbe5c88d3c1a9aad, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9433962, g: 0.93894625, b: 0.93894625, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -4380,6 +4380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3e15a6cd46244bf8842ec4d9d8c10ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healt: 20
   speed: 2
   direction: 1
   radius: 0.3

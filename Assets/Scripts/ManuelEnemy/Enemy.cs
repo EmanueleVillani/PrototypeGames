@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     public float healt;
     protected Rigidbody2D rb;
     protected Animator anim;
+    
 
     private void Awake()
     {
