@@ -61,8 +61,9 @@ public class GatherInput : MonoBehaviour
         myControls.Disable();
 
     }
+    
 
-    private void DisableControls()
+    public void DisableControls()
     {
         myControls.Player.Move.performed -= StartMove;
         myControls.Player.Move.canceled -= StopMove;

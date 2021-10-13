@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public float healt;
     protected Rigidbody2D rb;
     protected Animator anim;
+    
 
     private void Awake()
     {
@@ -23,5 +25,13 @@ public class Enemy : MonoBehaviour
     void FixedUpdate()
     {
         rb.velocity = new Vector2(-1, rb.velocity.y);
+    }
+    public void TakeDamage(float damage)
+    {
+        healt -= damage;
+        if(healt <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }

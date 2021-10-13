@@ -16,6 +16,8 @@ public class Gem : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+
+            collision.GetComponent<PlayerCollectibles>().GemCollected();
             GetComponent<AudioSource>().Play();
             GetComponent<SpriteRenderer>().enabled = false;
             GetComponent<CircleCollider2D>().enabled = false;
