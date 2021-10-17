@@ -10,16 +10,10 @@ public class PlayerMoveControls : MonoBehaviour
 
     //INIZIALIZZIAMO LE VARIABILI
 
-
-    
     private GatherInput gI;
     private Rigidbody2D rb;
     private Animator anim;
 
-
-    
-
-   
     private int direction = 1;  // var per la direzione del player effetto Mirow
     private bool doubleJump = true;  // var booleano per il doppio salto
 

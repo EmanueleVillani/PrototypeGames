@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PatrollingEnemy : Enemy
+public class PatrollingEnemy : Enemy2D
 {
     public float speed;// la velocità dello zombie 
     public int direction = 1; // direzione zombie

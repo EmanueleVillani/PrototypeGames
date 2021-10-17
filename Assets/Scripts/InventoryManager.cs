@@ -10,7 +10,6 @@ public class InventoryManager : MonoBehaviour
     public ItemLogic[] ItemSprites;
     public Dictionary<Item, GameObject> Inventory=new Dictionary<Item, GameObject>();
     public GameObject ItemUI,Bag;
-    public UnityEvent evento;
 
     private void Awake()
     {
@@ -39,13 +38,6 @@ public class InventoryManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            evento.Invoke();
-        }
-    }
     public int HowMany(Item item)
     {
         if (Inventory.ContainsKey(item))

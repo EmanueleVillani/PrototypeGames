@@ -22,7 +22,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if(collision.gameObject.layer == enemyLayer)
         {
-            collision.GetComponent<Enemy>().TakeDamage(attackDamege);
+            collision.GetComponent<Enemy2D>().TakeDamage(attackDamege);
             Debug.Log("Colpisco il nemico");
         }
     }
