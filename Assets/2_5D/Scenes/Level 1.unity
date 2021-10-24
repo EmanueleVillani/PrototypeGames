@@ -9976,7 +9976,7 @@ MonoBehaviour:
   controller: {fileID: 1459523489}
   speed: 8
   jumpForce: 9
-  gravity: -20
+  gravity: -10
   groundCheck: {fileID: 135158440}
   groundLayer:
     serializedVersion: 2

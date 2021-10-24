@@ -5,14 +5,17 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/EnemiesSceneLights.unity
-    guid: 1f961bb81b3f69349924892bb75754f7
+    path: Assets/test3d.unity
+    guid: 37994d3f469ef114db13cd0a53e27def
   - enabled: 0
-    path: Assets/EnemiesScene.unity
-    guid: 8ffe69463a80e4a4886e3a326ad77c31
+    path: Assets/2_5D/Scenes/Level 1.unity
+    guid: 3a5e71c4032300b49bd23352f3c683e4
+  - enabled: 0
+    path: Assets/2_5D/Scenes/Level 2.unity
+    guid: 10e679236ee47fc4db2b5fde7d473660
+  - enabled: 0
+    path: Assets/2_5D/Scenes/Level 3.unity
+    guid: 64106f863c3c54d4eb008211c58adfe5
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 3fb339f822fe544b8b32723b2c3ea837, type: 2}

@@ -60,6 +60,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -84,6 +85,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!135 &3534475596846838188
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -125,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 213fb86f824ebc443a23f0e80d369d9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeDuration: 1
+  lifeDuration: 3
 --- !u!114 &6507194768203486713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,6 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageEffect: {fileID: 100002, guid: 75369bb81385f4904842bf20a51c14a2, type: 3}
+  damageAmount: 40
 --- !u!1001 &2991959688515004323
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -206,7 +209,6 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 200e650fba6c8492b87e96e4bc273510, type: 3}
 --- !u!4 &2991959688515403041 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 400002, guid: 200e650fba6c8492b87e96e4bc273510,
-    type: 3}
+  m_CorrespondingSourceObject: {fileID: 400002, guid: 200e650fba6c8492b87e96e4bc273510, type: 3}
   m_PrefabInstance: {fileID: 2991959688515004323}
   m_PrefabAsset: {fileID: 0}
