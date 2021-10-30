@@ -21,7 +21,7 @@ public class Collectible : MonoBehaviour
         Debug.Log("Collide");
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            InventoryManager.Instance.ModifyInventory(m_self, true);
+            InventoryManager.Instance.ModifyInventory(m_self, true,1);
             Destroy(gameObject);
         }
     }
@@ -29,7 +29,7 @@ public class Collectible : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            InventoryManager.Instance.ModifyInventory(m_self, true);
+            InventoryManager.Instance.ModifyInventory(m_self, true,1);
             Destroy(gameObject);
         }
     }

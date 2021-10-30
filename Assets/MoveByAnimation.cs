@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MoveByAnimation : MonoBehaviour
 {
-      Animator anim;
+    Animator anim;
     GatherInput gI;
     public GameObject target;
     public bool isRight = true;
@@ -42,7 +42,7 @@ public class MoveByAnimation : MonoBehaviour
             if(gI.runInput)
                 transform.rotation=Quaternion.Euler(0,20.07f + x * 90f, 0);
             else
-                transform.rotation=Quaternion.Euler(0,43.04f + x * 90f, 0);
+                transform.rotation=Quaternion.Euler(0,40.04f + x * 90f, 0);
             anim.SetFloat("direction", gI.valueX*x, 0.15f, Time.deltaTime);
         }
         else if (gI.valueX * x < 0)
@@ -57,6 +57,10 @@ public class MoveByAnimation : MonoBehaviour
         {
             anim.SetFloat("direction", 0,0.15f,Time.deltaTime);
         }
+    }
+
+    public void LateUpdate()
+    {
         Vector3 newp = transform.position;
         newp.z = 11f;
         transform.position = newp;

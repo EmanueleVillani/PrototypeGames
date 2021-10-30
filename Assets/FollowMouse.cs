@@ -26,20 +26,20 @@ public class FollowMouse : MonoBehaviour
             pos.z = off;
             transform.position = Camera.main.ScreenToWorldPoint(pos);
         }
-        if (gI.fireInput)
-        {
-            FireBallAttack();
-        }
+      // if (gI.fireInput)
+      // {
+      //     FireBallAttack();
+      // }
       //  gun.LookAt(transform);
     }
 
-    public void FireBallAttack()
-    {
-        GameObject ball = Instantiate(fireBall, looktransform.position, Quaternion.identity);
-        // ball.transform.parent = null;
-        //looktransform.LookAt(transform);
-        Vector3 dirCorrection = Vector3.ProjectOnPlane(looktransform.forward, Vector3.back);
-        ball.GetComponent<Rigidbody>().AddForce(dirCorrection * fireBallSpeed);
-
-    }
+  // public void FireBallAttack()
+  // {
+  //     GameObject ball = Instantiate(fireBall, looktransform.position, Quaternion.identity);
+  //     // ball.transform.parent = null;
+  //     //looktransform.LookAt(transform);
+  //     Vector3 dirCorrection = Vector3.ProjectOnPlane(looktransform.forward, Vector3.back);
+  //     ball.GetComponent<Rigidbody>().AddForce(dirCorrection * fireBallSpeed);
+  //
+  // }
 }

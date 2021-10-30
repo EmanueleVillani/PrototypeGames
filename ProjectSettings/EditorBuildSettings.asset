@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/test3d.unity
     guid: 37994d3f469ef114db13cd0a53e27def
   - enabled: 0
+    path: Assets/test3d - Copia.unity
+    guid: c26c5a5fe47c1fc489a7f4d244246dc1
+  - enabled: 0
     path: Assets/2_5D/Scenes/Level 1.unity
     guid: 3a5e71c4032300b49bd23352f3c683e4
   - enabled: 0

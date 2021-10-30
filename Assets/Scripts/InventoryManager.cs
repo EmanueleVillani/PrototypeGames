@@ -32,11 +32,6 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    public void FunzioneProva()
-    {
-        Debug.Log("Prova");
-    }
-
     // Update is called once per frame
     public int HowMany(Item item)
     {
@@ -55,26 +50,25 @@ public class InventoryManager : MonoBehaviour
         else
         {
             return false;
-        }
-
+        } 
     }
-    public void ModifyInventory(Item item,bool adding)
+    public void ModifyInventory(Item item, bool adding, int valor)
     {
         if (adding)
         {
             if (Inventory.ContainsKey(item))
             {
                 int value = int.Parse(Inventory[item].GetComponentInChildren<Text>().text);
-                value++;
-                Inventory[item].GetComponentInChildren<Text>().text = ""+value;
+                value += valor;
+                Inventory[item].GetComponentInChildren<Text>().text = "" + value;
             }
             else
             {
-                GameObject newitem = Instantiate<GameObject>(ItemUI,Bag.transform);
+                GameObject newitem = Instantiate<GameObject>(ItemUI, Bag.transform);
                 newitem.GetComponentInChildren<Image>().sprite = ItemSprites[(int)item].sprite;
-                newitem.GetComponentInChildren<Text>().text = "1";
-                
-                Inventory.Add(item,newitem);
+                newitem.GetComponentInChildren<Text>().text = "" + valor;
+
+                Inventory.Add(item, newitem);
             }
         }
         else
@@ -82,18 +76,18 @@ public class InventoryManager : MonoBehaviour
             if (Inventory.ContainsKey(item))
             {
                 int value = int.Parse(Inventory[item].GetComponentInChildren<Text>().text);
-                value--;
                 if (value == 0)
-                {
-                    Destroy(Inventory[item]);
-                    Inventory.Remove(item);
-                }
-                else
-                {
-                    value = int.Parse(Inventory[item].GetComponentInChildren<Text>().text);
-                    value--;
-                    Inventory[item].GetComponentInChildren<Text>().text = "" + value;
-                }
+                    return;
+                value -= valor;
+                Inventory[item].GetComponentInChildren<Text>().text = "" + value;
+                //  if (value == 0)
+                //  {
+                //  //   Destroy(Inventory[item]);
+                //  //   Inventory.Remove(item);
+                //  }
+                //  else
+                //  {
+                //  }
             }
         }
     }
@@ -102,7 +96,7 @@ public class InventoryManager : MonoBehaviour
 }
 public enum Item
 {
-    Gem=0,key=1
+    Gem=0,Ammo=1
 }
 [System.Serializable]
 public class ItemLogic

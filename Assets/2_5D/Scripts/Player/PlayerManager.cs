@@ -40,21 +40,24 @@ public class PlayerManager : MonoBehaviour
             currentHealth = 100;
         }
 
-        if( FindObjectsOfType<Enemy>().Length ==0)
+        if(FindObjectsOfType<Enemy>().Length ==0)
         {
             //Win Level
             winLevel = true;
             timer += Time.deltaTime;
             if(timer > 5)
             {
+                /**
                 int nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
                 if (nextLevel == 4)
                     SceneManager.LoadScene(0);
+                                if(PlayerPrefs.GetInt("ReachedLevel", 1) < nextLevel)
+                                    PlayerPrefs.SetInt("ReachedLevel", nextLevel);
 
-                if(PlayerPrefs.GetInt("ReachedLevel", 1) < nextLevel)
-                    PlayerPrefs.SetInt("ReachedLevel", nextLevel);
+                                SceneManager.LoadScene(nextLevel);
+                **/
+                SceneManager.LoadScene(0);
 
-                SceneManager.LoadScene(nextLevel);
             }
 
         }
