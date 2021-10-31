@@ -318,7 +318,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: ccddd5259fbbe44aaad35eed86f4f02f, type: 3}
+    m_Font: {fileID: 12800000, guid: 5c9f9e7c7e9e54e5e811bf8b8fef3ab6, type: 3}
     m_FontSize: 300
     m_FontStyle: 0
     m_BestFit: 0
@@ -1182,7 +1182,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1170861869}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0615cafefe484d51bd17ed02c167809, type: 3}
+  m_Script: {fileID: 0}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1303791354 stripped
@@ -1352,9 +1352,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1170861876}
+      - m_Target: {fileID: 1170861869}
         m_TargetAssemblyTypeName: MenuHorror, Assembly-CSharp
-        m_MethodName: CreditHorrorBack
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

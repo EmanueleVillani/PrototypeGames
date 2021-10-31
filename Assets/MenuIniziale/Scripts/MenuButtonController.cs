@@ -56,12 +56,12 @@ public class MenuButtonController : MonoBehaviour {
 		{
 			   if( index ==0)
             {
-				SceneManager.LoadScene(2);
+				SceneManager.LoadScene(0);
 				Debug.Log("Premuto Index 0");
 			}
 			   if(index == 1)
             {
-				SceneManager.LoadScene(4);
+				SceneManager.LoadScene(1);
 				Debug.Log("premutoIndex1");
 			}
 			   if(index == 2)
