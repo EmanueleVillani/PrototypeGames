@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
 
     private GatherInput gI;
     private float startZ;
+    public bool isGrounded;
     private void Start()
     {
         startZ = transform.position.z;
@@ -35,33 +36,37 @@ public class PlayerController : MonoBehaviour
         }
 
         //Take the horizontal input to move the player
-       // float hInput = Input.GetAxis("Horizontal");
-        float hInput = gI.valueX;
-        direction.x = hInput * speed;
-        animator.SetFloat("speed", Mathf.Abs(hInput));
+       float hInput = Input.GetAxis("Horizontal");
+       //float hInput = gI.valueX;
+       //direction.x = hInput * speed;
+       //animator.SetFloat("speed", Mathf.Abs(hInput));
 
         //Check if the player is on the ground
-        bool isGrounded = Physics.CheckSphere(groundCheck.position, 0.15f, groundLayer);
+        isGrounded = Physics.CheckSphere(groundCheck.position, 0.15f, groundLayer);
         animator.SetBool("isGrounded", isGrounded);
 
         if (isGrounded)
         {
+            controller.height = 1.7f;
+            direction.x = hInput * speed;
             direction.y = -1;
             ableToMakeADoubleJump = true;
            // if (Input.GetButtonDown("Jump"))
             if (gI.jumpInput)
             {
                 Jump();
+                controller.Move(direction*2*Time.deltaTime);
             }
-
             //if (Input.GetKeyDown(KeyCode.F))
-            if (gI.fireInput)
-            {
-                animator.SetTrigger("fireBallAttack");
-            }
+           // if (gI.fireInput)
+           // {
+           //     animator.SetTrigger("fireBallAttack");
+           // }
         }
         else
         {
+            controller.height = 1.7f;
+            direction.x = hInput * speed;
             direction.y += gravity * Time.deltaTime;//Add Gravity
             //if (ableToMakeADoubleJump && Input.GetButtonDown("Jump"))
             if (ableToMakeADoubleJump && gI.jumpInput)
@@ -70,22 +75,24 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Fireball Attack"))
-            return;
+       // if (animator.GetCurrentAnimatorStateInfo(0).IsName("Fireball Attack"))
+       //     return;
 
         //Flip the player
-        if(hInput != 0)
-        {
-            Quaternion newRotation = Quaternion.LookRotation(new Vector3(hInput, 0, 0));
-            model.rotation = newRotation;
-        }
+       //if(hInput != 0)
+       //{
+       //    Quaternion newRotation = Quaternion.LookRotation(new Vector3(hInput, 0, 0));
+       //    model.rotation = newRotation;
+       //}
 
         //Move the player using the character controller
+       // direction.x = 0;
+       if(!isGrounded)//airborne movement
         controller.Move(direction * Time.deltaTime);
 
         //Reset Z Position
-        if (transform.position.z != startZ)
-            transform.position = new Vector3(transform.position.x, transform.position.y, startZ);
+      // if (transform.position.z != startZ)
+      //     transform.position = new Vector3(transform.position.x, transform.position.y, startZ);
 
         //win level
         if (PlayerManager.winLevel)
