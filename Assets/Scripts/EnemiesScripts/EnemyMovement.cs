@@ -18,7 +18,9 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField]
     private float minDistanceEnemyPlayer = 0.2f; //When the Enemy is close to the player will starts to attack.
 
-    private PlayerHealth player;
+    private PlayerHealth playerHealth;
+
+    private Transform target;
 
     [SerializeField]
     private int damage = 20;
@@ -28,13 +30,15 @@ public class EnemyMovement : MonoBehaviour
     private float attackTimerThreshold = 2f;
     private float attackTimer;
 
-   
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
-        player = GameObject.FindWithTag("Player").GetComponent<PlayerHealth>();
-        
+       
 
+        target = GameObject.FindWithTag("Player").transform;
+
+        playerHealth = target.GetComponent<PlayerHealth>();
         sr = GetComponent<SpriteRenderer>();
 
     }
@@ -44,49 +48,62 @@ public class EnemyMovement : MonoBehaviour
     {
         anim.Play("Idle");
 
+        transform.rotation = Quaternion.Euler(0, 270, 0);
+
+       
     }
 
 
     private void Update()
     {
-        if (!player)
+        if (!target)
             return;
 
+        
 
-        if ((Vector2.Distance(transform.position, player.transform.position) < maxDistanceEnemyPlayer))
+
+
+
+        if ((Vector3.Distance(transform.position, target.position) < maxDistanceEnemyPlayer))
         {
-            if((Vector2.Distance(transform.position, player.transform.position) > minDistanceEnemyPlayer))
+            if((Vector3.Distance(transform.position, target.position) > minDistanceEnemyPlayer))
             {
                
                 float step = moveSpeed * Time.deltaTime;
-                transform.position = Vector2.MoveTowards(transform.position, player.transform.position, step);
+                transform.position = Vector3.MoveTowards(transform.position, target.position, step);
 
-                anim.SetBool("Walk",true);
+                anim.SetBool("isMoving",true);
 
             }
             else
             {
 
-                AttackPlayer(); 
-                anim.SetBool("Walk", false);
+             //   AttackPlayer(); 
+               // anim.SetBool("Walk", false);
                 
             }
 
         }
-
-        if (player.gameObject.transform.position.x < transform.position.x)
-            sr.flipX = false;
         else
-            sr.flipX = true;
-
-        if (gameObject.CompareTag("Ghost"))
         {
-            if (player.gameObject.transform.position.x < transform.position.x)
-                sr.flipX = true;
-            else
-                sr.flipX = false;
+            anim.SetBool("isMoving", false);
 
         }
+
+        if (target.position.x < transform.position.x)
+        {
+
+            Quaternion rotation = Quaternion.LookRotation(Vector3.left);
+            transform.rotation = rotation;
+
+        }     
+        else
+        {
+           
+                Quaternion rotation = Quaternion.LookRotation(Vector3.right);
+                transform.rotation = rotation;
+        }
+            
    
     }
 
@@ -101,11 +118,11 @@ public class EnemyMovement : MonoBehaviour
         {
             
            Debug.Log("AttackPlayer");
-           player.currentHealth -= damage;
+           playerHealth.currentHealth -= damage;
 
             attackTimer = Time.time + attackTimerThreshold;
 
-            if (player.currentHealth <= 0)
+            if (playerHealth.currentHealth <= 0)
                 GameManager.gameManagerInstance.DestroyPlayer();
            
         }

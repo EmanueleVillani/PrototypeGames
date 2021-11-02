@@ -51,12 +51,16 @@ public class Enemy : MonoBehaviour
                 //move right
                 transform.Translate(transform.right * speed * Time.deltaTime);
                 transform.rotation = Quaternion.Euler(0, 180, 0);
+
+             
             }
             else
             {
                 //move left
                 transform.Translate(-transform.right * speed * Time.deltaTime);
                 transform.rotation = Quaternion.identity;
+
+             
             }
 
         }

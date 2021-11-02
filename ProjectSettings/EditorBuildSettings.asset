@@ -8,9 +8,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
-    path: Assets/EnemiesSceneLights.unity
-    guid: 1f961bb81b3f69349924892bb75754f7
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
     path: Assets/EnemiesScene.unity
     guid: 8ffe69463a80e4a4886e3a326ad77c31
