@@ -54,10 +54,11 @@ public class GatherInput : MonoBehaviour
         myControls.Player.Move.performed -= StartMove;
         myControls.Player.Move.canceled -= StopMove;
 
+        // myControls.Player.Jump.performed -= JumpStar;
+        // myControls.Player.Jump.canceled -= JumpStop;
 
-       // myControls.Player.Jump.performed -= JumpStar;
-       // myControls.Player.Jump.canceled -= JumpStop;
-
+        myControls.Player.Run.performed -= RunStart; //Avvia il Salto del Player
+        myControls.Player.Run.canceled -= RunStop; //Stop il Salto del Player
 
         myControls.Player.Attack.performed -= TryToAttack;  
         myControls.Player.Attack.canceled -= StopTryAttack;
@@ -82,7 +83,6 @@ public class GatherInput : MonoBehaviour
 
       // myControls.Player.Jump.performed -= JumpStar;
       // myControls.Player.Jump.canceled -= JumpStop;
-
 
         myControls.Player.Attack.performed -= TryToAttack;
         myControls.Player.Attack.canceled -= StopTryAttack;
