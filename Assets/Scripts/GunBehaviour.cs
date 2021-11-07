@@ -27,6 +27,15 @@ public class GunBehaviour : MonoBehaviour
           //  anim.SetTrigger("fire");
             FireBallAttack();
         }
+        Debug.Log(looktransform.position);
+        Vector3 pos= looktransform.position;
+        pos.z = 11f;
+        looktransform.position = pos;
+        Vector3 lpos= looktransform.localPosition;
+        lpos.y = 0;
+        lpos.z = 0;
+        looktransform.localPosition = lpos;
+        Debug.DrawLine(looktransform.position ,fireBallPoint.transform.position);
     }
     public void FireBallAttack()
     {
@@ -35,10 +44,9 @@ public class GunBehaviour : MonoBehaviour
         Ammunition--;
         InventoryManager.Instance.ModifyInventory(Item.Ammo,false,1);
         GameObject ball = Instantiate(fireBall, looktransform.position, Quaternion.identity);
-        // ball.transform.parent = null;
-        //looktransform.LookAt(transform);
+        looktransform.transform.LookAt(fireBallPoint.transform.position);
         Vector3 dirCorrection = Vector3.ProjectOnPlane(looktransform.forward, Vector3.back);
-        ball.GetComponent<Rigidbody>().AddForce(dirCorrection * fireBallSpeed);
+        ball.GetComponent<Rigidbody>().AddForce(looktransform.forward * fireBallSpeed);
     }
 
 }

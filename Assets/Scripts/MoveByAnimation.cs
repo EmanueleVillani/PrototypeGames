@@ -19,7 +19,7 @@ public class MoveByAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        isrunning=gI.runInput;
+       // isrunning=gI.runInput;
         if((isRight&& target.transform.position.x < transform.position.x) || (!isRight && target.transform.position.x > transform.position.x))
         {
             isRight ^= true;

@@ -5,14 +5,7 @@ using UnityEngine;
 public class FollowMouse : MonoBehaviour
 {
     public GatherInput gI;
-    public float off =11;
-
-    public GameObject direction;
-    public GameObject fireBall;
-    public Transform fireBallPoint;
-    public Transform looktransform;
-    public float fireBallSpeed = 600;
-    public Transform gun;
+    public GameObject playeranchor;
     private void Start()
     {
         Cursor.visible = false;
@@ -23,23 +16,43 @@ public class FollowMouse : MonoBehaviour
         if (gI.mousedelta.magnitude != 0)
         {
             Vector3 pos = gI.mouseposition;
-            pos.z = off;
-            transform.position = Camera.main.ScreenToWorldPoint(pos);
+            pos.z = 11f;
+            Ray ray =  Camera.main.ScreenPointToRay(pos,Camera.main.stereoActiveEye);
+            // transform.position = ray.GetPoint(pos.z); 
+            //transform.position = Camera.main.ScreenToWorldPoint(pos);
+            Vector3 par = Camera.main.ScreenToWorldPoint(pos);
+            par.z = 11f;
+            Vector3 inter = Vector3.zero;
+            if(LinePlaneIntersection(out inter,Camera.main.transform.position,ray.direction,Vector3.forward, playeranchor.transform.position))
+            {
+                transform.position = inter;
+            }
         }
-      // if (gI.fireInput)
-      // {
-      //     FireBallAttack();
-      // }
-      //  gun.LookAt(transform);
     }
+    public bool LinePlaneIntersection(out Vector3 intersection, Vector3 linePoint, Vector3 lineVec, Vector3 planeNormal, Vector3 planePoint)
+    {
+        float length;
+        float dotNumerator;
+        float dotDenominator;
+        Vector3 vector;
+        intersection = Vector3.zero;
 
-  // public void FireBallAttack()
-  // {
-  //     GameObject ball = Instantiate(fireBall, looktransform.position, Quaternion.identity);
-  //     // ball.transform.parent = null;
-  //     //looktransform.LookAt(transform);
-  //     Vector3 dirCorrection = Vector3.ProjectOnPlane(looktransform.forward, Vector3.back);
-  //     ball.GetComponent<Rigidbody>().AddForce(dirCorrection * fireBallSpeed);
-  //
-  // }
+        //calculate the distance between the linePoint and the line-plane intersection point
+        dotNumerator = Vector3.Dot((planePoint - linePoint), planeNormal);
+        dotDenominator = Vector3.Dot(lineVec, planeNormal);
+
+        if (dotDenominator != 0.0f)
+        {
+            length = dotNumerator / dotDenominator;
+
+            vector = lineVec*length;
+
+            intersection = linePoint + vector;
+            Debug.DrawLine(Camera.main.transform.position,intersection);
+            return true;
+        }
+
+        else
+            return false;
+    }
 }
