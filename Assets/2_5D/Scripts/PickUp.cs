@@ -20,10 +20,13 @@ public class PickUp : MonoBehaviour
             switch (m_self)
             {
                 case Item.Gem:
-                PlayerManager.numberOfCoins++;//Increment the number of coins
+                PlayerManager.numberOfCoins+=howmany;//Increment the number of coins
                     break;
                 case Item.Ammo:
                     FindObjectOfType<GunBehaviour>().Ammunition += howmany;
+                    break;
+                case Item.health:
+                    PlayerManager.currentHealth += howmany;
                     break;
             }
             Destroy(gameObject);//destroy the coin

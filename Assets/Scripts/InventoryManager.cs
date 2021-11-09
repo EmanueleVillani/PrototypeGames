@@ -64,6 +64,8 @@ public class InventoryManager : MonoBehaviour
             }
             else
             {
+                if (ItemSprites.Length < (int)item+1)
+                    return;
                 GameObject newitem = Instantiate<GameObject>(ItemUI, Bag.transform);
                 newitem.GetComponentInChildren<Image>().sprite = ItemSprites[(int)item].sprite;
                 newitem.GetComponentInChildren<Text>().text = "" + valor;
@@ -96,7 +98,7 @@ public class InventoryManager : MonoBehaviour
 }
 public enum Item
 {
-    Gem=0,Ammo=1
+    Gem=0,Ammo=1,health=2
 }
 [System.Serializable]
 public class ItemLogic

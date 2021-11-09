@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
     public int maxHealth;
 
     public Animator animator;
+    public CharacterController controller;
 
     void Start()
     {
@@ -49,7 +50,8 @@ public class Enemy : MonoBehaviour
             if(target.position.x > transform.position.x)
             {
                 //move right
-                transform.Translate(transform.right * speed * Time.deltaTime);
+                controller.Move(-transform.right * speed * Time.deltaTime);
+                // transform.Translate(transform.right * speed * Time.deltaTime);
                 transform.rotation = Quaternion.Euler(0, 180, 0);
 
              
@@ -57,7 +59,8 @@ public class Enemy : MonoBehaviour
             else
             {
                 //move left
-                transform.Translate(-transform.right * speed * Time.deltaTime);
+                controller.Move(-transform.right * speed * Time.deltaTime);
+                //transform.Translate(-transform.right * speed * Time.deltaTime);
                 transform.rotation = Quaternion.identity;
 
              
