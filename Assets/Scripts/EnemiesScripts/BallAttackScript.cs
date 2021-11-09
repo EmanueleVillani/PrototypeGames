@@ -14,6 +14,8 @@ public class BallAttackScript : MonoBehaviour
 
     private Rigidbody myBody;
 
+    private float offset = 2f;
+
     
 
     private void Start()
@@ -22,7 +24,7 @@ public class BallAttackScript : MonoBehaviour
 
         myBody = GetComponent<Rigidbody>();
 
-        Vector3 direction = target - transform.position;
+        Vector3 direction = target - transform.position + new Vector3(0f,offset,0f) ;
 
         myBody.velocity = direction.normalized * speedBall;
 

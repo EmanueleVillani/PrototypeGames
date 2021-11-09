@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3893633818372566134}
   - component: {fileID: 7009146556698291446}
   - component: {fileID: 6507194768203486713}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: FireBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,8 +97,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 1.14
+  m_Center: {x: -0.21, y: -0.02, z: -0.07}
 --- !u!54 &3893633818372566134
 Rigidbody:
   m_ObjectHideFlags: 0

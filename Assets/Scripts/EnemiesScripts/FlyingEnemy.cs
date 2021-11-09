@@ -16,6 +16,9 @@ public class FlyingEnemy : MonoBehaviour
     [SerializeField]
     private float distanceToAttackOnAir = 10f;
 
+    [SerializeField]
+    Rigidbody childBody;
+
 
     
     private float timerAttackFly;
@@ -33,13 +36,13 @@ public class FlyingEnemy : MonoBehaviour
 
     private float yPosition;  //fix della posizione dell'enemy lungo l'asse y
 
-    [SerializeField]
-    private Transform standardPosition;
-
+  
 
     private bool isFlying;
 
-    private float minDistance = 5f;
+    private float minDistance = 8f;
+
+    private Rigidbody myBody;
 
 
 
@@ -47,14 +50,17 @@ public class FlyingEnemy : MonoBehaviour
     {
         target = GameObject.FindWithTag("Player").transform;
 
-       
+        myBody = GetComponent<Rigidbody>();
 
         transform.rotation = Quaternion.Euler(0, 0, 0);
 
         yPosition = transform.position.y;
 
+      
+
        
     }
+
 
 
     private void Update()
@@ -129,7 +135,7 @@ public class FlyingEnemy : MonoBehaviour
         
         float step = speed * Time.smoothDeltaTime;
 
-        Vector3 targetPos = new Vector3 (target.transform.position.x, transform.position.y, transform.position.z);
+        Vector3 targetPos = new Vector3 (target.transform.position.x + Random.Range(-2f,2f), transform.position.y + Random.Range(-2f,2f), transform.position.z);
         
        // if(isFlying)
          transform.position = Vector3.MoveTowards(transform.position, targetPos, step);
@@ -163,13 +169,24 @@ public class FlyingEnemy : MonoBehaviour
         if (Time.time > timerAttackFly )
         {
             
-            timerAttackFly = Time.time + attackTimeFlyThreshold;
+          timerAttackFly = Time.time + attackTimeFlyThreshold;
+
+          transform.position = Vector3.MoveTowards(transform.position,new Vector3(transform.position.x + Random.Range(-10f, 10f), transform.position.y + Random.Range(-5f, 5f), transform.position.z),100f*Time.deltaTime);
+
+            if (transform.position.y > 2f)
+                transform.position = new Vector3(transform.position.x, 2f, transform.position.z);
+
+            if (transform.position.y < -2f)
+                transform.position = new Vector3(transform.position.x, -2f, transform.position.z);
+
 
             anim.SetTrigger("attackFly");
 
-            
+
 
         }
+
+
 
     }
 
@@ -181,4 +198,18 @@ public class FlyingEnemy : MonoBehaviour
     }
    
 
+
+    void Dead()
+    {
+        anim.SetTrigger("Death");
+
+
+        childBody.isKinematic = false;
+
+
+
+    }
+
+
+   
 }
