@@ -31,33 +31,43 @@ public class MenuHorror : MonoBehaviour
     public void PlayMenuHorror()
     {
         Debug.Log("PlayHorror");
-       // SceneManager.LoadScene(6);
+        SceneManager.LoadScene(0);
     }
     public void OpzioniMenuHorror()
     {
+        SceneManager.LoadScene(1);
         Debug.Log("OpzioniHorror");
     }
     public void ExitMenuHorror()
     {
         Debug.Log("Exit");
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
         Application.Quit();
     }
 
     public void CreditHorror()
     {
         Debug.Log("Credit");
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(3);
     }
 
     public void CreditHorrorBack()
     {
         Debug.Log("CreditBeck");
-       // SceneManager.LoadScene(4);
+        SceneManager.LoadScene(1);
     }
     public void Setting()
     {
         Debug.Log("Setting");
        // SceneManager.LoadScene(4);
+    }
+
+   public  void StoryGame()
+    {
+        SceneManager.LoadScene(4);
+    }
+   public  void StoryGameBack()
+    {
+        SceneManager.LoadScene(1);
     }
 }
