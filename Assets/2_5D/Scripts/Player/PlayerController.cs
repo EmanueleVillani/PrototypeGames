@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheck;
     public LayerMask groundLayer;
 
+
     public bool ableToMakeADoubleJump = true;
 
     public Animator animator;

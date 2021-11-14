@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 
 public class MoveByAnimation : MonoBehaviour
 {
@@ -9,6 +10,12 @@ public class MoveByAnimation : MonoBehaviour
     public GameObject target;
     public bool isRight = true;
     public bool isrunning = false;
+    public float stamina = 20f;
+    public float capstamina = 20f;
+    public TwoBoneIKConstraint otherarm;
+    public ChainIKConstraint aimarm;
+    public MultiAimConstraint headaim;
+    public Collider weapon;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +26,7 @@ public class MoveByAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       // isrunning=gI.runInput;
+        isrunning =gI.runInput;
         if((isRight&& target.transform.position.x < transform.position.x) || (!isRight && target.transform.position.x > transform.position.x))
         {
             isRight ^= true;
@@ -31,6 +38,38 @@ public class MoveByAnimation : MonoBehaviour
             else
                 x = -1f;
         }
+        if (/**Input.GetKeyDown(KeyCode.Mouse1) &&**/ gI.tryAttack && !anim.GetCurrentAnimatorStateInfo(0).IsName("Melee"))
+        {
+            transform.rotation = Quaternion.Euler(0, 36.917f+x*90f, 0);
+            otherarm.weight = 0f;
+            aimarm.weight = 0f;
+            headaim.weight = 0f;
+            anim.SetTrigger("attack");
+        }
+
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Melee"))
+        {
+            otherarm.weight = 0f;
+            aimarm.weight = 0f;
+            headaim.weight = 0f;
+            return;
+        }
+        //staminacheck
+        if (gI.valueX != 0 && isrunning)
+        {
+            if (stamina >= 0)
+                stamina -= Time.deltaTime * 2;
+            else
+                isrunning = false;
+        }
+        else if (gI.valueX == 0 || !isrunning)
+        {
+            if (stamina < capstamina)
+                stamina += Time.deltaTime * 2;
+            else
+                stamina = capstamina;
+        }
+
         if (isrunning)
         {
             anim.SetFloat("speed",1f,0.15f,Time.deltaTime);
@@ -38,6 +77,7 @@ public class MoveByAnimation : MonoBehaviour
         else if (anim.GetFloat("speed") != 0)
         {
             anim.SetFloat("speed", 0f, 0.15f, Time.deltaTime);
+          
         }
         if (gI.valueX * x > 0)
         {
@@ -59,6 +99,16 @@ public class MoveByAnimation : MonoBehaviour
         {
             anim.SetFloat("direction", 0,0.15f,Time.deltaTime);
         }
+
+      
+
+        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Melee") && otherarm.weight == 0 && aimarm.weight == 0 && headaim.weight == 0)
+        {
+            otherarm.weight = 1f;
+            aimarm.weight = 1f;
+            headaim.weight = 0.5f;
+        }
+
     }
 
     public void LateUpdate()
@@ -66,5 +116,15 @@ public class MoveByAnimation : MonoBehaviour
         Vector3 newp = transform.position;
         newp.z = 11f;
         transform.position = newp;
+    }
+    
+    public void EnableHit()
+    {
+        weapon.enabled = true;
+    }
+
+    public void DisableHit()
+    {
+        weapon.enabled = false;
     }
 }

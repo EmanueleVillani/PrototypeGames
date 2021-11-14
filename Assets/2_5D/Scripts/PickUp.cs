@@ -21,15 +21,20 @@ public class PickUp : MonoBehaviour
             {
                 case Item.Gem:
                 PlayerManager.numberOfCoins+=howmany;//Increment the number of coins
+                Destroy(gameObject);//destroy the coin
                     break;
                 case Item.Ammo:
                     FindObjectOfType<GunBehaviour>().Ammunition += howmany;
+                Destroy(gameObject);//destroy the coin
                     break;
                 case Item.health:
-                    PlayerManager.currentHealth += howmany;
+                    if (PlayerManager.currentHealth < 100)
+                    {
+                        PlayerManager.currentHealth += howmany;
+                        Destroy(gameObject);//destroy the coin
+                    }
                     break;
             }
-            Destroy(gameObject);//destroy the coin
         }
     }
 }

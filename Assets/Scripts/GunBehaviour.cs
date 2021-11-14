@@ -27,7 +27,7 @@ public class GunBehaviour : MonoBehaviour
           //  anim.SetTrigger("fire");
             FireBallAttack();
         }
-        Debug.Log(looktransform.position);
+        //Debug.Log(looktransform.position);
         Vector3 pos= looktransform.position;
         pos.z = 11f;
         looktransform.position = pos;
