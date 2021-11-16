@@ -15,7 +15,7 @@ public class FireBall : MonoBehaviour
 
         if (other.CompareTag("Insect"))
         {
-            other.GetComponent<EnemyHealth1>().TakeDamage(damageAmount);
+           // other.GetComponent<EnemyHealth1>().TakeDamage(damageAmount);
 
             Debug.Log("COLLIDED");
 

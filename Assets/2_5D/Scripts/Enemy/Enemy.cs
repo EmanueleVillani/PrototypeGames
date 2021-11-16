@@ -26,6 +26,7 @@ public class Enemy : MonoBehaviour
     {
         if (PlayerManager.gameOver)
         {
+           
             animator.enabled = false;
             this.enabled = false;
         }

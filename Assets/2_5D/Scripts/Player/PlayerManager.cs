@@ -22,6 +22,7 @@ public class PlayerManager : MonoBehaviour
     {
         numberOfCoins = 0;
         gameOver = winLevel = false;
+
     }
 
     void Update()
@@ -33,14 +34,22 @@ public class PlayerManager : MonoBehaviour
         healthBar.value = currentHealth;
 
         //game over
-        if(currentHealth < 0)
+        if(currentHealth <= 0)
         {
             gameOver = true;
-            gameOverPanel.SetActive(true);
-            currentHealth = 100;
+
+           
+
+            GameManager1.instanceGameManager.GameOver();
+
+
+            //  currentHealth = 100;
+
+            //PLAY DEATH ANIMATION
+
         }
 
-        if(FindObjectsOfType<Enemy>().Length ==0)
+        if (FindObjectsOfType<Enemy>().Length ==0)
         {
             //Win Level
             winLevel = true;

@@ -3,7 +3,9 @@ guid: 8f188b3c0c2fab24699582ad718cc158
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - FireballScript: {fileID: 6507194768203486713, guid: be4bbd982a0019941b47ec9bf47fa86a, type: 3}
+  - insectChildModel: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
