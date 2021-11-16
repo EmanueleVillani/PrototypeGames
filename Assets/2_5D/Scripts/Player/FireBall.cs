@@ -13,14 +13,12 @@ public class FireBall : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (other.CompareTag("Insect"))
+        if (other.tag=="Insect")
         {
-           // other.GetComponent<EnemyHealth1>().TakeDamage(damageAmount);
-
-            Debug.Log("COLLIDED");
-
+            Instantiate(damageEffect, transform.position, damageEffect.transform.rotation);
+            Destroy(gameObject);
+            other.GetComponent<EnemyHealth>()?.TakeDamage(damageAmount);
+            // Debug.Log("COLLIDED");
         }
-
-
     }
 }

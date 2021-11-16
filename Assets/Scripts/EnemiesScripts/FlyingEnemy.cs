@@ -37,7 +37,6 @@ public class FlyingEnemy : MonoBehaviour
     private float yPosition;  //fix della posizione dell'enemy lungo l'asse y
 
   
-
     private bool isFlying;
 
     private float minDistance = 8f;
@@ -56,9 +55,6 @@ public class FlyingEnemy : MonoBehaviour
 
         yPosition = transform.position.y;
 
-      
-
-       
     }
 
 
@@ -93,9 +89,7 @@ public class FlyingEnemy : MonoBehaviour
 
             if (distanceTarget < distanceToAttackOnAir && isFlying)
             {
-
-                      current_State = "AttackState";
-
+               current_State = "AttackState";
             }
 
             Invoke("StartFly", 1.5f);  
@@ -110,8 +104,6 @@ public class FlyingEnemy : MonoBehaviour
                 if(distanceTarget > distanceToAttackOnAir)
                 {
                     current_State = "ChaseState";
-
-
                 }
 
                     AttackAir();
@@ -119,15 +111,8 @@ public class FlyingEnemy : MonoBehaviour
               if(Vector2.Distance(transform.position,target.position) > minDistance && isFlying)
                     MoveEnemy();
 
-                
-
-                  
             }
-           
-
         }
-
-
     }
 
     void MoveEnemy()
@@ -140,24 +125,14 @@ public class FlyingEnemy : MonoBehaviour
        // if(isFlying)
          transform.position = Vector3.MoveTowards(transform.position, targetPos, step);
       
-
-      
         if (transform.position.x > target.position.x)
         {
             
             transform.rotation = Quaternion.Euler(0, 0, 0);
-
-           
-           
-               
-           
         }
         else
         {
-            
             transform.rotation = Quaternion.Euler(0, 180, 0);
-           
-            
         }
 
     }
@@ -179,21 +154,14 @@ public class FlyingEnemy : MonoBehaviour
             if (transform.position.y < -2f)
                 transform.position = new Vector3(transform.position.x, -2f, transform.position.z);
 
-
             anim.SetTrigger("attackFly");
 
-
-
         }
-
-
-
     }
 
 
     void StartFly()
     {
-        
         isFlying = true;
     }
    
@@ -203,10 +171,7 @@ public class FlyingEnemy : MonoBehaviour
     {
         anim.SetTrigger("Death");
 
-
         childBody.isKinematic = false;
-
-
 
     }
 

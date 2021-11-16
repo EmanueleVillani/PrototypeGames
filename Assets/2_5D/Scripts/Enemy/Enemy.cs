@@ -63,8 +63,6 @@ public class Enemy : MonoBehaviour
                 controller.Move(-transform.right * speed * Time.deltaTime);
                 //transform.Translate(-transform.right * speed * Time.deltaTime);
                 transform.rotation = Quaternion.identity;
-
-             
             }
 
         }
@@ -92,9 +90,9 @@ public class Enemy : MonoBehaviour
     {
         //play a die animation
         animator.SetTrigger("isDead");
-
         //disable the script and the collider
         GetComponent<CapsuleCollider>().enabled = false;
+        controller.enabled = false;
         Destroy(gameObject, 3);
         this.enabled = false;
     }

@@ -16,6 +16,7 @@ public class JumpLogic : MonoBehaviour
     public bool isGrounded;
     public float initialForceJump = 5;
     public float physicsRange = 0.25f;
+    float delta = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +24,6 @@ public class JumpLogic : MonoBehaviour
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
     }
-    float delta = 0;
     // Update is called once per frame
     void Update()
     {
@@ -35,9 +35,9 @@ public class JumpLogic : MonoBehaviour
             animator.SetBool("isGrounded", isGrounded);
 
             controller.height = 1.7f;
-            direction.x =0;
+            direction.x = 0;
             direction.y = -1;
-           // ableToMakeADoubleJump = true;
+            // ableToMakeADoubleJump = true;
             // if (Input.GetButtonDown("Jump"))
             //if (Input.GetKeyDown(KeyCode.Space))
             if (gI.jumpInput)
@@ -56,8 +56,8 @@ public class JumpLogic : MonoBehaviour
         else
         {
           //controller.height = 1.7f;
-            direction.x = hInput * initialForceJump;
-            direction.y += gravity * Time.deltaTime;//Add Gravity
+          direction.x = hInput * initialForceJump;
+          direction.y += gravity * Time.deltaTime;//Add Gravity
           //if (ableToMakeADoubleJump && Input.GetButtonDown("Jump"))
           //if (ableToMakeADoubleJump && gI.jumpInput)
           //{
@@ -67,8 +67,6 @@ public class JumpLogic : MonoBehaviour
 
         controller.height = delta * 2;
         controller.Move(direction*Time.deltaTime);
-    
-      
     }
 
     public void OnDrawGizmos()

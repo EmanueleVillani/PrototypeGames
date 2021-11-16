@@ -20,8 +20,6 @@ public class GatherInput : MonoBehaviour
     public bool jumpInput;
     public bool runInput;
     public bool fireInput;
-
-
     public bool tryAttack;  //variabile Attacco prova a prendere sarà vero se stiamo premendo i pulsanti e provando 
 
     private void Awake()
@@ -35,19 +33,20 @@ public class GatherInput : MonoBehaviour
         myControls.Player.Move.performed += StartMove;//Avvia il movimento del Player
         myControls.Player.Move.canceled += StopMove; //Ferma il movimento del Player
 
-      //  myControls.Player.Jump.performed += JumpStar; //Avvia il Salto del Player
-      //  myControls.Player.Jump.canceled += JumpStop; //Stop il Salto del Player
+     //  myControls.Player.Jump.performed += JumpStar; //Avvia il Salto del Player
+    //  myControls.Player.Jump.canceled += JumpStop; //Stop il Salto del Player
        
-        myControls.Player.Run.performed +=RunStart; //Avvia il Salto del Player
-        myControls.Player.Run.canceled += RunStop; //Stop il Salto del Player
+       myControls.Player.Run.performed +=RunStart; //Avvia il Salto del Player
+       myControls.Player.Run.canceled += RunStop; //Stop il Salto del Player
 
-        myControls.Player.Attack.performed += TryToAttack;  //Avvio l'Attaco del Player
-        myControls.Player.Attack.canceled += StopTryAttack;   //cancello l'Attaco del Player
-
+    //  myControls.Player.Attack.performed += TryToAttack;  //Avvio l'Attaco del Player
+    //  myControls.Player.Attack.canceled += StopTryAttack;   //cancello l'Attaco del Player
+      
         myControls.Player.MouseDelta.performed += MovingMouse;  //Avvio l'Attaco del Player
         myControls.Player.MousePosition.performed += MousePosition;   //cancello l'Attaco del Player
         
         myControls.Player.Enable();  // Attivo il player ai suoi commandi
+        myControls.Enable();
     }
     private void OnDisable()
     {
@@ -60,8 +59,8 @@ public class GatherInput : MonoBehaviour
         myControls.Player.Run.performed -= RunStart; //Avvia il Salto del Player
         myControls.Player.Run.canceled -= RunStop; //Stop il Salto del Player
 
-        myControls.Player.Attack.performed -= TryToAttack;  
-        myControls.Player.Attack.canceled -= StopTryAttack;
+      //   myControls.Player.Attack.performed -= TryToAttack;  
+      //   myControls.Player.Attack.canceled -= StopTryAttack;
 
         myControls.Player.MouseDelta.performed -= MovingMouse;  //Avvio l'Attaco del Player
         myControls.Player.MousePosition.performed -= MousePosition;   //cancello l'Attaco del Player
@@ -73,7 +72,9 @@ public class GatherInput : MonoBehaviour
     public void Update()
     {
         fireInput= myControls.Player.Fire.triggered;
-        jumpInput= myControls.Player.Jump.triggered;
+        tryAttack= myControls.Player.Attack.triggered;
+        jumpInput = myControls.Player.Jump.triggered;
+     //   runInput= myControls.Player.Run.triggered;
     }
 
     public void DisableControls()
@@ -81,11 +82,11 @@ public class GatherInput : MonoBehaviour
         myControls.Player.Move.performed -= StartMove;
         myControls.Player.Move.canceled -= StopMove;
 
-      // myControls.Player.Jump.performed -= JumpStar;
-      // myControls.Player.Jump.canceled -= JumpStop;
+     // myControls.Player.Jump.performed -= JumpStar;
+     // myControls.Player.Jump.canceled -= JumpStop;
 
-        myControls.Player.Attack.performed -= TryToAttack;
-        myControls.Player.Attack.canceled -= StopTryAttack;
+  //    myControls.Player.Attack.performed -= TryToAttack;
+   //   myControls.Player.Attack.canceled -= StopTryAttack;
 
         myControls.Player.Disable();
 
@@ -97,6 +98,7 @@ public class GatherInput : MonoBehaviour
     //Func di Input da avviare il player
     private void StartMove(InputAction.CallbackContext ctx)
     {
+        Debug.Log("");
         valueX = ctx.ReadValue<float>();
     }
 
@@ -115,23 +117,23 @@ public class GatherInput : MonoBehaviour
   //     jumpInput = false;
   // }
 
-    private void TryToAttack(InputAction.CallbackContext ctx)//Func Attacco
-    {
-        tryAttack = true;
-    }
-
-    private void StopTryAttack(InputAction.CallbackContext ctx) // Sto Attacco
-    {
-        tryAttack = false;
-    }
+//  private void TryToAttack(InputAction.CallbackContext ctx)//Func Attacco
+//  {
+//      tryAttack = true;
+//  }
+// 
+//  private void StopTryAttack(InputAction.CallbackContext ctx) // Sto Attacco
+//  {
+//      tryAttack = false;
+//  }
     private void RunStart(InputAction.CallbackContext ctx)
     {
-        runInput = true;
+          runInput = true;
     }
 
     private void RunStop(InputAction.CallbackContext ctx)
     {
-        runInput = false;
+           runInput = false;
     }
 
 
