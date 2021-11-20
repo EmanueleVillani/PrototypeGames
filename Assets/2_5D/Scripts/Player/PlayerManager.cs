@@ -21,11 +21,18 @@ public class PlayerManager : MonoBehaviour
 
     public MoveByAnimation player;
 
+  
+
+
     void Start()
     {
+       
         numberOfCoins = 0;
         gameOver = winLevel = false;
 
+        currentHealth = 100;
+
+        gameOverPanel.SetActive(false);
     }
 
     public void Quit()
@@ -60,8 +67,10 @@ public class PlayerManager : MonoBehaviour
            gameOver = true;
            //Invoke("Restart", 5);
            gameOverPanel.SetActive(true);
+            gameOverPanel.GetComponent<Animator>().SetTrigger("GameOver");
            //currentHealth = 100;
        }
+
 
       // if(FindObjectsOfType<Enemy>().Length ==0)
       // {
@@ -83,4 +92,8 @@ public class PlayerManager : MonoBehaviour
       //     }
       // }
     }
+
+
+   
+
 }
