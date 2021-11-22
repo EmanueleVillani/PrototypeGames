@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 using UnityEngine.Animations.Rigging;
 
 public class MoveByAnimation : MonoBehaviour
 {
     Animator anim;
     GatherInput gI;
+    public CinemachineVirtualCamera virtualcamera;
     public GameObject target;
     public bool isRight = true;
     public bool isrunning = false;
@@ -23,10 +25,12 @@ public class MoveByAnimation : MonoBehaviour
         gI = GetComponent<GatherInput>();
     }
     float x = 1f;
+    float cameravalue =0;
     // Update is called once per frame
     void Update()
     {
         isrunning =gI.runInput;
+
         if((isRight&& target.transform.position.x < transform.position.x) || (!isRight && target.transform.position.x > transform.position.x))
         {
             isRight ^= true;
@@ -38,6 +42,21 @@ public class MoveByAnimation : MonoBehaviour
             else
                 x = -1f;
         }
+        if (gI.valueX != 0)
+        {
+            if(isRight)
+                cameravalue += x * 4 * Time.deltaTime;
+            else
+                cameravalue -= x * 4 * Time.deltaTime;
+
+            if (cameravalue > 8)
+                cameravalue = 8f;
+        }
+        else
+            cameravalue = 0;
+
+       // virtualcamera.GetCinemachineComponent<CinemachineFramingTransposer>().m_TrackedObjectOffset = Vector3.up * 8f + Vector3.forward * gI.valueX * x * cameravalue;
+
         if (/**Input.GetKeyDown(KeyCode.Mouse1) &&**/ gI.tryAttack && !anim.GetCurrentAnimatorStateInfo(0).IsName("Melee"))
         {
             transform.rotation = Quaternion.Euler(0, 36.917f+x*90f, 0);
@@ -99,8 +118,6 @@ public class MoveByAnimation : MonoBehaviour
         {
             anim.SetFloat("direction", 0,0.15f,Time.deltaTime);
         }
-
-      
 
         if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Melee") && otherarm.weight == 0 && aimarm.weight == 0 && headaim.weight == 0)
         {

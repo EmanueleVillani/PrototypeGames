@@ -8,7 +8,6 @@ public class SpotlightScript : MonoBehaviour
 {
     [SerializeField]
     private int totalLight=100;
- 
     private float currentLight;
 
     private bool isDark;
@@ -16,11 +15,7 @@ public class SpotlightScript : MonoBehaviour
 
     [SerializeField]
     private Slider lightBar;
-
-   
-
     private Animator anim;
-
 
     void Start()
     {
@@ -75,8 +70,6 @@ public class SpotlightScript : MonoBehaviour
         if (isDark)
         {
             isDark = false;
-
-            
             
             anim.SetBool("dark",false);
             anim.SetBool("low", false);

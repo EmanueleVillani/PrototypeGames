@@ -3,7 +3,17 @@ guid: d4c4774a1fbce0d428cb98384b82a566
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mosquito_1
+    second: {fileID: 2100000, guid: c441d6bc0de35d94a8884f007221ba76, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mosquito_1_fly
+    second: {fileID: 2100000, guid: bfc14d4fc017b8545af1ae9e45212d14, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
