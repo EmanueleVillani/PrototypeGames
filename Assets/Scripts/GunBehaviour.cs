@@ -11,10 +11,12 @@ public class GunBehaviour : MonoBehaviour
     public float fireBallSpeed = 600;
     public GatherInput gI;
     public Animator anim;
+    MoveByAnimation move;
 
     // Start is called before the first frame update
     void Start()
     {
+        move= FindObjectOfType<MoveByAnimation>();
         InventoryManager.Instance.ModifyInventory(Item.Ammo,true,8);
         anim = gI.GetComponent<Animator>();
     }
@@ -29,7 +31,7 @@ public class GunBehaviour : MonoBehaviour
         }
         //Debug.Log(looktransform.position);
         Vector3 pos= looktransform.position;
-        pos.z = 11f;
+        pos.z = move.axis;
         looktransform.position = pos;
         Vector3 lpos= looktransform.localPosition;
         lpos.y = 0;

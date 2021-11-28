@@ -98,7 +98,6 @@ public class GatherInput : MonoBehaviour
     //Func di Input da avviare il player
     private void StartMove(InputAction.CallbackContext ctx)
     {
-        Debug.Log("");
         valueX = ctx.ReadValue<float>();
     }
 

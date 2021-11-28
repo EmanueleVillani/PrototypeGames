@@ -18,14 +18,16 @@ public class MoveByAnimation : MonoBehaviour
     public ChainIKConstraint aimarm;
     public MultiAimConstraint headaim;
     public Collider weapon;
+    public float axis = 11f;
+    float x = 1f;
+    float xmovement = 0;
+    public bool flip = false;
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
         gI = GetComponent<GatherInput>();
     }
-    float x = 1f;
-    float cameravalue =0;
     // Update is called once per frame
     void Update()
     {
@@ -42,22 +44,8 @@ public class MoveByAnimation : MonoBehaviour
             else
                 x = -1f;
         }
-        if (gI.valueX != 0)
-        {
-            if(isRight)
-                cameravalue += x * 4 * Time.deltaTime;
-            else
-                cameravalue -= x * 4 * Time.deltaTime;
-
-            if (cameravalue > 8)
-                cameravalue = 8f;
-        }
-        else
-            cameravalue = 0;
-
-       // virtualcamera.GetCinemachineComponent<CinemachineFramingTransposer>().m_TrackedObjectOffset = Vector3.up * 8f + Vector3.forward * gI.valueX * x * cameravalue;
-
-        if (/**Input.GetKeyDown(KeyCode.Mouse1) &&**/ gI.tryAttack && !anim.GetCurrentAnimatorStateInfo(0).IsName("Melee"))
+     
+        if (gI.tryAttack && !anim.GetCurrentAnimatorStateInfo(0).IsName("Melee"))
         {
             transform.rotation = Quaternion.Euler(0, 36.917f+x*90f, 0);
             otherarm.weight = 0f;
@@ -74,14 +62,19 @@ public class MoveByAnimation : MonoBehaviour
             return;
         }
         //staminacheck
-        if (gI.valueX != 0 && isrunning)
+        if(flip)
+            xmovement =- gI.valueX;
+        else
+            xmovement = gI.valueX;
+
+        if (xmovement != 0 && isrunning)
         {
             if (stamina >= 0)
                 stamina -= Time.deltaTime * 2;
             else
                 isrunning = false;
         }
-        else if (gI.valueX == 0 || !isrunning)
+        else if (xmovement == 0 || !isrunning)
         {
             if (stamina < capstamina)
                 stamina += Time.deltaTime * 2;
@@ -96,23 +89,22 @@ public class MoveByAnimation : MonoBehaviour
         else if (anim.GetFloat("speed") != 0)
         {
             anim.SetFloat("speed", 0f, 0.15f, Time.deltaTime);
-          
         }
-        if (gI.valueX * x > 0)
+        if (xmovement * x > 0)
         {
             if(isrunning)
                 transform.rotation=Quaternion.Euler(0,20.07f + x * 90f, 0);
             else
                 transform.rotation=Quaternion.Euler(0,40.04f + x * 90f, 0);
-            anim.SetFloat("direction", gI.valueX*x, 0.15f, Time.deltaTime);
+            anim.SetFloat("direction", xmovement * x, 0.15f, Time.deltaTime);
         }
-        else if (gI.valueX * x < 0)
+        else if (xmovement * x < 0)
         {
             if(isrunning)
                 transform.rotation = Quaternion.Euler(0,42.425f + x * 90f, 0);
             else
                 transform.rotation = Quaternion.Euler(0,36.114f + x * 90f, 0);
-            anim.SetFloat("direction", gI.valueX*x, 0.15f, Time.deltaTime);
+            anim.SetFloat("direction", xmovement * x, 0.15f, Time.deltaTime);
         }
         else if (anim.GetFloat("direction")!=0)
         {
@@ -127,11 +119,10 @@ public class MoveByAnimation : MonoBehaviour
         }
 
     }
-
     public void LateUpdate()
     {
         Vector3 newp = transform.position;
-        newp.z = 11f;
+        newp.z = axis;
         transform.position = newp;
     }
     

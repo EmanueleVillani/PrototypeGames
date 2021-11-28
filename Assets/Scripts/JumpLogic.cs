@@ -16,6 +16,7 @@ public class JumpLogic : MonoBehaviour
     public bool isGrounded;
     public float initialForceJump = 5;
     public float physicsRange = 0.25f;
+    public bool flip = false;
     float delta = 0;
     // Start is called before the first frame update
     void Start()
@@ -29,7 +30,11 @@ public class JumpLogic : MonoBehaviour
     {
         delta = transform.position.y + controller.center.y - Mathf.Min(feet1.transform.position.y,feet2.transform.position.y);
         isGrounded = Physics.CheckSphere(transform.position + controller.center - Vector3.up*(delta), physicsRange, groundLayer);
-        hInput = gI.valueX;
+        if (flip)
+            hInput = -gI.valueX;
+        else
+            hInput = gI.valueX;
+
         if (isGrounded)
         {
             animator.SetBool("isGrounded", isGrounded);
