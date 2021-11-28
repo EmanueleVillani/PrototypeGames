@@ -45,11 +45,11 @@ public class MenuHorror : MonoBehaviour
         Application.Quit();
     }
 
-    public void CreditHorror()
-    {
-        Debug.Log("Credit");
-        SceneManager.LoadScene("MenuCredit");
-    }
+    //public void CreditHorror()
+    //{
+    //    Debug.Log("Credit");
+    //    SceneManager.LoadScene("MenuCredit");
+    //}
 
     public void CreditHorrorBack()
     {
@@ -62,12 +62,12 @@ public class MenuHorror : MonoBehaviour
        // SceneManager.LoadScene(4);
     }
 
-   public  void StoryGame()
-    {
-        SceneManager.LoadScene("StoryScens");
-    }
-   public  void StoryGameBack()
-    {
-        SceneManager.LoadScene("SettingScenes");
-    }
+   //public  void StoryGame()
+   // {
+   //     SceneManager.LoadScene("StoryScens");
+   // }
+   //public  void StoryGameBack()
+   // {
+   //     SceneManager.LoadScene("SettingScenes");
+   // }
 }
