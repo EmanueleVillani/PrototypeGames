@@ -21,7 +21,32 @@ public class PlayerManager : MonoBehaviour
 
     public MoveByAnimation player;
 
-  
+    private int killedCount = 0;
+
+    public static PlayerManager instancePlayerManager;
+
+
+    [SerializeField]
+    private Text killedCount_Text;
+
+
+    private void Awake()
+    {
+        if (instancePlayerManager == null)
+        {
+            instancePlayerManager = this;
+            DontDestroyOnLoad(gameObject);
+
+        }
+        else
+        {
+
+            Destroy(gameObject);
+        }
+
+
+    }
+
 
 
     void Start()
@@ -33,6 +58,11 @@ public class PlayerManager : MonoBehaviour
         currentHealth = 100;
 
         gameOverPanel.SetActive(false);
+
+        killedCount = 0;
+
+        killedCount_Text.text = "Killed: " + killedCount;
+
     }
 
     public void Quit()
@@ -93,7 +123,15 @@ public class PlayerManager : MonoBehaviour
       // }
     }
 
+    public void AddCount()
+    {
+        killedCount++;
 
+        killedCount_Text.text = "Killed: " + killedCount;
+
+
+
+    }
    
 
 }
