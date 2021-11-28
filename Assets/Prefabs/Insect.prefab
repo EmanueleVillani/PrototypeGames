@@ -75,18 +75,6 @@ MonoBehaviour:
   ballAttackStartPoint: {fileID: 1910123085}
   ball: {fileID: 1153726076201726191, guid: c98be44d541c92e409ddd6b67494b638, type: 3}
   insectParentPosition: {fileID: 3138050348646381892}
---- !u!114 &3138050347610707510
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2832185804183696375}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b428a48593a7932418074b02891c3432, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &400079901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,6 +88,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHealth: 30
+--- !u!114 &3138050347610707510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2832185804183696375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b428a48593a7932418074b02891c3432, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3138050348646381895
 GameObject:
   m_ObjectHideFlags: 0
@@ -128,7 +128,7 @@ Transform:
   m_GameObject: {fileID: 3138050348646381895}
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
   m_LocalPosition: {x: 56.7, y: 0.65, z: 10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_Children:
   - {fileID: 3172259645728598349}
   m_Father: {fileID: 0}
