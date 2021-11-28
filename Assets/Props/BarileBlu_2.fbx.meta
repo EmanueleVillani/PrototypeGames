@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: PaintedMetal002
-    second: {fileID: 2100000, guid: fc0d82950b042624e8a1fa5527d19e95, type: 2}
+    second: {fileID: 2100000, guid: 9dd4fee1ad8f6df4eb8ab01d50d4175d, type: 2}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
@@ -65,7 +65,7 @@ ModelImporter:
   meshes:
     lODScreenPercentages: []
     globalScale: 1
-    meshCompression: 0
+    meshCompression: 3
     addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
