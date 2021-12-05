@@ -88,6 +88,8 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
+        PlayerManager.instancePlayerManager.AddCount();
+
         //play a die animation
         animator.SetTrigger("isDead");
         //disable the script and the collider

@@ -2,64 +2,75 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager gameManagerInstance;
 
-    private PlayerHealth playerHealth;
+   // [HideInInspector]
+    public bool gameOver;
 
-    [SerializeField]
-    private Slider sliderHealth;
+   
+    private Text scoreText;
 
-    [SerializeField]
-    private float timeToDeath = 0.2f;  //Time between the healthPlayer=0 and the time when the player is destroyed
+    public int scoreKilled;
 
     private void Awake()
-    {       
-        playerHealth = GameObject.FindWithTag("Player").GetComponent<PlayerHealth>();
-    }
-
-
-    // Start is called before the first frame update
-    void Start()
     {
-        if (!gameManagerInstance)
+        if (gameManagerInstance == null)
+        {
             gameManagerInstance = this;
+            DontDestroyOnLoad(gameObject);
 
-
-        sliderHealth.maxValue = playerHealth.maxHealth;
-        sliderHealth.value = playerHealth.currentHealth;
-
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
 
     }
 
-    // Update is called once per frame
-    void Update()
+
+    private void Start()
     {
-        if (!playerHealth)
+        scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
+        scoreText.gameObject.SetActive(false);
+    }
+
+
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (!(SceneManager.GetActiveScene().name == "SampleScene")  || !gameOver)
             return;
 
-        sliderHealth.value = playerHealth.currentHealth;
+        scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
+
+        if (gameOver)
+        {
+            scoreText.gameObject.SetActive(true);
+            scoreText.text = "Killed: " + scoreKilled;
+
+        }
+        else
+        {
+            scoreText.gameObject.SetActive(false);
+        }
 
     }
 
-
-    public void DestroyPlayer()
-    {
-
-        StartCoroutine(_Death(timeToDeath));
-
-    }
-
-
-    IEnumerator _Death(float timer)
-    {
-        yield return new WaitForSeconds(timer);
-
-        Destroy(playerHealth.gameObject);
-
-    }
 
 
 

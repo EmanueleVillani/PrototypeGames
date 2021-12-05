@@ -11,9 +11,6 @@ public class FlyingEnemy : MonoBehaviour
     private float chaseRange = 20f;
 
     [SerializeField]
-    private float distanceToAttackGround = 2f;   //L'enemy ha due tipi di attacco: Da terra andando verso il player o in aria lanciando sfere
-
-    [SerializeField]
     private float distanceToAttackOnAir = 10f;
 
     [SerializeField]
@@ -59,7 +56,7 @@ public class FlyingEnemy : MonoBehaviour
 
 
 
-    private void Update()
+    private void FixedUpdate()
     {
        
       if (!isFlying)
@@ -67,6 +64,7 @@ public class FlyingEnemy : MonoBehaviour
 
 
      distanceTarget = Vector3.Distance(transform.position, target.position);
+
 
         if (current_State == "IdleState")
         {
@@ -118,12 +116,18 @@ public class FlyingEnemy : MonoBehaviour
     void MoveEnemy()
     {
         
-        float step = speed * Time.smoothDeltaTime;
+        float step = speed * Time.deltaTime;
 
         Vector3 targetPos = new Vector3 (target.transform.position.x + Random.Range(-2f,2f), transform.position.y + Random.Range(-2f,2f), transform.position.z);
-        
-       // if(isFlying)
-         transform.position = Vector3.MoveTowards(transform.position, targetPos, step);
+
+        // if(isFlying)
+        //   transform.position = Vector3.MoveTowards(transform.position, targetPos, step);
+
+        Vector3 direction = targetPos - transform.position;
+
+        direction.Normalize();
+
+        myBody.MovePosition(transform.position + direction * speed * Time.deltaTime);
       
         if (transform.position.x > target.position.x)
         {
@@ -167,13 +171,6 @@ public class FlyingEnemy : MonoBehaviour
    
 
 
-    void Dead()
-    {
-        anim.SetTrigger("Death");
-
-        childBody.isKinematic = false;
-
-    }
 
 
    

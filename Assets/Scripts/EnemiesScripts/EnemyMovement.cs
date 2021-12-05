@@ -122,8 +122,8 @@ public class EnemyMovement : MonoBehaviour
 
             attackTimer = Time.time + attackTimerThreshold;
 
-            if (playerHealth.currentHealth <= 0)
-                GameManager.gameManagerInstance.DestroyPlayer();
+           // if (playerHealth.currentHealth <= 0)
+            //    GameManager.gameManagerInstance.DestroyPlayer();
            
         }
 

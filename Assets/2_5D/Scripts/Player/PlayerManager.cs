@@ -32,6 +32,10 @@ public class PlayerManager : MonoBehaviour
 
     private void Awake()
     {
+       
+
+
+
         if (instancePlayerManager == null)
         {
             instancePlayerManager = this;
@@ -52,6 +56,7 @@ public class PlayerManager : MonoBehaviour
     void Start()
     {
        
+
         numberOfCoins = 0;
         gameOver = winLevel = false;
 
@@ -98,7 +103,10 @@ public class PlayerManager : MonoBehaviour
            //Invoke("Restart", 5);
            gameOverPanel.SetActive(true);
             gameOverPanel.GetComponent<Animator>().SetTrigger("GameOver");
-           //currentHealth = 100;
+            //currentHealth = 100;
+
+            GameManager.gameManagerInstance.scoreKilled = killedCount;
+            GameManager.gameManagerInstance.gameOver = true;
        }
 
 

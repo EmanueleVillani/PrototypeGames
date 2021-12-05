@@ -32,5 +32,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/AlphaMain.unity
     guid: 37994d3f469ef114db13cd0a53e27def
+  - enabled: 1
+    path: Assets/Scenes/TutorialScene.unity
+    guid: b340cb548d61e5549851aa9e4396c7f8
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 3fb339f822fe544b8b32723b2c3ea837, type: 2}
