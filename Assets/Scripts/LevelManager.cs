@@ -18,14 +18,14 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            StartCoroutine(UnloadCurretScene());
-        }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            LoadLevel(currentLevel);
-        }
+      // if (Input.GetKeyDown(KeyCode.U))
+      // {
+      //     StartCoroutine(UnloadCurretScene());
+      // }
+      // if (Input.GetKeyDown(KeyCode.R))
+      // {
+      //     LoadLevel(currentLevel);
+      // }
     }
     public IEnumerator UnloadCurretScene()
     {

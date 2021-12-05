@@ -12,6 +12,7 @@ public class MoveByAnimation : MonoBehaviour
     public GameObject target;
     public bool isRight = true;
     public bool isrunning = false;
+    public bool enablestamina = false;
     public float stamina = 20f;
     public float capstamina = 20f;
     public TwoBoneIKConstraint otherarm;
@@ -22,6 +23,7 @@ public class MoveByAnimation : MonoBehaviour
     float x = 1f;
     float xmovement = 0;
     public bool flip = false;
+    public SpotlightScript torch;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +33,7 @@ public class MoveByAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        isrunning =gI.runInput;
+      //  isrunning =gI.runInput;
 
         if((isRight&& target.transform.position.x < transform.position.x) || (!isRight && target.transform.position.x > transform.position.x))
         {
@@ -48,38 +50,38 @@ public class MoveByAnimation : MonoBehaviour
         if (gI.tryAttack && !anim.GetCurrentAnimatorStateInfo(0).IsName("Melee"))
         {
             transform.rotation = Quaternion.Euler(0, 36.917f+x*90f, 0);
-            otherarm.weight = 0f;
-            aimarm.weight = 0f;
-            headaim.weight = 0f;
+            SetAnimationRig(false);
             anim.SetTrigger("attack");
         }
 
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("Melee"))
         {
-            otherarm.weight = 0f;
-            aimarm.weight = 0f;
-            headaim.weight = 0f;
+            SetAnimationRig(false);
             return;
         }
+
         //staminacheck
         if(flip)
             xmovement =- gI.valueX;
         else
             xmovement = gI.valueX;
 
-        if (xmovement != 0 && isrunning)
+        if (enablestamina)
         {
-            if (stamina >= 0)
-                stamina -= Time.deltaTime * 2;
-            else
-                isrunning = false;
-        }
-        else if (xmovement == 0 || !isrunning)
-        {
-            if (stamina < capstamina)
-                stamina += Time.deltaTime * 2;
-            else
-                stamina = capstamina;
+            if (xmovement != 0 && isrunning)
+            {
+                if (stamina >= 0)
+                    stamina -= Time.deltaTime * 2;
+                else
+                    isrunning = false;
+            }
+            else if (xmovement == 0 || !isrunning)
+            {
+                if (stamina < capstamina)
+                    stamina += Time.deltaTime * 2;
+                else
+                    stamina = capstamina;
+            }
         }
 
         if (isrunning)
@@ -113,11 +115,29 @@ public class MoveByAnimation : MonoBehaviour
 
         if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Melee") && otherarm.weight == 0 && aimarm.weight == 0 && headaim.weight == 0)
         {
+            SetAnimationRig(true);
+        }
+
+        if (gI.torchInput)
+        {
+            torch.SetSpotLight();
+        }
+    }
+
+    public void SetAnimationRig(bool active)
+    {
+        if (active)
+        {
             otherarm.weight = 1f;
             aimarm.weight = 1f;
             headaim.weight = 0.5f;
         }
-
+        else
+        {
+            otherarm.weight = 0f;
+            aimarm.weight = 0f;
+            headaim.weight = 0f;
+        }
     }
     public void LateUpdate()
     {

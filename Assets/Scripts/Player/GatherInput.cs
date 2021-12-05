@@ -20,7 +20,9 @@ public class GatherInput : MonoBehaviour
     public bool jumpInput;
     public bool runInput;
     public bool fireInput;
+    public bool torchInput;
     public bool tryAttack;  //variabile Attacco prova a prendere sarà vero se stiamo premendo i pulsanti e provando 
+    public bool tryDodge;  
 
     private void Awake()
     {
@@ -73,7 +75,9 @@ public class GatherInput : MonoBehaviour
     {
         fireInput= myControls.Player.Fire.triggered;
         tryAttack= myControls.Player.Attack.triggered;
+        tryDodge = myControls.Player.Dodge.triggered;
         jumpInput = myControls.Player.Jump.triggered;
+        torchInput = myControls.Player.Torch.triggered;
      //   runInput= myControls.Player.Run.triggered;
     }
 

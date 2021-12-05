@@ -114,7 +114,10 @@ public class FlyingEnemy : MonoBehaviour
             }
         }
     }
-
+    public void Stun()
+    {
+        Debug.Log("Stun");
+    }
     void MoveEnemy()
     {
         
