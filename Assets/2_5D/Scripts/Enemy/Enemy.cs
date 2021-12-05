@@ -14,32 +14,59 @@ public class Enemy : MonoBehaviour
 
     public Animator animator;
     public CharacterController controller;
+    public float stunnedtime =1.2f;
+    float cooldown = 2f;
+    public float timetowaitdestun = 0;
 
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
         health = maxHealth;
     }
-
+    Vector3 lastpos = Vector3.zero;
     // Update is called once per frame
     void Update()
     {
         if (PlayerManager.gameOver)
         {
-           
             animator.enabled = false;
             this.enabled = false;
         }
+        if (timetowaitdestun >= stunnedtime)
+        {
+            if (animator.GetBool("stun"))
+            {
+                animator.SetBool("stun", false);
+                isstunned = false;
+                timetowaitdestun = cooldown;
+            }
+        }
+
+        if (isstunned)
+        {
+            timetowaitdestun += Time.deltaTime;
+            return;
+        }
+        else if (timetowaitdestun != 0)
+        {
+            timetowaitdestun -= Time.deltaTime;
+        }
+        
+        if (timetowaitdestun < 0)
+            timetowaitdestun = 0;
 
         float distance = Vector3.Distance(transform.position, target.position);
 
         if(currentState == "IdleState")
         {
+            animator.applyRootMotion = false;
             if (distance < chaseRange)
                 currentState = "ChaseState";
         }
         else if(currentState == "ChaseState")
         {
+            animator.applyRootMotion = false;
+            //transform.localPosition = pos;
             //play the run animation
             animator.SetTrigger("chase");
             animator.SetBool("isAttacking", false);
@@ -54,8 +81,6 @@ public class Enemy : MonoBehaviour
                 controller.Move(-transform.right * speed * Time.deltaTime);
                 // transform.Translate(transform.right * speed * Time.deltaTime);
                 transform.rotation = Quaternion.Euler(0, 180, 0);
-
-             
             }
             else
             {
@@ -64,10 +89,10 @@ public class Enemy : MonoBehaviour
                 //transform.Translate(-transform.right * speed * Time.deltaTime);
                 transform.rotation = Quaternion.identity;
             }
-
         }
         else if(currentState == "AttackState")
         {
+            //animator.applyRootMotion = true;
             animator.SetBool("isAttacking", true);
 
             if (distance > attackRange)
@@ -78,18 +103,27 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
-        currentState = "ChaseState";
+        if (!isstunned)
+            currentState = "ChaseState";
 
-        if(health < 0)
+        if (health < 0)
         {
             Die();
         }
     }
-
+    public bool isstunned = false;
+    public void Stun()
+    {
+        if (isstunned || timetowaitdestun!=0)
+            return;
+        isstunned = true;
+        animator.SetBool("stun",true);
+        Debug.Log("stun "+ timetowaitdestun);
+    }
     private void Die()
     {
         PlayerManager.instancePlayerManager.AddCount();
-
+        animator.applyRootMotion = true;
         //play a die animation
         animator.SetTrigger("isDead");
         //disable the script and the collider

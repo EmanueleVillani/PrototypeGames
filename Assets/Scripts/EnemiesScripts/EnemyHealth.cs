@@ -22,7 +22,6 @@ public class EnemyHealth : MonoBehaviour
         if (enemyHealth == 0)
         {
             PlayerManager.instancePlayerManager.AddCount();
-
             gameObject.GetComponentInChildren<Animator>().SetTrigger("Death");
             gameObject.GetComponentInChildren<Rigidbody>().isKinematic = false;
             gameObject.GetComponent<Collider>().isTrigger = true;

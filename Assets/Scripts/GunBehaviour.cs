@@ -12,7 +12,7 @@ public class GunBehaviour : MonoBehaviour
     public GatherInput gI;
     public Animator anim;
     MoveByAnimation move;
-
+    public GameObject vfx;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +26,8 @@ public class GunBehaviour : MonoBehaviour
     {
         if (gI.fireInput)
         {
-          //  anim.SetTrigger("fire");
+            //  anim.SetTrigger("fire");
+            StartCoroutine(ShootVFX());
             FireBallAttack();
         }
         //Debug.Log(looktransform.position);
@@ -50,5 +51,10 @@ public class GunBehaviour : MonoBehaviour
         Vector3 dirCorrection = Vector3.ProjectOnPlane(looktransform.forward, Vector3.back);
         ball.GetComponent<Rigidbody>().AddForce(looktransform.forward * fireBallSpeed);
     }
-
+    IEnumerator ShootVFX()
+    {
+        vfx.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        vfx.SetActive(false);
+    }
 }

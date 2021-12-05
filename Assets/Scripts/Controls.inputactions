@@ -60,6 +60,22 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Torch",
+                    "type": "Button",
+                    "id": "2dea781d-436d-4930-aa69-90aaa501649a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Dodge",
+                    "type": "Button",
+                    "id": "79e855b8-fccf-4966-b6c1-9ccda6318baa",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -181,6 +197,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "917145a8-4659-4749-8729-b61550fc78a3",
+                    "path": "<Keyboard>/t",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Torch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3713f529-7cef-4d6f-9e02-379e8e433ce9",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dodge",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

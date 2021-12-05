@@ -50,7 +50,7 @@ public class JumpLogic : MonoBehaviour
                 direction.x = hInput* initialForceJump;
                 animator.SetBool("isGrounded", false);
                 direction.y = jumpforce; 
-                controller.Move(direction * 2 * Time.deltaTime);
+                controller.Move(direction * Time.deltaTime);
             }
             //if (Input.GetKeyDown(KeyCode.F))
             // if (gI.fireInput)

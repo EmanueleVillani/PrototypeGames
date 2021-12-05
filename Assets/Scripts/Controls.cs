@@ -73,6 +73,22 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Torch"",
+                    ""type"": ""Button"",
+                    ""id"": ""2dea781d-436d-4930-aa69-90aaa501649a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Dodge"",
+                    ""type"": ""Button"",
+                    ""id"": ""79e855b8-fccf-4966-b6c1-9ccda6318baa"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -196,6 +212,28 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""Fire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""917145a8-4659-4749-8729-b61550fc78a3"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Torch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3713f529-7cef-4d6f-9e02-379e8e433ce9"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dodge"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -244,6 +282,8 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Player_MouseDelta = m_Player.FindAction("MouseDelta", throwIfNotFound: true);
         m_Player_MousePosition = m_Player.FindAction("MousePosition", throwIfNotFound: true);
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
+        m_Player_Torch = m_Player.FindAction("Torch", throwIfNotFound: true);
+        m_Player_Dodge = m_Player.FindAction("Dodge", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Newaction = m_UI.FindAction("New action", throwIfNotFound: true);
@@ -303,6 +343,8 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_MouseDelta;
     private readonly InputAction m_Player_MousePosition;
     private readonly InputAction m_Player_Fire;
+    private readonly InputAction m_Player_Torch;
+    private readonly InputAction m_Player_Dodge;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -314,6 +356,8 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @MouseDelta => m_Wrapper.m_Player_MouseDelta;
         public InputAction @MousePosition => m_Wrapper.m_Player_MousePosition;
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
+        public InputAction @Torch => m_Wrapper.m_Player_Torch;
+        public InputAction @Dodge => m_Wrapper.m_Player_Dodge;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -344,6 +388,12 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Fire.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
                 @Fire.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
                 @Fire.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
+                @Torch.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTorch;
+                @Torch.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTorch;
+                @Torch.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTorch;
+                @Dodge.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDodge;
+                @Dodge.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDodge;
+                @Dodge.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDodge;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -369,6 +419,12 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Fire.started += instance.OnFire;
                 @Fire.performed += instance.OnFire;
                 @Fire.canceled += instance.OnFire;
+                @Torch.started += instance.OnTorch;
+                @Torch.performed += instance.OnTorch;
+                @Torch.canceled += instance.OnTorch;
+                @Dodge.started += instance.OnDodge;
+                @Dodge.performed += instance.OnDodge;
+                @Dodge.canceled += instance.OnDodge;
             }
         }
     }
@@ -424,6 +480,8 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnMouseDelta(InputAction.CallbackContext context);
         void OnMousePosition(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
+        void OnTorch(InputAction.CallbackContext context);
+        void OnDodge(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
