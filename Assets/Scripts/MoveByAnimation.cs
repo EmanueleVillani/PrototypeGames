@@ -46,7 +46,7 @@ public class MoveByAnimation : MonoBehaviour
             else
                 x = -1f;
         }
-     
+        
         if (gI.tryAttack && !anim.GetCurrentAnimatorStateInfo(0).IsName("Melee"))
         {
             transform.rotation = Quaternion.Euler(0, 36.917f+x*90f, 0);
@@ -60,8 +60,22 @@ public class MoveByAnimation : MonoBehaviour
             return;
         }
 
+        if (gI.tryDodge && !anim.GetCurrentAnimatorStateInfo(0).IsName("dodgeback"))
+        {
+            transform.rotation = Quaternion.Euler(0, 36.917f + x * 90f, 0);
+            SetAnimationRig(false);
+            anim.SetTrigger("dodge");
+        }
+
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("dodgeback"))
+        {
+            SetAnimationRig(false);
+            return;
+        }
+
+
         //staminacheck
-        if(flip)
+        if (flip)
             xmovement =- gI.valueX;
         else
             xmovement = gI.valueX;
