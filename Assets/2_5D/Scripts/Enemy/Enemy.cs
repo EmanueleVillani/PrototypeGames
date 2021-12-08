@@ -16,14 +16,15 @@ public class Enemy : MonoBehaviour
     public CharacterController controller;
     public float stunnedtime =1.2f;
     float cooldown = 2f;
+    float axis = -1f;
     public float timetowaitdestun = 0;
-
+    private EnemyAttacks attacks;
     void Start()
     {
+        attacks =gameObject.GetComponentInChildren<EnemyAttacks>(true);
         target = GameObject.FindGameObjectWithTag("Player").transform;
         health = maxHealth;
     }
-    Vector3 lastpos = Vector3.zero;
     // Update is called once per frame
     void Update()
     {
@@ -92,14 +93,26 @@ public class Enemy : MonoBehaviour
         }
         else if(currentState == "AttackState")
         {
-            //animator.applyRootMotion = true;
+            animator.applyRootMotion = true;
             animator.SetBool("isAttacking", true);
 
             if (distance > attackRange)
                 currentState = "ChaseState";
         }
     }
-
+    public void LateUpdate()
+    {
+        Vector3 newp = transform.position;
+        newp.z = axis;
+        transform.position = newp;
+        if (currentState != "AttackState")
+        {
+            if(attacks.attackzone.enabled)
+                attacks.attackzone.enabled = false;
+            transform.GetChild(0).localPosition = new Vector3(0, -0.93f, 0);
+            transform.GetChild(0).localRotation = Quaternion.Euler(new Vector3(0, -90, 0));
+        }
+    }
     public void TakeDamage(int damage)
     {
         health -= damage;
@@ -116,6 +129,7 @@ public class Enemy : MonoBehaviour
     {
         if (isstunned || timetowaitdestun!=0)
             return;
+        attacks.attackzone.enabled = false;
         isstunned = true;
         animator.SetBool("stun",true);
         Debug.Log("stun "+ timetowaitdestun);
@@ -123,6 +137,7 @@ public class Enemy : MonoBehaviour
     private void Die()
     {
         PlayerManager.instancePlayerManager.AddCount();
+        //GameManager.gameManagerInstance.AddCount();
         animator.applyRootMotion = true;
         //play a die animation
         animator.SetTrigger("isDead");

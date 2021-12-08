@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (!(SceneManager.GetActiveScene().name == "SampleScene")  || !gameOver)
+        if (!(SceneManager.GetActiveScene().name == "SettingScenes")  || !gameOver)
             return;
 
         scoreText = GameObject.Find("ScoreText").GetComponent<Text>();

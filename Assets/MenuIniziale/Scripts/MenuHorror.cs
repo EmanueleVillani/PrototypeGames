@@ -41,7 +41,7 @@ public class MenuHorror : MonoBehaviour
     public void ExitMenuHorror()
     {
         Debug.Log("Exit");
-        SceneManager.LoadScene("SampleScene");
+        //SceneManager.LoadScene("SampleScene");
         Application.Quit();
     }
 

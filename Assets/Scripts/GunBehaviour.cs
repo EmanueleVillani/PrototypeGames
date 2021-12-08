@@ -51,10 +51,11 @@ public class GunBehaviour : MonoBehaviour
         Vector3 dirCorrection = Vector3.ProjectOnPlane(looktransform.forward, Vector3.back);
         ball.GetComponent<Rigidbody>().AddForce(looktransform.forward * fireBallSpeed);
     }
+    public Transform Vfxtrasform;
     IEnumerator ShootVFX()
     {
-        vfx.SetActive(true);
+        GameObject vf = Instantiate(vfx,Vfxtrasform.position,Vfxtrasform.rotation,Vfxtrasform.parent);
         yield return new WaitForSeconds(0.1f);
-        vfx.SetActive(false);
+        DestroyImmediate(vf);
     }
 }

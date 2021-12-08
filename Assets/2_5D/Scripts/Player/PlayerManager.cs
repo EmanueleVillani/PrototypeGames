@@ -25,8 +25,9 @@ public class PlayerManager : MonoBehaviour
 
     public static PlayerManager instancePlayerManager;
 
+
     [SerializeField]
-    private TMP_Text killedCount_Text;
+    private Text killedCount_Text;
 
 
     private void Awake()
@@ -39,23 +40,34 @@ public class PlayerManager : MonoBehaviour
         {
             instancePlayerManager = this;
             DontDestroyOnLoad(gameObject);
+
         }
         else
         {
+
             Destroy(gameObject);
         }
+
+
     }
 
 
 
     void Start()
     {
+       
+
         numberOfCoins = 0;
         gameOver = winLevel = false;
+
         currentHealth = 100;
+
         gameOverPanel.SetActive(false);
+
         killedCount = 0;
+
         killedCount_Text.text = "Killed: " + killedCount;
+
     }
 
     public void Quit()
@@ -74,7 +86,7 @@ public class PlayerManager : MonoBehaviour
     }
     public void GotoMenu()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("SettingScenes");
     }
     void Update()
     {
@@ -85,14 +97,19 @@ public class PlayerManager : MonoBehaviour
         healthBar.value = currentHealth;
         staminaBar.value = player.stamina;
         //game over
-        if (currentHealth < 0  && gameOver == false)
-       {
-           gameOver = true;
-           //Invoke("Restart", 5);
-           gameOverPanel.SetActive(true);
-           gameOverPanel.GetComponent<Animator>().SetTrigger("GameOver");
-           //currentHealth = 100;
-       }
+        if (currentHealth < 0 && gameOver == false)
+        {
+            gameOver = true;
+            //Invoke("Restart", 5);
+            gameOverPanel.SetActive(true);
+            gameOverPanel.GetComponent<Animator>().SetTrigger("GameOver");
+            //currentHealth = 100;
+            if (GameManager.gameManagerInstance != null)
+            {
+                GameManager.gameManagerInstance.scoreKilled = killedCount;
+                GameManager.gameManagerInstance.gameOver = true;
+            }
+        }
 
 
       // if(FindObjectsOfType<Enemy>().Length ==0)
@@ -121,6 +138,9 @@ public class PlayerManager : MonoBehaviour
         killedCount++;
 
         killedCount_Text.text = "Killed: " + killedCount;
+
+
+
     }
    
 

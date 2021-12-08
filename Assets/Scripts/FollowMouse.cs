@@ -12,6 +12,14 @@ public class FollowMouse : MonoBehaviour
         move = FindObjectOfType<MoveByAnimation>();
         Cursor.visible = false;
     }
+    private void OnDestroy()
+    {
+        Cursor.visible = true;
+    }
+    private void OnDisable()
+    {
+        Cursor.visible = true;
+    }
     // Start is called before the first frame update
     void Update()
     {
