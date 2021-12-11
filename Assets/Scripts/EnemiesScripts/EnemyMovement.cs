@@ -59,11 +59,6 @@ public class EnemyMovement : MonoBehaviour
         if (!target)
             return;
 
-        
-
-
-
-
         if ((Vector3.Distance(transform.position, target.position) < maxDistanceEnemyPlayer))
         {
             if((Vector3.Distance(transform.position, target.position) > minDistanceEnemyPlayer))

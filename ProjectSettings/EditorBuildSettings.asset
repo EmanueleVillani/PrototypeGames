@@ -6,35 +6,14 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/MenuIniziale/Scenes/SettingScenes.unity
+    path: Assets/Scenes/SettingScenes.unity
     guid: d513e5abff44b4fb78e3b3bb4403b223
   - enabled: 1
-    path: Assets/AlphaMain.unity
+    path: Assets/Scenes/AlphaMain.unity
     guid: c007f30116a1b86468662bd77e76ab3d
   - enabled: 1
     path: Assets/Scenes/TutorialScene.unity
     guid: b340cb548d61e5549851aa9e4396c7f8
-  - enabled: 0
-    path: Assets/test3d - Copia.unity
-    guid: c26c5a5fe47c1fc489a7f4d244246dc1
-  - enabled: 0
-    path: Assets/2_5D/Scenes/Level 1.unity
-    guid: 3a5e71c4032300b49bd23352f3c683e4
-  - enabled: 0
-    path: Assets/2_5D/Scenes/Level 2.unity
-    guid: 10e679236ee47fc4db2b5fde7d473660
-  - enabled: 0
-    path: Assets/2_5D/Scenes/Level 3.unity
-    guid: 64106f863c3c54d4eb008211c58adfe5
-  - enabled: 0
-    path: Assets/MenuIniziale/Scenes/SampleScene.unity
-    guid: c5d207e6474914b4988639513fbe8128
-  - enabled: 0
-    path: Assets/MenuIniziale/Scenes/MenuCredit.unity
-    guid: 548464b2d80734a2daacb5462045284d
-  - enabled: 0
-    path: Assets/MenuIniziale/Scenes/StoryScens.unity
-    guid: 0eeb645c91d134e1f8d88d3dd19c05f8
   - enabled: 0
     path: Assets/Scenes/TutorialLowScene.unity
     guid: 56663db8b5894bb409096051a0708336
