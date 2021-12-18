@@ -8,6 +8,19 @@ public class GameManager1 : MonoBehaviour
     public static GameManager1 instanceGameManager;
 
 
+
+    /*
+      * Spawner Nemici
+    */
+    float spawnTimer;
+    float spawnRate = 3f; // e la frequenza di spawn ogni 3 secondi
+    public GameObject nemici;
+    /*
+      * Timer ADD Time
+    */
+    public GameObject textTime; // Testo del conto alla rovescio
+    public GameObject addTimer; // Aumento del Tempo
+
     [SerializeField]
     private GameObject gameOverPanel;
 
@@ -51,6 +64,21 @@ public class GameManager1 : MonoBehaviour
         GameObject.FindWithTag("Insect").GetComponent<FlyingEnemy>().enabled = false;
 
     }
+
+    // DA Sistemare 
+
+    // void Update()
+    //{
+    //    spawnTimer += Time.deltaTime;
+    //    if(spawnTimer >= spawnRate)
+    //    {
+    //       // spawnTimer -= spawnRate;
+    //        Vector2 spawnPosi = new Vector2(-30f ,Random.Range(-1f, 2f));
+    //        Instantiate(nemici, spawnPosi, Quaternion.identity);
+    //    }
+        
+
+    //}
 
 
 }

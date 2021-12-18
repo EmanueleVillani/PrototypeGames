@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
    // [HideInInspector]
     public bool gameOver;
 
+
    
     private Text scoreText;
 

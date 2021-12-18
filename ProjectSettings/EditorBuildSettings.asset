@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SettingScenes.unity
+    path: Assets/AvvioGioco.unity
     guid: d513e5abff44b4fb78e3b3bb4403b223
   - enabled: 1
     path: Assets/Scenes/AlphaMain.unity
@@ -14,7 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TutorialScene.unity
     guid: b340cb548d61e5549851aa9e4396c7f8
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/TutorialLowScene.unity
     guid: 56663db8b5894bb409096051a0708336
   m_configObjects:
