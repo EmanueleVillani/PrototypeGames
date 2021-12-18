@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager gameManagerInstance;
 
-   // [HideInInspector]
+    [HideInInspector]
     public bool gameOver;
 
 

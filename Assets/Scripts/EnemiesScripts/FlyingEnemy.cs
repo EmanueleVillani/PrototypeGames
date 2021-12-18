@@ -56,7 +56,7 @@ public class FlyingEnemy : MonoBehaviour
 
 
 
-    private void FixedUpdate()
+    private void Update()
     {
        
       if (!isFlying)
@@ -112,6 +112,7 @@ public class FlyingEnemy : MonoBehaviour
             }
         }
     }
+
     public void Stun()
     {
         Debug.Log("Stun");
@@ -121,17 +122,11 @@ public class FlyingEnemy : MonoBehaviour
         
         float step = speed * Time.deltaTime;
 
-        Vector3 targetPos = new Vector3 (target.transform.position.x + Random.Range(-2f,2f), transform.position.y + Random.Range(-2f,2f), transform.position.z);
+        Vector3 targetPos = new Vector3 (target.transform.position.x, transform.position.y, transform.position.z);
 
-        // if(isFlying)
-        //   transform.position = Vector3.MoveTowards(transform.position, targetPos, step);
+         if(isFlying)
+           transform.position = Vector3.MoveTowards(transform.position, target.position, step);
 
-        Vector3 direction = targetPos - transform.position;
-
-        direction.Normalize();
-
-        myBody.MovePosition(transform.position + direction * speed * Time.deltaTime);
-      
         if (transform.position.x > target.position.x)
         {
             
@@ -153,13 +148,7 @@ public class FlyingEnemy : MonoBehaviour
             
           timerAttackFly = Time.time + attackTimeFlyThreshold;
 
-          transform.position = Vector3.MoveTowards(transform.position,new Vector3(transform.position.x + Random.Range(-10f, 10f), transform.position.y + Random.Range(-5f, 5f), transform.position.z),100f*Time.deltaTime);
-
-            if (transform.position.y > 2f)
-                transform.position = new Vector3(transform.position.x, 2f, transform.position.z);
-
-            if (transform.position.y < -2f)
-                transform.position = new Vector3(transform.position.x, -2f, transform.position.z);
+        //  transform.position = Vector3.MoveTowards(transform.position,new Vector3(transform.position.x + Random.Range(-10f, 10f), transform.position.y + Random.Range(-5f, 5f), transform.position.z),100f*Time.deltaTime);
 
             anim.SetTrigger("attackFly");
 

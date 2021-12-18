@@ -29,13 +29,13 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     private Text killedCount_Text;
 
+    [SerializeField]
+    private TMP_Text killedCount_Text_GameOverPanel;
+
 
     private void Awake()
     {
        
-
-
-
         if (instancePlayerManager == null)
         {
             instancePlayerManager = this;
@@ -64,6 +64,7 @@ public class PlayerManager : MonoBehaviour
 
         gameOverPanel.SetActive(false);
 
+        killedCount_Text.gameObject.SetActive(true);
         killedCount = 0;
 
         killedCount_Text.text = "Killed: " + killedCount;
@@ -97,19 +98,19 @@ public class PlayerManager : MonoBehaviour
         healthBar.value = currentHealth;
         staminaBar.value = player.stamina;
         //game over
-        if (currentHealth < 0 && gameOver == false)
-        {
-            gameOver = true;
-            //Invoke("Restart", 5);
-            gameOverPanel.SetActive(true);
-            gameOverPanel.GetComponent<Animator>().SetTrigger("GameOver");
+        if (currentHealth < 0  && gameOver == false)
+       {
+           gameOver = true;
+           //Invoke("Restart", 5);
+           gameOverPanel.SetActive(true);
+           gameOverPanel.GetComponent<Animator>().SetTrigger("GameOver");
             //currentHealth = 100;
-            if (GameManager.gameManagerInstance != null)
-            {
-                GameManager.gameManagerInstance.scoreKilled = killedCount;
-                GameManager.gameManagerInstance.gameOver = true;
-            }
-        }
+            killedCount_Text_GameOverPanel.text = "Killed: " + killedCount;
+            killedCount_Text.gameObject.SetActive(false);
+
+            GameManager.gameManagerInstance.gameOver = true;
+            GameManager.gameManagerInstance.scoreKilled = killedCount;
+       }
 
 
       // if(FindObjectsOfType<Enemy>().Length ==0)
