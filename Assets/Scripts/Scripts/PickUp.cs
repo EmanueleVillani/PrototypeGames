@@ -28,9 +28,9 @@ public class PickUp : MonoBehaviour
                 Destroy(gameObject);//destroy the coin
                     break;
                 case Item.health:
-                    if (PlayerManager.currentHealth < 100)
+                    if (PlayerManager.instancePlayerManager.currentHealth < 100)
                     {
-                        PlayerManager.currentHealth += howmany;
+                        PlayerManager.instancePlayerManager.currentHealth += howmany;
                         Destroy(gameObject);//destroy the coin
                     }
                     break;

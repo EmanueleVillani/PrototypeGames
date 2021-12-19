@@ -27,7 +27,6 @@ public class GunBehaviour : MonoBehaviour
         if (gI.fireInput)
         {
             //  anim.SetTrigger("fire");
-            StartCoroutine(ShootVFX());
             FireBallAttack();
         }
         //Debug.Log(looktransform.position);
@@ -44,11 +43,14 @@ public class GunBehaviour : MonoBehaviour
     {
         if (Ammunition == 0)
             return;
+        AudioManager.instance.Play("Gun");
+        StartCoroutine(ShootVFX());
         Ammunition--;
         InventoryManager.Instance.ModifyInventory(Item.Ammo,false,1);
         GameObject ball = Instantiate(fireBall, looktransform.position, Quaternion.identity);
         looktransform.transform.LookAt(fireBallPoint.transform.position);
         Vector3 dirCorrection = Vector3.ProjectOnPlane(looktransform.forward, Vector3.back);
+        ball.transform.right = looktransform.forward;
         ball.GetComponent<Rigidbody>().AddForce(looktransform.forward * fireBallSpeed);
     }
     public Transform Vfxtrasform;

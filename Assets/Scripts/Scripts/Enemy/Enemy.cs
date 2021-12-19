@@ -16,14 +16,16 @@ public class Enemy : MonoBehaviour
     public CharacterController controller;
     public float stunnedtime =1.2f;
     float cooldown = 2f;
-    float axis = -1f;
+     float axis = -1f;
     public float timetowaitdestun = 0;
     private EnemyAttacks attacks;
     void Start()
     {
         attacks =gameObject.GetComponentInChildren<EnemyAttacks>(true);
         target = GameObject.FindGameObjectWithTag("Player").transform;
+        axis = target.GetComponent<MoveByAnimation>().axis;
         health = maxHealth;
+        AudioManager.instance.Play3DSound(gameObject,"IdleEnemy");
     }
     // Update is called once per frame
     void Update()
@@ -116,11 +118,12 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
-        if (!isstunned)
+        if (!isstunned && currentState!= "AttackState")
             currentState = "ChaseState";
 
         if (health < 0)
         {
+            AudioManager.instance.Play("DeathEnemy");
             Die();
         }
     }
@@ -129,6 +132,7 @@ public class Enemy : MonoBehaviour
     {
         if (isstunned || timetowaitdestun!=0)
             return;
+        AudioManager.instance.Play("StunEnemy");
         attacks.attackzone.enabled = false;
         isstunned = true;
         animator.SetBool("stun",true);

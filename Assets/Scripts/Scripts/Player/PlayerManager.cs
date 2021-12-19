@@ -8,7 +8,7 @@ public class PlayerManager : MonoBehaviour
     public static int numberOfCoins;
     public TextMeshProUGUI numberOfCoinsText;
 
-    public static int currentHealth = 100;
+    public  int currentHealth = 100;
     public Slider healthBar;
     public Slider staminaBar;
 
@@ -112,26 +112,38 @@ public class PlayerManager : MonoBehaviour
             GameManager.gameManagerInstance.scoreKilled = killedCount;
        }
 
-
-      // if(FindObjectsOfType<Enemy>().Length ==0)
-      // {
-      //     //Win Level
-      //     winLevel = true;
-      //     timer += Time.deltaTime;
-      //     if(timer > 5)
-      //     {
-      //         /**
-      //         int nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
-      //         if (nextLevel == 4)
-      //             SceneManager.LoadScene(0);
-      //                         if(PlayerPrefs.GetInt("ReachedLevel", 1) < nextLevel)
-      //                             PlayerPrefs.SetInt("ReachedLevel", nextLevel);
-      //
-      //                         SceneManager.LoadScene(nextLevel);
-      //         **/
-      //         SceneManager.LoadScene(0);
-      //     }
-      // }
+        if (currentHealth < 25)
+        {
+            if (!AudioManager.instance.IsPlaying("LifeUnder"))
+            {
+                float time = AudioManager.instance.GetTime("BgMusic");
+                AudioManager.instance.Play("LifeUnder", time);
+            }
+        }
+        else
+        {
+            if (AudioManager.instance.IsPlaying("LifeUnder"))
+                AudioManager.instance.Stop("LifeUnder");
+        }
+        // if(FindObjectsOfType<Enemy>().Length ==0)
+        // {
+        //     //Win Level
+        //     winLevel = true;
+        //     timer += Time.deltaTime;
+        //     if(timer > 5)
+        //     {
+        //         /**
+        //         int nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
+        //         if (nextLevel == 4)
+        //             SceneManager.LoadScene(0);
+        //                         if(PlayerPrefs.GetInt("ReachedLevel", 1) < nextLevel)
+        //                             PlayerPrefs.SetInt("ReachedLevel", nextLevel);
+        //
+        //                         SceneManager.LoadScene(nextLevel);
+        //         **/
+        //         SceneManager.LoadScene(0);
+        //     }
+        // }
     }
 
     public void AddCount()

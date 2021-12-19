@@ -124,6 +124,7 @@ public class MoveByAnimation : MonoBehaviour
         }
         else if (anim.GetFloat("direction")!=0)
         {
+            PauseRun();
             anim.SetFloat("direction", 0,0.15f,Time.deltaTime);
         }
 
@@ -168,5 +169,13 @@ public class MoveByAnimation : MonoBehaviour
     public void DisableHit()
     {
         weapon.enabled = false;
+    }
+    public void PauseRun()
+    {
+        AudioManager.instance.Pause("RunCem");
+    }
+    public void StartRun()
+    {
+        AudioManager.instance.Play("RunCem");
     }
 }

@@ -8,6 +8,7 @@ public class EnemyAttacks : MonoBehaviour
     public void Attack(int damageAmount)
     {
         //Debug.Log(damageAmount);
+        AudioManager.instance.Play("AttackEnemy");
         attackzone.enabled = true;
         //PlayerManager.currentHealth -= damageAmount;
     }

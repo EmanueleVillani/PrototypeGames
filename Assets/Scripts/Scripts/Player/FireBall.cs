@@ -10,6 +10,7 @@ public class FireBall : MonoBehaviour
         {
             if(damageEffect!=null)
             Instantiate(damageEffect, transform.position, damageEffect.transform.rotation);
+            AudioManager.instance.Play("HitSomething");
             other.GetComponent<Enemy>().TakeDamage(damageAmount);
             Destroy(gameObject);
         }
@@ -18,9 +19,13 @@ public class FireBall : MonoBehaviour
         {
             if(damageEffect!=null)
             Instantiate(damageEffect, transform.position, damageEffect.transform.rotation);
+            AudioManager.instance.Play("HitSomething");
             Destroy(gameObject);
             other.GetComponent<EnemyHealth>()?.TakeDamage(damageAmount);
             // Debug.Log("COLLIDED");
         }
+
+        if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
+            Destroy(gameObject);
     }
 }
