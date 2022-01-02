@@ -10,30 +10,10 @@ public class AttackFlyScript : MonoBehaviour
     [SerializeField]
     private GameObject ball;
 
-    [SerializeField]
-    private Transform insectParentPosition;
-
-    private float speedEnemy;
-
-    private void Start()
-    {
-        speedEnemy = GetComponentInParent<FlyingEnemy>().speed;
-    }
-
-
+   
     public void AttackFly()
     {
-
-
-
-
-
-
-        Instantiate(ball, ballAttackStartPoint.position, Quaternion.identity);
-
-        
-
-        
+        Instantiate(ball, ballAttackStartPoint.position, Quaternion.identity);       
     }
 
   

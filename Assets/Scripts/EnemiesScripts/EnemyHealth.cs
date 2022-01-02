@@ -7,6 +7,8 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField]
     private int enemyHealth = 100;
 
+    public bool isDead;
+ 
     private void Start()
     {
        // Invoke("Dead", 5f);
@@ -21,15 +23,22 @@ public class EnemyHealth : MonoBehaviour
 
         if (enemyHealth == 0)
         {
+
+            isDead = true;
             PlayerManager.instancePlayerManager.AddCount();
            // GameManager.gameManagerInstance.AddCount();
-            gameObject.GetComponentInChildren<Animator>().SetTrigger("Death");
-            gameObject.GetComponentInChildren<Rigidbody>().isKinematic = false;
-            gameObject.GetComponent<Collider>().isTrigger = true;
-            gameObject.GetComponentInParent<Rigidbody>().isKinematic = true;
-            gameObject.GetComponentInParent<Collider>().isTrigger = true;
+            gameObject.GetComponent<Animator>().SetTrigger("Death");
+         //   gameObject.GetComponent<Rigidbody>().isKinematic = false;
+          //  gameObject.GetComponent<Animator>().applyRootMotion = false;
+            //  gameObject.GetComponent<Collider>().isTrigger = true;
+            // gameObject.GetComponentInParent<Rigidbody>().isKinematic = true;
+            // gameObject.GetComponentInParent<Collider>().isTrigger = true;
             gameObject.GetComponentInParent<FlyingEnemy>().enabled = false;
-            Destroy(gameObject.transform.parent.gameObject, 5f);
+          
+          
+           
+
+            Destroy(gameObject.transform.parent.gameObject, 3f);
         }
 
     }

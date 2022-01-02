@@ -138,7 +138,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: b86f82e0d9c970d4ba70d23733379cb1, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -1525,8 +1525,8 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 08e219103fd4a5d45b8a553daf1f211c, type: 2}
-  - {fileID: 2100000, guid: 49b0267f9c3872c45a017bda3033e9b2, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
