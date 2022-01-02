@@ -13,20 +13,13 @@ public class FlyingEnemy : MonoBehaviour
     [SerializeField]
     private float distanceToAttackOnAir = 10f;
 
-
-   
-    private float timeStun = 8;
-    private bool isStunning;
-    private float minHighAnimation=3f, maxHighAnimation = 9f;
-
     
+    public bool canMove;
+
     private float timerAttackFly;
     private float attackTimeFlyThreshold = 3f;   //regola l'attacco mentre l'enemy vola
 
     private Transform target;
-
-    [SerializeField]
-    private Transform model;
 
     private float distanceTarget;
 
@@ -39,20 +32,17 @@ public class FlyingEnemy : MonoBehaviour
     private float yPosition;  //fix della posizione dell'enemy lungo l'asse y
 
   
-    private bool isFlying;
-
-    private float minDistance = 8f;
-
-   
+    public bool isFlying;
+ 
     private void Start()
     {
         target = GameObject.FindWithTag("Player").transform;
-        transform.rotation = Quaternion.Euler(0, 0, 0);
-       
+        transform.rotation = Quaternion.Euler(0, 180, 0);
+      
+        canMove = true;
         yPosition = transform.position.y;
 
     }
-
 
 
     private void Update()
@@ -108,64 +98,40 @@ public class FlyingEnemy : MonoBehaviour
         }
     }
 
-    public void Stun()
-    {
-        if (!GetComponentInChildren<EnemyHealth>().isDead)
-        {
-            if (model.position.y < minHighAnimation)
-                model.position = new Vector3(model.position.x, minHighAnimation, model.position.z);
-
-            if (model.position.y > maxHighAnimation)
-                model.position = new Vector3(model.position.x, maxHighAnimation, model.position.z);
-
-        }
-
-        if (!isStunning)
-        {
-            isStunning = true;
-            anim.SetBool("Stun", true);
-
-            StartCoroutine(_ReturnNormal(timeStun));
-
-        }
-        
-    }
-
-
     void MoveEnemy()
-    {
-        
-        float step = speed * Time.deltaTime;
+    {   
+        int xMovement=1;
 
         Vector3 targetPos = new Vector3 (target.transform.position.x, transform.position.y, transform.position.z);
-          
-        if(isFlying)
-           transform.position = Vector3.MoveTowards(transform.position, target.position, step);
+
+        if (isFlying && canMove)
+        {        
+           transform.Translate(Vector3.left * xMovement * speed * Time.deltaTime);
+        }
+
 
         if (transform.position.x > target.position.x)
         {
-                transform.rotation = Quaternion.Euler(0, 0, 0);
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+            xMovement = 1;
         }
         else
-        {
-           
-                transform.rotation = Quaternion.Euler(0, 180, 0);
+        {         
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+            xMovement = -1;
         }
+
+
 
     }
     
-
-
     void AttackAir()
     {
         if (Time.time > timerAttackFly )
         {
             
           timerAttackFly = Time.time + attackTimeFlyThreshold;
-
-        //  transform.position = Vector3.MoveTowards(transform.position,new Vector3(transform.position.x + Random.Range(-10f, 10f), transform.position.y + Random.Range(-5f, 5f), transform.position.z),100f*Time.deltaTime);
-
-            anim.SetTrigger("attackFly");
+          anim.SetTrigger("attackFly");
 
         }
     }
@@ -173,19 +139,11 @@ public class FlyingEnemy : MonoBehaviour
 
     void StartFly()
     {
-        isFlying = true;
-        
+        isFlying = true;      
     }
    
 
-    IEnumerator _ReturnNormal(float timerStun)
-    {
-        yield return new WaitForSeconds(timerStun);
-
-        anim.SetBool("Stun", false);
     
-        isStunning = false;
-    }
 
 
    

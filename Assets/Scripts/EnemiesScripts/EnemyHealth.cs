@@ -1,17 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyHealth : MonoBehaviour
 {
     [SerializeField]
     private int enemyHealth = 100;
 
+    [SerializeField]
+    private Slider healthBar;
+
     public bool isDead;
  
     private void Start()
     {
-       // Invoke("Dead", 5f);
+        healthBar.maxValue = enemyHealth;
+        healthBar.value = enemyHealth;
+    }
+
+    private void Update()
+    {
+        healthBar.value = enemyHealth;
     }
 
     public void TakeDamage(int damageAmount)
@@ -34,11 +44,11 @@ public class EnemyHealth : MonoBehaviour
             // gameObject.GetComponentInParent<Rigidbody>().isKinematic = true;
             // gameObject.GetComponentInParent<Collider>().isTrigger = true;
             gameObject.GetComponentInParent<FlyingEnemy>().enabled = false;
-          
+            healthBar.gameObject.SetActive(false);
           
            
 
-            Destroy(gameObject.transform.parent.gameObject, 3f);
+            Destroy(gameObject.transform.parent.gameObject, 1.5f);
         }
 
     }
