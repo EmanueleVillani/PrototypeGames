@@ -14,7 +14,7 @@ public class PlayerManager : MonoBehaviour
 
     public static bool gameOver;
     public static bool winLevel;
-
+    public int conditionVictory = 3; // CONDIZIONE DI VITTORIA
     public GameObject gameOverPanel;
 
     public float timer = 0;
@@ -30,7 +30,10 @@ public class PlayerManager : MonoBehaviour
     private Text killedCount_Text;
 
     [SerializeField]
-    private TMP_Text killedCount_Text_GameOverPanel;
+    private Text killedCount_Text_GameOverPanel;
+
+    [SerializeField]
+    private TMP_Text gameOver_Text;  // TESTO GAME OVER ( MORTE O VITTORIA)
 
 
     private void Awake()
@@ -152,9 +155,15 @@ public class PlayerManager : MonoBehaviour
 
         killedCount_Text.text = "Killed: " + killedCount;
 
-
+        if(killedCount >= conditionVictory)
+        {
+            gameOverPanel.SetActive(true);
+            gameOver_Text.text = "You Survived!";
+            killedCount_Text_GameOverPanel.gameObject.SetActive(false);
+            killedCount_Text.gameObject.SetActive(false);
+        }
 
     }
    
-
+   
 }

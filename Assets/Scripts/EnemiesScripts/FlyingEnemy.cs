@@ -13,7 +13,7 @@ public class FlyingEnemy : MonoBehaviour
     [SerializeField]
     private float distanceToAttackOnAir = 10f;
 
-    
+   
     public bool canMove;
 
     private float timerAttackFly;
@@ -37,7 +37,7 @@ public class FlyingEnemy : MonoBehaviour
     private void Start()
     {
         target = GameObject.FindWithTag("Player").transform;
-        transform.rotation = Quaternion.Euler(0, 180, 0);
+        transform.rotation = Quaternion.Euler(0, 90, 0);   
       
         canMove = true;
         yPosition = transform.position.y;
@@ -106,19 +106,19 @@ public class FlyingEnemy : MonoBehaviour
 
         if (isFlying && canMove)
         {        
-           transform.Translate(Vector3.left * xMovement * speed * Time.deltaTime);
+           transform.Translate(Vector3.forward * xMovement * speed * Time.deltaTime);
         }
 
 
         if (transform.position.x > target.position.x)
         {
-            transform.rotation = Quaternion.Euler(0, 180, 0);
+             transform.rotation = Quaternion.Euler(0, 270, 0);
             xMovement = 1;
         }
         else
         {         
-            transform.rotation = Quaternion.Euler(0, 180, 0);
-            xMovement = -1;
+            transform.rotation = Quaternion.Euler(0, 90, 0);
+            xMovement = 1;
         }
 
 
