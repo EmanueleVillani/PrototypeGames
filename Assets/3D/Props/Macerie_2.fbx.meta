@@ -18,12 +18,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material #28
-    second: {fileID: 2100000, guid: 1885514a589c7914795dca6bd47c9755, type: 2}
+    second: {fileID: 2100000, guid: fc5f8b5fc9823f54ba4e43d361df03bf, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Rust004
-    second: {fileID: 2100000, guid: de66eba674b9f1741acafd4c89e2b4e0, type: 2}
+    second: {fileID: 2100000, guid: fc5f8b5fc9823f54ba4e43d361df03bf, type: 2}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
@@ -120,7 +120,7 @@ ModelImporter:
   meshes:
     lODScreenPercentages: []
     globalScale: 1
-    meshCompression: 0
+    meshCompression: 3
     addColliders: 1
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1

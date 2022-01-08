@@ -1,0 +1,377 @@
+fileFormatVersion: 2
+guid: 095697de55b1c4243b23d6c239626830
+ModelImporter:
+  serializedVersion: 20200
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Black Mate
+    second: {fileID: 2100000, guid: 2dd1700169fd8c047bc721c67771b7ab, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Brick_CinderBlocksRed
+    second: {fileID: 2100000, guid: 40240604086dcf74b8b14674a8c4fa3a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Chipboard001
+    second: {fileID: 2100000, guid: 639d898dabe5a0145a11a6eec95fe3a2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Chipboard003
+    second: {fileID: 2100000, guid: 8973ff5aea2e09940a92dbf15d328b35, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Concrete Plates
+    second: {fileID: 2100000, guid: 368fcce6057f53a4a8196d0b344cad4a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Concrete30
+    second: {fileID: 2100000, guid: fda76830495c5f04680ebcf76cb6a999, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CorrugatedSteel005
+    second: {fileID: 2100000, guid: 31b1c24c59caa1649aed4dc6640ee0f9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material #26
+    second: {fileID: 2100000, guid: 0fa224a99f54e804d95ea28d00d48038, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PaintedMetal004
+    second: {fileID: 2100000, guid: e7a358daba2471d43a22d8b945c8d9d7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PaintedPlaster006
+    second: {fileID: 2100000, guid: b454b6721b631264387022fb87e1e2ba, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Planks005
+    second: {fileID: 2100000, guid: 8c9012d8ae632df41bc77ec022e74db6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rust004
+    second: {fileID: 2100000, guid: 1386348358984754fa7956e8f188fc36, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WoodPlanksWorn
+    second: {fileID: 2100000, guid: b65202b4efbd42443a3d6ca3f04eefe7, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Chipboard001_1K_Color
+    second: {fileID: 2800000, guid: a5a04b059853d1d4e89b143282c22d61, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Chipboard001_1K_Displacement
+    second: {fileID: 2800000, guid: a69ba47ed0cc3464fba92082fd059322, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Chipboard001_1K_NormalDX
+    second: {fileID: 2800000, guid: 360902f51dddd56419e6b8dfe3d11afc, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Chipboard001_1K_Roughness
+    second: {fileID: 2800000, guid: d965e46be7c99f344af89f6065991551, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Chipboard003_1K_Color
+    second: {fileID: 2800000, guid: fd4a86b25e5e6bc499464262312b754d, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Chipboard003_1K_Displacement
+    second: {fileID: 2800000, guid: 2d82bc5c6af94134eaa7d3a8dd773dcc, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Chipboard003_1K_NormalDX
+    second: {fileID: 2800000, guid: 5aa86135d44c6cb458ad7717bab4a29a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Chipboard003_1K_Roughness
+    second: {fileID: 2800000, guid: c1aa3103a3f4d554792ea22ea9d34cd6, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Concrete Plates_color
+    second: {fileID: 2800000, guid: bd565066a9eec95499c1fd79d7c5d193, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Concrete Plates_height
+    second: {fileID: 2800000, guid: 1188d3d6cf5025a4e97a3701bd63e2d6, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Concrete Plates_normal
+    second: {fileID: 2800000, guid: 8ef40d1c8b881604088d62e216893b61, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Concrete Plates_rougness
+    second: {fileID: 2800000, guid: ad07008bffca04b46a8e2cd83fa2662a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Concrete030_1K_Color
+    second: {fileID: 2800000, guid: ce10c25a218c32b49bc0081a7c6176f2, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Concrete030_1K_Displacement
+    second: {fileID: 2800000, guid: 91c8f783ee8e70b4eb68fc3b7e5d73bc, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Concrete030_1K_NormalDX
+    second: {fileID: 2800000, guid: 98ad110ff2a54db4ebf9321b8d42f92d, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Concrete030_1K_Roughness
+    second: {fileID: 2800000, guid: 847bd8ebf0364f547aa1e8f8572ca178, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: CorrugatedSteel005_1K_Color
+    second: {fileID: 2800000, guid: a6b63078f6cf9d74e9d2609265e14d36, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: CorrugatedSteel005_1K_Displacement
+    second: {fileID: 2800000, guid: a14582ca74e6b8c488bc77cb0f797050, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: CorrugatedSteel005_1K_NormalDX
+    second: {fileID: 2800000, guid: cc0e670be25be584babe9570664299b2, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: CorrugatedSteel005_1K_Roughness
+    second: {fileID: 2800000, guid: 9b02a3826bbf264438c8dfe8c4fc3d3a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: PaintedMetal004_1K_Color
+    second: {fileID: 2800000, guid: 9c872fea722634e409e0f5c66e4547da, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: PaintedMetal004_1K_Displacement
+    second: {fileID: 2800000, guid: a1b4ee0bc2eb1e34881246a59fcb766a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: PaintedMetal004_1K_NormalDX
+    second: {fileID: 2800000, guid: 2611ea49ac4f9e64dbb096f854fc5198, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: PaintedMetal004_1K_Roughness
+    second: {fileID: 2800000, guid: 3b455ce2023ac724493aec4870d4e666, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: PaintedPlaster006_1K_Color
+    second: {fileID: 2800000, guid: ae6aecc3e30113f4c82745adc568da3a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: PaintedPlaster006_1K_Displacement
+    second: {fileID: 2800000, guid: f9486dc174b58624db85ba5683f0e77e, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: PaintedPlaster006_1K_NormalDX
+    second: {fileID: 2800000, guid: 76bc140dd504f084a8cf603dcf9160f8, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: PaintedPlaster006_1K_Roughness
+    second: {fileID: 2800000, guid: d884e2b4a5e5cb1478cf89ea830e355c, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Planks005_1K_Color
+    second: {fileID: 2800000, guid: bf553b90bff1daf43be35181c4987e25, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Planks005_1K_Displacement
+    second: {fileID: 2800000, guid: 0a48dcc2858bd954480d60ca7a33213e, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Planks005_1K_NormalGL
+    second: {fileID: 2800000, guid: b5fe4fa44732563418f976f5ee3cf3ae, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Planks005_1K_Roughness
+    second: {fileID: 2800000, guid: 3560eb5991ac55d47b72dc6f4ef96ffc, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Rust004_1K_Color
+    second: {fileID: 2800000, guid: c2f68b84c99bb2d4082af8cb924cda6a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Rust004_1K_Displacement
+    second: {fileID: 2800000, guid: 9e81254d7d187b84abb008c2d3963317, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Rust004_1K_NormalDX
+    second: {fileID: 2800000, guid: 2ec5bba649553524faa69c32a477e100, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Rust004_1K_Roughness
+    second: {fileID: 2800000, guid: e3d96e4af80ab974a8061e42efcea1cc, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: TexturesCom_Brick_CinderblocksRed_1K_albedo
+    second: {fileID: 2800000, guid: 48f98554a22471849800806c92d58816, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: TexturesCom_Brick_CinderblocksRed_1K_height
+    second: {fileID: 2800000, guid: 53e3003e6135e6948895e326c5162fbd, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: TexturesCom_Brick_CinderblocksRed_1K_normal
+    second: {fileID: 2800000, guid: f04963570179ad9469d3820f07bb6d4a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: TexturesCom_Brick_CinderblocksRed_1K_roughness
+    second: {fileID: 2800000, guid: dba58d38903a6454688f19efecfae3e4, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: WoodPlanksWorn_color_1
+    second: {fileID: 2800000, guid: 5e755667a95d8984dad71a243d8d9171, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: WoodPlanksWorn_normal
+    second: {fileID: 2800000, guid: ae4cf2752d861e848a3c89a20591fae5, type: 3}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 3
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
