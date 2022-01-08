@@ -35,6 +35,8 @@ public class JumpLogic : MonoBehaviour
         else
             hInput = gI.valueX;
 
+        
+
         if (isGrounded)
         {
             animator.SetBool("isGrounded", isGrounded);
@@ -60,6 +62,8 @@ public class JumpLogic : MonoBehaviour
         }
         else
         {
+            if(AudioManager.instance.IsPlaying("RunCem"))
+                AudioManager.instance.Pause("RunCem");
           //controller.height = 1.7f;
           direction.x = hInput * initialForceJump;
           direction.y += gravity * Time.deltaTime;//Add Gravity
@@ -69,7 +73,7 @@ public class JumpLogic : MonoBehaviour
           //    DoubleJump();
           //}
         }
-
+        
         controller.height = delta * 2;
         controller.Move(direction*Time.deltaTime);
     }

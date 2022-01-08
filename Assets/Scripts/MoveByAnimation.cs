@@ -27,6 +27,7 @@ public class MoveByAnimation : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PlayerManager.Instance.player = this;
         anim = GetComponent<Animator>();
         gI = GetComponent<GatherInput>();
     }
@@ -79,6 +80,10 @@ public class MoveByAnimation : MonoBehaviour
             xmovement =- gI.valueX;
         else
             xmovement = gI.valueX;
+
+        if (gI.valueX != 0 && anim.GetBool("isGrounded"))
+            StartRun();
+
 
         if (enablestamina)
         {
@@ -176,6 +181,7 @@ public class MoveByAnimation : MonoBehaviour
     }
     public void StartRun()
     {
-        AudioManager.instance.Play("RunCem");
+        if(!AudioManager.instance.IsPlaying("RunCem"))
+            AudioManager.instance.Play("RunCem");
     }
 }

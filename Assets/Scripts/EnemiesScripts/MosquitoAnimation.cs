@@ -5,7 +5,7 @@ using UnityEngine;
 public class MosquitoAnimation : MonoBehaviour
 {
     private Animator anim;
-    private EnemyHealth health;
+    //private EnemyHealth health;
     private FlyingEnemy flyingEnemy;
     private float animSpeed=15f;
 
@@ -18,13 +18,13 @@ public class MosquitoAnimation : MonoBehaviour
     private void Start()
     {
         anim = GetComponent<Animator>();
-        health = GetComponent<EnemyHealth>();
+       // health = GetComponent<EnemyHealth>();
         flyingEnemy = GetComponentInParent<FlyingEnemy>();
     }
 
     private void Update()
     {
-        if (health.isDead)
+        if (flyingEnemy.isDead)
         {
             transform.Translate(Vector3.down * Time.deltaTime * animSpeed);
 
@@ -35,7 +35,7 @@ public class MosquitoAnimation : MonoBehaviour
 
         if (flyingEnemy.isFlying)
         {
-            if (!GetComponent<EnemyHealth>().isDead)
+            if (!GetComponentInParent<FlyingEnemy>().isDead)
             {
                 if (transform.position.y < minHighAnimation)
                     transform.position = new Vector3(transform.position.x, minHighAnimation, transform.position.z);
@@ -44,24 +44,18 @@ public class MosquitoAnimation : MonoBehaviour
                     transform.position = new Vector3(transform.position.x, maxHighAnimation, transform.position.z);
 
             }
-
-
         }
         
     }
 
     public void Stun()
     {
-       
         if (!isStunning)
         {
              isStunning = true;
              GetComponentInParent<FlyingEnemy>().canMove = false;
              anim.SetBool("Stun", true);
-
-
             StartCoroutine(_ReturnNormal(timeStun));
-
         }
 
     }

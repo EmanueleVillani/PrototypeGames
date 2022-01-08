@@ -43,7 +43,7 @@ public class BallAttackScript : MonoBehaviour
         if (other.CompareTag("Player")  || other.CompareTag("Ground"))
         {
 
-            PlayerManager.instancePlayerManager.currentHealth -= damageAmount;
+            PlayerManager.Instance.currentHealth -= damageAmount;
             Destroy(gameObject);
 
         }

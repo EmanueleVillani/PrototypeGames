@@ -13,8 +13,6 @@ public class SpotlightScript : MonoBehaviour
     private bool isDark;
     private bool isLow;
 
-    [SerializeField]
-    private Slider lightBar;
     private Animator anim;
     public LayerMask toHit;
     public bool isOn = false;
@@ -23,7 +21,7 @@ public class SpotlightScript : MonoBehaviour
     {
         anim =GetComponent<Animator>();
         currentLight = totalLight;
-        lightBar.value = totalLight;
+        UIManager.instance.Light.value = totalLight;
     }
     RaycastHit[] hits;
     void Update()
@@ -51,7 +49,7 @@ public class SpotlightScript : MonoBehaviour
             }
 
             currentLight -= Time.deltaTime * 3;
-            lightBar.value = currentLight;
+            UIManager.instance.Light.value = currentLight;
             if (currentLight <= 20)
             {
                 anim.SetBool("low", true);

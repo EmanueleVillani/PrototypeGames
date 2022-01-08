@@ -14,7 +14,7 @@ public class HitZone : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            PlayerManager.instancePlayerManager.currentHealth -= damage;
+            PlayerManager.Instance.currentHealth -= damage;
         }
     }
 }

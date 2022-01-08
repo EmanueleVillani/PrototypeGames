@@ -16,13 +16,9 @@ public class MenuHorror : MonoBehaviour
     public void SetVolume()
     {
         mixer.SetFloat("volume", volumeSlider.value);
-
-
-
     }
     private void strt()
     {
-       
         mixer.GetFloat("volume", out value );
         volumeSlider.value = value;
     }

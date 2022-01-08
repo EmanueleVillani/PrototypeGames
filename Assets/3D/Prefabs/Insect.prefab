@@ -515,10 +515,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2832185804183696375}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cb2922ab9ebd734eb4132a10923dff0, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f188b3c0c2fab24699582ad718cc158, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealth: 400
+  enemyHealth: 100
   healthBar: {fileID: 1555763230}
   isDead: 0
 --- !u!1 &3138050348646381895

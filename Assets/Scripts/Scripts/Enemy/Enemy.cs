@@ -140,7 +140,8 @@ public class Enemy : MonoBehaviour
     }
     private void Die()
     {
-        PlayerManager.instancePlayerManager.AddCount();
+        InventoryManager.Instance.ModifyInventory(Item.kill,true,1);
+        //PlayerManager.Instance.AddCount();
         //GameManager.gameManagerInstance.AddCount();
         animator.applyRootMotion = true;
         //play a die animation

@@ -38,10 +38,25 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    public void Update()
     {
-        Play(Bg);
+        foreach (Sound s in sounds)
+        {
+            if (s.source != null)
+                continue;
+            s.source = gameObject.AddComponent<AudioSource>();
+            s.source.outputAudioMixerGroup = mixers[(int)s.audioType];
+            s.source.clip = s.clip;
+
+            s.source.volume = s.volume;
+            s.source.pitch = s.pitch;
+            s.source.spatialBlend = s.spatial;
+            s.source.loop = s.loop;
+            if (!SoundLibrary.ContainsKey(s.name))
+                SoundLibrary.Add(s.name, s);
+        }
     }
+
     public void Play3DSound(GameObject gb,string  name)
     {
         Sound sound;
@@ -65,6 +80,12 @@ public class AudioManager : MonoBehaviour
         s_n.maxDistance = 25f;
         s_n.loop = sound.loop;
         s_n.Play();
+    }
+    public void PlayBgMusic(string newbg)
+    {
+        Stop(Bg);
+        Bg = newbg;
+        Play(Bg);
     }
     public void Play(string name,float delay = 0)
     {
@@ -166,7 +187,7 @@ public class Sound
 
     public bool loop;
 
-    [HideInInspector]
+   // [HideInInspector]
     public AudioSource source;
 
 }

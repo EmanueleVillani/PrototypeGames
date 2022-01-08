@@ -21,7 +21,7 @@ public class FireBall : MonoBehaviour
             Instantiate(damageEffect, transform.position, damageEffect.transform.rotation);
             AudioManager.instance.Play("HitSomething");
             Destroy(gameObject);
-            other.GetComponent<EnemyHealth>()?.TakeDamage(damageAmount);
+            other.GetComponentInParent<FlyingEnemy>()?.TakeDamage(damageAmount);
             // Debug.Log("COLLIDED");
         }
 

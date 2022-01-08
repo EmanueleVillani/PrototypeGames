@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FlyingEnemy : MonoBehaviour
 {
@@ -33,9 +34,20 @@ public class FlyingEnemy : MonoBehaviour
 
   
     public bool isFlying;
- 
+
+    [SerializeField]
+    private int enemyHealth = 100;
+
+    [SerializeField]
+    private Slider healthBar;
+
+    public bool isDead;
+
+
     private void Start()
     {
+        healthBar.maxValue = enemyHealth;
+        healthBar.value = enemyHealth;
         target = GameObject.FindWithTag("Player").transform;
         transform.rotation = Quaternion.Euler(0, 90, 0);   
       
@@ -52,7 +64,8 @@ public class FlyingEnemy : MonoBehaviour
             transform.position = new Vector3(transform.position.x, yPosition, transform.position.z);
 
         distanceTarget = Vector3.Distance(transform.position, target.position);
-
+       
+        healthBar.value = enemyHealth;
 
         if (current_State == "IdleState")
         {
@@ -97,7 +110,26 @@ public class FlyingEnemy : MonoBehaviour
             }
         }
     }
+    public void TakeDamage(int damageAmount)
+    {
+        enemyHealth -= damageAmount;
 
+        if (enemyHealth < 0)
+            enemyHealth = 0;
+
+        if (enemyHealth == 0)
+        {
+            isDead = true;
+            InventoryManager.Instance.ModifyInventory(Item.kill,true,1);
+            //PlayerManager.Instance.AddCount();
+            gameObject.GetComponentInChildren<Animator>().SetTrigger("Death");
+            gameObject.GetComponentInParent<FlyingEnemy>().enabled = false;
+            healthBar.gameObject.SetActive(false);
+
+            Destroy(gameObject, 1.5f);
+        }
+
+    }
     void MoveEnemy()
     {   
         int xMovement=1;

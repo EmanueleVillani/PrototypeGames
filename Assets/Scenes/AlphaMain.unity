@@ -909,7 +909,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 205697518}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -8.750978, y: 4.0547013, z: 9}
+  m_LocalPosition: {x: -8.132002, y: 4.0547013, z: 9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2040,7 +2040,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 445766987}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -8.750978, y: 4.0547013, z: 9}
+  m_LocalPosition: {x: -8.132002, y: 4.0547013, z: 9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1978173864}
@@ -4379,8 +4379,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 517242351}
-  - {fileID: 1438612753}
   - {fileID: 3138050347635839792}
+  - {fileID: 1438612753}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8278,8 +8278,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levels:
-  - Name: TutorialLowScene
+  - Name: TutorialScene
+    Music: 
     Position: {x: -3, y: 0.5, z: 0}
+    IsMenu: 0
   currentLevel: 0
   player: {fileID: 1747432106}
   Enemies: {fileID: 569451527}
@@ -8682,7 +8684,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1945643087}
-  - component: {fileID: 1945643086}
   - component: {fileID: 1945643085}
   m_Layer: 0
   m_Name: GameManager1
@@ -8707,22 +8708,6 @@ MonoBehaviour:
   waitIntSec: 0
   textTime: {fileID: 1714629052}
   addTime: {fileID: 1535337466}
---- !u!114 &1945643086
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1945643084}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe4afd7502394f64ba0ef5190aae8c9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nemici: {fileID: 1621868788263027969, guid: 392d4af9551becb4fa08c6a7071b6d86, type: 3}
-  textTime: {fileID: 1714629050}
-  addTimer: {fileID: 1535337466}
-  gameOverPanel: {fileID: 1122867882}
 --- !u!4 &1945643087
 Transform:
   m_ObjectHideFlags: 0

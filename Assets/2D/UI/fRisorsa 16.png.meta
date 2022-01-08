@@ -1,55 +1,40 @@
 fileFormatVersion: 2
-guid: c9b20c9c9cff24c5fae03f7c65c62e97
+guid: 89593d60f73b65d40b420e3f61e54ca5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5421451216713699803
-    second: Gem_16x16_0
+      213: 9009832100918368699
+    second: UI_Quad
   - first:
-      213: 3799971708761114017
-    second: Gem_16x16_1
+      213: 7120569562084941109
+    second: fRisorsa 16_1
   - first:
-      213: 5513024196643945314
-    second: Gem_16x16_2
+      213: 9056649299575219924
+    second: fRisorsa 16_2
   - first:
-      213: -4033520050176733091
-    second: Gem_16x16_3
+      213: -882090713078926038
+    second: fRisorsa 16_3
   - first:
-      213: -8865844046965443225
-    second: Gem_16x16_4
+      213: 886083876162890679
+    second: fRisorsa 16_4
   - first:
-      213: 2359387152812279702
-    second: Gem_16x16_5
+      213: -3848233471894337459
+    second: torcia
   - first:
-      213: -469060587394921261
-    second: Gem_16x16_6
+      213: 6482172959069859666
+    second: vita
   - first:
-      213: -1612315353153771052
-    second: Gem_16x16_7
+      213: 2082686431792515045
+    second: fRisorsa 16_7
   - first:
-      213: -4461967984577168796
-    second: Gem_16x16_0
+      213: -7812013371579608804
+    second: fRisorsa 16_8
   - first:
-      213: -5423880905125324067
-    second: Gem_16x16_1
+      213: 1246192242664107380
+    second: fRisorsa 16_9
   - first:
-      213: 2761404063023250376
-    second: Gem_16x16_2
-  - first:
-      213: -2306986876703779451
-    second: Gem_16x16_3
-  - first:
-      213: -7498589735759438556
-    second: Gem_16x16_4
-  - first:
-      213: 4293508717765659993
-    second: Gem_16x16_5
-  - first:
-      213: -6398028299895745455
-    second: Gem_16x16_6
-  - first:
-      213: -4256278518875262675
-    second: Gem_16x16_7
+      213: -9081734258389163206
+    second: fRisorsa 16_10
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -80,7 +65,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -90,11 +75,11 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 1
+  spriteExtrude: 0
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 1000
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -116,7 +101,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -128,19 +113,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -151,169 +124,232 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Gem_16x16_0
+      name: UI_Quad
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 0
+        width: 688
+        height: 682
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 64, y: 60, z: 66, w: 61}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb996254f8a590d70800000000000000
+      internalID: 9009832100918368699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fRisorsa 16_1
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 79
+        width: 523
+        height: 523
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 25, y: 31, z: 26, w: 31}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53d18825a4851d260800000000000000
+      internalID: 7120569562084941109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fRisorsa 16_2
+      rect:
+        serializedVersion: 2
+        x: 1407
+        y: 319
+        width: 7
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d6a874cd8eafad70800000000000000
+      internalID: 9056649299575219924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fRisorsa 16_3
+      rect:
+        serializedVersion: 2
+        x: 1060
+        y: 8
+        width: 3436
+        height: 663
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 53, y: 53, z: 50, w: 50}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2572438b2f22c3f0800000000000000
+      internalID: -882090713078926038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fRisorsa 16_4
+      rect:
+        serializedVersion: 2
+        x: 1168
+        y: 118
+        width: 3219
+        height: 445
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 98, y: 93, z: 98, w: 90}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7bbe3e737900c4c00800000000000000
+      internalID: 886083876162890679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torcia
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 16
-        height: 16
+        y: 2337
+        width: 794
+        height: 715
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 46abc1032c7e312c0800000000000000
-      internalID: -4461967984577168796
+      spriteID: d4848fecb04589ac0800000000000000
+      internalID: -3848233471894337459
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Gem_16x16_1
+      name: vita
       rect:
         serializedVersion: 2
-        x: 16
-        y: 0
-        width: 16
-        height: 16
+        x: 53
+        y: 3530
+        width: 690
+        height: 715
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dda1bf1cd018ab4b0800000000000000
-      internalID: -5423880905125324067
+      spriteID: 25f600656fd45f950800000000000000
+      internalID: 6482172959069859666
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Gem_16x16_2
+      name: fRisorsa 16_7
       rect:
         serializedVersion: 2
-        x: 32
-        y: 0
-        width: 16
-        height: 16
+        x: 1171
+        y: 3668
+        width: 3217
+        height: 442
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 90, y: 0, z: 87, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8cb32d16d5a725620800000000000000
-      internalID: 2761404063023250376
+      spriteID: 5e7c481764037ec10800000000000000
+      internalID: 2082686431792515045
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Gem_16x16_3
+      name: fRisorsa 16_8
       rect:
         serializedVersion: 2
-        x: 48
-        y: 0
-        width: 16
-        height: 16
+        x: 1171
+        y: 2484
+        width: 3215
+        height: 442
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 94, y: 0, z: 108, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 585559898afebffd0800000000000000
-      internalID: -2306986876703779451
+      spriteID: c1155667a37269390800000000000000
+      internalID: -7812013371579608804
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Gem_16x16_4
+      name: fRisorsa 16_9
       rect:
         serializedVersion: 2
-        x: 64
-        y: 0
-        width: 16
-        height: 16
+        x: 1172
+        y: 1302
+        width: 3214
+        height: 442
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 81, y: 0, z: 99, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 42d1ba35d58afe790800000000000000
-      internalID: -7498589735759438556
+      spriteID: 47d67d9fd3d5b4110800000000000000
+      internalID: 1246192242664107380
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Gem_16x16_5
+      name: fRisorsa 16_10
       rect:
         serializedVersion: 2
-        x: 80
-        y: 0
-        width: 16
-        height: 16
+        x: 51
+        y: 1155
+        width: 693
+        height: 739
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 95d077a4e6b959b30800000000000000
-      internalID: 4293508717765659993
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Gem_16x16_6
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 15451d1d823a537a0800000000000000
-      internalID: -6398028299895745455
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Gem_16x16_7
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d217051ec39aee4c0800000000000000
-      internalID: -4256278518875262675
+      spriteID: a33e7302fc237f180800000000000000
+      internalID: -9081734258389163206
       vertices: []
       indices: 
       edges: []

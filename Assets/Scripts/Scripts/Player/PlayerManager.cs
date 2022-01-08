@@ -5,13 +5,8 @@ using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
 {
-    public static int numberOfCoins;
-    public TextMeshProUGUI numberOfCoinsText;
-
     public  int currentHealth = 100;
-    public Slider healthBar;
-    public Slider staminaBar;
-
+   
     public static bool gameOver;
     public static bool winLevel;
     public int conditionVictory = 3; // CONDIZIONE DI VITTORIA
@@ -21,56 +16,35 @@ public class PlayerManager : MonoBehaviour
 
     public MoveByAnimation player;
 
-    private int killedCount = 0;
-
-    public static PlayerManager instancePlayerManager;
-
-
-    [SerializeField]
-    private Text killedCount_Text;
-
-    [SerializeField]
-    private Text killedCount_Text_GameOverPanel;
-
-    [SerializeField]
-    private TMP_Text gameOver_Text;  // TESTO GAME OVER ( MORTE O VITTORIA)
+    public static PlayerManager Instance;
 
 
     private void Awake()
     {
        
-        if (instancePlayerManager == null)
+        if (Instance == null)
         {
-            instancePlayerManager = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
-
         }
         else
         {
-
             Destroy(gameObject);
         }
-
-
     }
-
-
 
     void Start()
     {
-       
-
-        numberOfCoins = 0;
         gameOver = winLevel = false;
 
         currentHealth = 100;
 
-        gameOverPanel.SetActive(false);
+        UIManager.instance.SetActiveGameOverPanel(false,"");
 
-        killedCount_Text.gameObject.SetActive(true);
-        killedCount = 0;
+       // killedCount_Text.gameObject.SetActive(true);
+        //killedCount = 0;
 
-        killedCount_Text.text = "Killed: " + killedCount;
+        //killedCount_Text.text = "Killed: " + killedCount;
 
     }
 
@@ -82,88 +56,63 @@ public class PlayerManager : MonoBehaviour
         Application.Quit();
     }
 
-    public void Restart()
-    {
-        gameOverPanel.SetActive(false);
-        currentHealth = 100;
-        SceneManager.LoadScene(gameObject.scene.name);
-    }
-    public void GotoMenu()
-    {
-        SceneManager.LoadScene("SettingScenes");
-    }
     void Update()
     {
-        //Display the number of coins
-        numberOfCoinsText.text = "coins:" + numberOfCoins;
-
         //Update the slider value
-        healthBar.value = currentHealth;
-        staminaBar.value = player.stamina;
-        //game over
-        if (currentHealth < 0  && gameOver == false)
-       {
-           gameOver = true;
-           //Invoke("Restart", 5);
-           gameOverPanel.SetActive(true);
-           gameOverPanel.GetComponent<Animator>().SetTrigger("GameOver");
-            //currentHealth = 100;
-            killedCount_Text_GameOverPanel.text = "Killed: " + killedCount;
-            killedCount_Text.gameObject.SetActive(false);
-
-            GameManager.gameManagerInstance.gameOver = true;
-            GameManager.gameManagerInstance.scoreKilled = killedCount;
-       }
-
-        if (currentHealth < 25)
+        if (player != null)
         {
-            if (!AudioManager.instance.IsPlaying("LifeUnder"))
+            UIManager.instance.Health.value = currentHealth;
+            UIManager.instance.Stamina.value = player.stamina;
+            if (winLevel)
+                return;
+
+            if (InventoryManager.Instance.HowMany(Item.kill) >= conditionVictory)
             {
-                float time = AudioManager.instance.GetTime("BgMusic");
-                AudioManager.instance.Play("LifeUnder", time);
+                winLevel = true;
+                AudioManager.instance.PlayBgMusic("Victory");
+                UIManager.instance.SetActiveGameOverPanel(true, "Sei Sopravvissuto!");
+                return;
+            }
+
+            //game over
+            if (currentHealth < 0 && gameOver == false)
+            {
+                gameOver = true;
+                AudioManager.instance.PlayBgMusic("Death");
+                AudioManager.instance.Stop("LifeUnder");
+
+                UIManager.instance.SetActiveGameOverPanel(true, @"Sei morto \nmale");
+                GameManager.Instance.gameOver = true;
+
+            }
+
+            if (currentHealth < 25 && gameOver == false)
+            {
+                if (!AudioManager.instance.IsPlaying("LifeUnder"))
+                {
+                    float time = AudioManager.instance.GetTime("BgMusic");
+                    AudioManager.instance.Play("LifeUnder", time);
+                }
+            }
+            else
+            {
+                if (AudioManager.instance.IsPlaying("LifeUnder"))
+                    AudioManager.instance.Stop("LifeUnder");
             }
         }
-        else
-        {
-            if (AudioManager.instance.IsPlaying("LifeUnder"))
-                AudioManager.instance.Stop("LifeUnder");
-        }
-        // if(FindObjectsOfType<Enemy>().Length ==0)
-        // {
-        //     //Win Level
-        //     winLevel = true;
-        //     timer += Time.deltaTime;
-        //     if(timer > 5)
-        //     {
-        //         /**
-        //         int nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
-        //         if (nextLevel == 4)
-        //             SceneManager.LoadScene(0);
-        //                         if(PlayerPrefs.GetInt("ReachedLevel", 1) < nextLevel)
-        //                             PlayerPrefs.SetInt("ReachedLevel", nextLevel);
-        //
-        //                         SceneManager.LoadScene(nextLevel);
-        //         **/
-        //         SceneManager.LoadScene(0);
-        //     }
-        // }
     }
-
-    public void AddCount()
+    public void ResetPlayer()
     {
-        killedCount++;
+        gameOver = winLevel = false;
+        UIManager.instance.SetActiveGameOverPanel(false, "");
 
-        killedCount_Text.text = "Killed: " + killedCount;
+        currentHealth = 100;
 
-        if(killedCount >= conditionVictory)
-        {
-            gameOverPanel.SetActive(true);
-            gameOver_Text.text = "You Survived!";
-            killedCount_Text_GameOverPanel.gameObject.SetActive(false);
-            killedCount_Text.gameObject.SetActive(false);
-        }
+        InventoryManager.Instance.HardSetInventory(Item.kill,0);
+        InventoryManager.Instance.HardSetInventory(Item.Gem,0);
+        InventoryManager.Instance.HardSetInventory(Item.Ammo, 16);
 
+        //  killedCount_Text.text = "Killed: " + killedCount;
     }
-   
-   
+
 }

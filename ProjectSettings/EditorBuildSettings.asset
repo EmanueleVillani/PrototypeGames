@@ -17,5 +17,14 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TutorialLowScene.unity
     guid: 56663db8b5894bb409096051a0708336
+  - enabled: 1
+    path: Assets/Scenes/CoreGameScene.unity
+    guid: 3dca5c1832030174dbf1f25801cf3251
+  - enabled: 1
+    path: Assets/Scenes/Level0.unity
+    guid: 5278484415b21ff4a88bb29980fa4c73
+  - enabled: 1
+    path: Assets/Scenes/MenuScene.unity
+    guid: a352c5e24296e3f4aabc399cc2e90154
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 3fb339f822fe544b8b32723b2c3ea837, type: 2}

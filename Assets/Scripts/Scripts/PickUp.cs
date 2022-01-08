@@ -20,7 +20,7 @@ public class PickUp : MonoBehaviour
             switch (m_self)
             {
                 case Item.Gem:
-                PlayerManager.numberOfCoins+=howmany;//Increment the number of coins
+                //PlayerManager.numberOfCoins+=howmany;//Increment the number of coins
                 Destroy(gameObject);//destroy the coin
                     break;
                 case Item.Ammo:
@@ -28,11 +28,20 @@ public class PickUp : MonoBehaviour
                 Destroy(gameObject);//destroy the coin
                     break;
                 case Item.health:
-                    if (PlayerManager.instancePlayerManager.currentHealth < 100)
+                    if (PlayerManager.Instance.currentHealth < 100)
                     {
-                        PlayerManager.instancePlayerManager.currentHealth += howmany;
+                        PlayerManager.Instance.currentHealth += howmany;
                         Destroy(gameObject);//destroy the coin
                     }
+                    break;
+                case Item.battery:
+                    SpotlightScript light= FindObjectOfType<SpotlightScript>();
+                    light.AddLight(howmany);
+                    Destroy(gameObject);//destroy the coin
+                    break;
+                case Item.time:
+                    GameManager.Instance.waitSecond += howmany;
+                    Destroy(gameObject);//destroy the coin
                     break;
             }
         }

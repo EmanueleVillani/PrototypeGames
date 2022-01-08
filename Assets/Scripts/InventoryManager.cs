@@ -24,7 +24,7 @@ public class InventoryManager : MonoBehaviour
             if (i.alreadyimage)
             {
                 GameObject newitem = Instantiate<GameObject>(ItemUI, Bag.transform);
-                newitem.GetComponentInChildren<Image>().sprite = ItemSprites[(int)i.item].sprite;
+                newitem.GetComponentsInChildren<Image>()[2].sprite = ItemSprites[(int)i.item].sprite;
                 newitem.GetComponentInChildren<Text>().text = "0";
 
                 Inventory.Add(i.item, newitem);
@@ -67,7 +67,7 @@ public class InventoryManager : MonoBehaviour
                 if (ItemSprites.Length < (int)item+1)
                     return;
                 GameObject newitem = Instantiate<GameObject>(ItemUI, Bag.transform);
-                newitem.GetComponentInChildren<Image>().sprite = ItemSprites[(int)item].sprite;
+                newitem.GetComponentsInChildren<Image>()[2].sprite = ItemSprites[(int)item].sprite;
                 newitem.GetComponentInChildren<Text>().text = "" + valor;
 
                 Inventory.Add(item, newitem);
@@ -94,11 +94,17 @@ public class InventoryManager : MonoBehaviour
         }
     }
    
-    
+    public void HardSetInventory(Item item,int valor)
+    {
+        if (Inventory.ContainsKey(item))
+        {
+            Inventory[item].GetComponentInChildren<Text>().text = "" + valor;
+        }
+    } 
 }
 public enum Item
 {
-    Gem=0,Ammo=1,health=2
+    Gem=0,Ammo=1, kill = 2,health =3,battery=4,time=5
 }
 [System.Serializable]
 public class ItemLogic

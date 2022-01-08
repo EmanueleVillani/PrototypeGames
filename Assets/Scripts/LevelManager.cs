@@ -57,15 +57,3 @@ public class LevelManager : MonoBehaviour
         StartCoroutine(LoadScene(level.Name));
     }
 }
-[System.Serializable]
-public class Level
-{
-    public string Name;
-    public Vector3 Position;
-
-    public Level(string n,Vector3 p)
-    {
-        Name = n;
-        Position = p;
-    }
-}

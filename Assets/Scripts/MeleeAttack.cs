@@ -10,14 +10,14 @@ public class MeleeAttack : MonoBehaviour
     {
         if (other.tag == "Enemy")
         {
+            if(damageEffect!=null)
             Instantiate(damageEffect, transform.position, damageEffect.transform.rotation);
             other.GetComponent<Enemy>().TakeDamage(damageAmount);
         }
 
         if (other.CompareTag("Insect"))
         {
-            other.GetComponent<EnemyHealth>().TakeDamage(damageAmount);
-
+            other.GetComponentInParent<FlyingEnemy>().TakeDamage(damageAmount);
             Debug.Log("COLLIDED");
         }
     }
