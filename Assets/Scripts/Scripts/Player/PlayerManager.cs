@@ -70,6 +70,7 @@ public class PlayerManager : MonoBehaviour
             {
                 winLevel = true;
                 AudioManager.instance.PlayBgMusic("Victory");
+                UIManager.instance.SetLastScore(InventoryManager.Instance.HowMany(Item.kill));
                 UIManager.instance.SetActiveGameOverPanel(true, "Sei Sopravvissuto!");
                 return;
             }
@@ -80,8 +81,8 @@ public class PlayerManager : MonoBehaviour
                 gameOver = true;
                 AudioManager.instance.PlayBgMusic("Death");
                 AudioManager.instance.Stop("LifeUnder");
-
-                UIManager.instance.SetActiveGameOverPanel(true, @"Sei morto \nmale");
+                UIManager.instance.SetLastScore(InventoryManager.Instance.HowMany(Item.kill));
+                UIManager.instance.SetActiveGameOverPanel(true, @"Sei morto male");
                 GameManager.Instance.gameOver = true;
 
             }

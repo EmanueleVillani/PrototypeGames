@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
     
     public Text GameOverMessage;
     public GameObject gameoverpanel;
+    public Text Scoretext;
     private void Awake()
     {
         if(instance!=this || instance == null)
@@ -43,8 +44,12 @@ public class UIManager : MonoBehaviour
         gameoverpanel.SetActive(b);
         GameOverMessage.text = testo;
     }
+    public void SetLastScore(int x)
+    {
+        Scoretext.gameObject.SetActive(true);
+        Scoretext.text = "Killed: " + x;
+    }
 
-    // Start is called before the first frame update
     void Start()
     {
         
