@@ -6,19 +6,19 @@ using UnityEngine.UI;
 public class FlyingEnemy : MonoBehaviour
 {
  
-    private string current_State = "IdleState";
+    private string current_State;
 
-    [SerializeField]
-    private float chaseRange = 20f;
 
-    [SerializeField]
-    private float distanceToAttackOnAir = 10f;
-
-   
     public bool canMove;
 
     private float timerAttackFly;
-    private float attackTimeFlyThreshold = 3f;   //regola l'attacco mentre l'enemy vola
+    private float attackTimeFlyThreshold = 2f;   //regola l'attacco mentre l'enemy vola
+
+    [SerializeField]
+    private float timerAttack = 5f;  //Durata dell'attacco della mosquito prima di ritirarsi
+
+    [SerializeField]
+    private float timerPause = 10f; //Durata del ritiro prima di riattaccare
 
     private Transform target;
 
@@ -26,90 +26,77 @@ public class FlyingEnemy : MonoBehaviour
 
     [SerializeField]
     private Animator anim;
-
-    
+ 
     public float speed = 10f;
 
     private float yPosition;  //fix della posizione dell'enemy lungo l'asse y
-
-  
+ 
     public bool isFlying;
-
+   
     [SerializeField]
     private int enemyHealth = 100;
 
     [SerializeField]
     private Slider healthBar;
 
+    [SerializeField]
+    private float attackDistance = 20f; //distanza mosquito-player quando attacca
+
+    [SerializeField]
+    private float idleDistance = 30f;  // distanza mosquito-player quando la mosquito si ritira
+
     public bool isDead;
-
-
+    
     private void Start()
     {
         healthBar.maxValue = enemyHealth;
         healthBar.value = enemyHealth;
         target = GameObject.FindWithTag("Player").transform;
-        transform.rotation = Quaternion.Euler(0, 90, 0);   
-      
+        transform.rotation = Quaternion.Euler(0, 90, 0);
         canMove = true;
         yPosition = transform.position.y;
+
+        current_State = "PreAttack";
+        Invoke("StartFly", 1f);
 
     }
 
 
     private void Update()
     {
-
-        if (!isFlying)     
-            transform.position = new Vector3(transform.position.x, yPosition, transform.position.z);
-
         distanceTarget = Vector3.Distance(transform.position, target.position);
-       
         healthBar.value = enemyHealth;
 
-        if (current_State == "IdleState")
+
+        if (!isFlying)
         {
-            if (distanceTarget < chaseRange)
-            {
-
-                current_State = "ChaseState";
-
-              
-            }
-        } 
-        else if (current_State=="ChaseState")
-        {
-            anim.SetBool("isAttacking", false);
-
-            anim.SetTrigger("chase");
-
-            anim.SetTrigger("flyStart");
-
-
-            if (distanceTarget < distanceToAttackOnAir && isFlying)
-            {
-               current_State = "AttackState";
-            }
-
-
-            Invoke("StartFly", 1.5f);  
-
-            MoveEnemy(); 
-            
+            transform.position = new Vector3(transform.position.x, yPosition, transform.position.z);
+            current_State = "PreAttack";
         }
-        else if (current_State == "AttackState")
+
+      
+        if (current_State == "PreAttack")  //Appena parte il livello la mosquito inizia a librarsi in aria
         {
             if (isFlying)
-            {
-                if(distanceTarget > distanceToAttackOnAir)
-                {
-                    current_State = "ChaseState";
-                }
-
-                    AttackAir();   
+            {                            
+                current_State = "AttackState";
+                StartCoroutine(_ChangeState());
             }
+        } 
+        
+        else if (current_State == "AttackState")
+        {
+                 AttackAir();              
         }
+
+        else if (current_State == "PauseAttack")
+        {
+            MoveEnemy();
+        }
+        
     }
+
+
     public void TakeDamage(int damageAmount)
     {
         enemyHealth -= damageAmount;
@@ -130,39 +117,25 @@ public class FlyingEnemy : MonoBehaviour
         }
 
     }
+
     void MoveEnemy()
-    {   
-        int xMovement=1;
-
-        Vector3 targetPos = new Vector3 (target.transform.position.x, transform.position.y, transform.position.z);
-
-        if (isFlying && canMove)
-        {        
-           transform.Translate(Vector3.forward * xMovement * speed * Time.deltaTime);
-        }
-
-
-        if (transform.position.x > target.position.x)
-        {
-             transform.rotation = Quaternion.Euler(0, 270, 0);
-            xMovement = 1;
-        }
-        else
-        {         
-            transform.rotation = Quaternion.Euler(0, 90, 0);
-            xMovement = 1;
-        }
-
-
-
+    {       
+        if (Vector3.Distance(transform.position, target.position) < idleDistance)
+            transform.Translate(Vector3.forward * speed * Time.deltaTime);     
     }
     
     void AttackAir()
     {
-        if (Time.time > timerAttackFly )
+        if (Vector3.Distance(transform.position, target.position) < attackDistance)
+            transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        else if(Vector3.Distance(transform.position, target.position) > attackDistance+3f)
+            transform.Translate(-Vector3.forward * speed * Time.deltaTime);
+
+        if (Time.time > timerAttackFly)
         {
             
           timerAttackFly = Time.time + attackTimeFlyThreshold;
+          GetComponentInChildren<MosquitoAnimation>().Stun();
           anim.SetTrigger("attackFly");
 
         }
@@ -171,11 +144,26 @@ public class FlyingEnemy : MonoBehaviour
 
     void StartFly()
     {
-        isFlying = true;      
+        anim.SetTrigger("flyStart");
     }
    
 
-    
+    IEnumerator _ChangeState()
+    {
+        if (current_State == "AttackState")
+        {
+            yield return new WaitForSeconds(timerAttack);
+            current_State = "PauseAttack";
+
+        }
+        else if (current_State == "PauseAttack")
+        {
+            yield return new WaitForSeconds(timerPause);
+            current_State = "AttackState";
+        }
+
+        StartCoroutine(_ChangeState());
+    }
 
 
    

@@ -10,7 +10,7 @@ public class MosquitoAnimation : MonoBehaviour
     private float animSpeed=15f;
 
     private float timeStun = 5;
-    private bool isStunning;
+    public bool isStunning;
     private float minHighAnimation = 3f, maxHighAnimation = 6f;
     public float rotationSpeed = 5f;
 
@@ -69,6 +69,13 @@ public class MosquitoAnimation : MonoBehaviour
 
         isStunning = false;
     }
+
+    public void IsFlying()
+    {
+        GetComponentInParent<FlyingEnemy>().isFlying = true;
+
+    }
+
 
 }
 

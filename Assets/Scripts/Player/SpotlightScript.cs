@@ -44,7 +44,7 @@ public class SpotlightScript : MonoBehaviour
                 foreach (RaycastHit hit in hits)
                 {
                     hit.transform.GetComponentInParent<Enemy>()?.Stun();
-                    hit.transform.GetComponentInParent<MosquitoAnimation>()?.Stun();
+                   // hit.transform.GetComponentInParent<MosquitoAnimation>()?.Stun();
                 }
             }
 

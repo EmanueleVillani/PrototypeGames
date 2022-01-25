@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
@@ -19,6 +20,11 @@ public class Enemy : MonoBehaviour
      float axis = -1f;
     public float timetowaitdestun = 0;
     private EnemyAttacks attacks;
+
+    [SerializeField]
+    private Slider healthBar;
+
+
     void Start()
     {
         attacks =gameObject.GetComponentInChildren<EnemyAttacks>(true);
@@ -26,10 +32,16 @@ public class Enemy : MonoBehaviour
         axis = target.GetComponent<MoveByAnimation>().axis;
         health = maxHealth;
         AudioManager.instance.Play3DSound(gameObject,"IdleEnemy");
+
+        healthBar.maxValue = maxHealth;
+        healthBar.value = health;
     }
     // Update is called once per frame
     void Update()
     {
+          healthBar.value = health;
+
+
         if (PlayerManager.gameOver)
         {
             animator.enabled = false;
@@ -124,6 +136,7 @@ public class Enemy : MonoBehaviour
         if (health < 0)
         {
             AudioManager.instance.Play("DeathEnemy");
+            healthBar.gameObject.SetActive(false);
             Die();
         }
     }
