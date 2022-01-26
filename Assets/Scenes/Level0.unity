@@ -3475,6 +3475,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1835639037}
   - component: {fileID: 1835639036}
+  - component: {fileID: 1835639038}
   m_Layer: 0
   m_Name: SpawnerEnemy
   m_TagString: Untagged
@@ -3489,7 +3490,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1835639035}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 11a96095f546149399d0ec0a63b8264c, type: 3}
   m_Name: 
@@ -3514,6 +3515,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1835639038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1835639035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20b86fedf1cb847ac87a13dc6b0fd07a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefabs: {fileID: 1621868788263027969, guid: 392d4af9551becb4fa08c6a7071b6d86, type: 3}
+  player_: {fileID: 991791889}
+  enemyCount: 0
+  waveNumberEnemy: 1
 --- !u!4 &1857634867 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2281349212530141742, guid: e2074d19ddc0c3344966a246c03bba65, type: 3}

@@ -25,7 +25,11 @@ MonoBehaviour:
     m_Start: 5.45
     m_ClipIn: 0
     m_Asset: {fileID: 5248192831269157974}
+<<<<<<< Updated upstream
     m_Duration: 98.14999999999999
+=======
+    m_Duration: 162.33333333333334
+>>>>>>> Stashed changes
     m_TimeScale: 1
     m_ParentTrack: {fileID: -8934176135476306598}
     m_EaseInDuration: 0
@@ -214,7 +218,11 @@ MonoBehaviour:
     m_Start: 21.297862957480053
     m_ClipIn: 0
     m_Asset: {fileID: 7272240020732698385}
+<<<<<<< Updated upstream
     m_Duration: 92.30213704251994
+=======
+    m_Duration: 146.55
+>>>>>>> Stashed changes
     m_TimeScale: 1
     m_ParentTrack: {fileID: -6951311411855027940}
     m_EaseInDuration: 0
@@ -392,7 +400,11 @@ MonoBehaviour:
     m_Start: 0
     m_ClipIn: 0
     m_Asset: {fileID: 7594703610880466021}
+<<<<<<< Updated upstream
     m_Duration: 5.45
+=======
+    m_Duration: 3.683333333333333
+>>>>>>> Stashed changes
     m_TimeScale: 1
     m_ParentTrack: {fileID: 2053137761931283921}
     m_EaseInDuration: 0
