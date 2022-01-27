@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class SpawnerEnemy : MonoBehaviour
 {
-<<<<<<< Updated upstream
+//<<<<<<< Updated upstream
     Vector3 ultimaPosizione;
-=======
-    Vector3 ultimaPosizione = new Vector3(5.5f, 0, 0);
->>>>>>> Stashed changes
+//=======
+//    Vector3 ultimaPosizione = new Vector3(5.5f, 0, 0);
+//>>>>>>> Stashed changes
     public GameObject EnemyPrefab;
     public GameObject CurrentEnemy;
     public GameObject Player_;
@@ -30,14 +30,14 @@ public class SpawnerEnemy : MonoBehaviour
     }
     void SpawnEnemy()
     {
-<<<<<<< Updated upstream
+//<<<<<<< Updated upstream
         if (CurrentEnemy==null)
-=======
-
-        ultimaPosizione = new Vector2(Player_.transform.position.x * 2 * Time.deltaTime * +25, transform.position.y);
-        //ultimaPosizione = Player_.transform.position * 10+ Player_.transform.position + new Vector3(5.5f, 0, 0);
-        if (!CurrentEnemy )
->>>>>>> Stashed changes
+//=======
+//
+//        ultimaPosizione = new Vector2(Player_.transform.position.x * 2 * Time.deltaTime * +25, transform.position.y);
+//        //ultimaPosizione = Player_.transform.position * 10+ Player_.transform.position + new Vector3(5.5f, 0, 0);
+//        if (!CurrentEnemy )
+//>>>>>>> Stashed changes
         {
             ultimaPosizione = new Vector3(Player_.transform.position.x- gap, reference.y, reference.z);
             CurrentEnemy = Instantiate(EnemyPrefab, ultimaPosizione, Quaternion.identity, enemyparent);

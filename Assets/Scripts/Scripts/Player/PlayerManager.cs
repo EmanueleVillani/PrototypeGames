@@ -106,8 +106,9 @@ public class PlayerManager : MonoBehaviour
     {
         gameOver = winLevel = false;
         UIManager.instance.SetActiveGameOverPanel(false, "");
-
+        GameManager.Instance.go = false;
         currentHealth = 100;
+        UIManager.instance.Timer.text = ""+60;
 
         InventoryManager.Instance.HardSetInventory(Item.kill,0);
         InventoryManager.Instance.HardSetInventory(Item.Gem,0);

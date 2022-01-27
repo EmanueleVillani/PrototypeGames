@@ -41,7 +41,6 @@ public class Enemy : MonoBehaviour
     {
           healthBar.value = health;
 
-
         if (PlayerManager.gameOver)
         {
             animator.enabled = false;
@@ -71,6 +70,12 @@ public class Enemy : MonoBehaviour
             timetowaitdestun = 0;
 
         float distance = Vector3.Distance(transform.position, target.position);
+
+        if(animator.GetCurrentAnimatorStateInfo(0).IsName("Mutant Attack"))
+        {
+            currentState = "ChaseState";
+            return;
+        }
 
         if(currentState == "IdleState")
         {
@@ -119,7 +124,7 @@ public class Enemy : MonoBehaviour
         Vector3 newp = transform.position;
         newp.z = axis;
         transform.position = newp;
-        if (currentState != "AttackState")
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Mutant Attack"))
         {
             if(attacks.attackzone.enabled)
                 attacks.attackzone.enabled = false;

@@ -42,20 +42,25 @@ public class GameManager : MonoBehaviour
         scoreText.gameObject.SetActive(false);
         LoadLevel(0);
     }
-    
+    public bool go = false;
     private void Update()
     {
+
         if (PlayerManager.Instance.player != null)
         {
-            if (waitSecond >= 0)
+            if(!go)
+            go = (PlayerManager.Instance.player.gI.valueX > 0);
+
+            if (waitSecond >= 0 && go)
             {
-                waitSecond -= Time.fixedDeltaTime;
+                waitSecond -= Time.deltaTime;
                 waitIntSec = (int)waitSecond;
                 UIManager.instance.Timer.text = waitIntSec.ToString();
                 //textTime.text = waitIntSec.ToString();
             }
         }
     }
+    
 
     #endregion
     #region LEVELS
@@ -68,32 +73,33 @@ public class GameManager : MonoBehaviour
     }
     public IEnumerator LoadScene(Level level)
     {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(level.Name, LoadSceneMode.Additive);
+        while (!asyncLoad.isDone)
+        {
+            UIManager.instance.SetLoadingActive(true);
+            yield return null;
+        }
+        UIManager.instance.SetLoadingActive(false);
+
+        AudioManager.instance.PlayBgMusic(level.Music);
         if (level.IsMenu)
         {
+            camera.SetActive(true);
             UIManager.instance.SetActiveGameCanvas(false);
+            UIManager.instance.SetActiveMainCanvas(true);
         }
         else
         {
             camera.SetActive(false);
             UIManager.instance.SetActiveMainCanvas(false);
-        }
-        yield return SceneManager.LoadSceneAsync(level.Name, LoadSceneMode.Additive);
-        AudioManager.instance.PlayBgMusic(level.Music);
-        if (level.IsMenu)
-        {
-            camera.SetActive(true);
-            UIManager.instance.SetActiveMainCanvas(true);
-        }
-        else
-        {
             UIManager.instance.SetActiveGameCanvas(true);
         }
         currentlevel = level;
+        yield return null;
     }
     public IEnumerator LoadLevel(Level level)
     {
         yield return StartCoroutine(UnloadCurretScene());// Unload old level
-
         yield return StartCoroutine(LoadScene(level));//load new level
     }
     public void LoadLevel(int x)
@@ -103,13 +109,14 @@ public class GameManager : MonoBehaviour
     public GameObject VideoPlayer;
     public void LoadFirstLevel()
     {
-        VideoPlayer.SetActive(true);
-        Invoke("LoadFirst", 4f);  
+        //VideoPlayer.SetActive(true);
+        LoadLevel(1);
+        //Invoke("LoadFirst", 4f);
     }
     public void LoadFirst()
     {
         LoadLevel(1);
-        VideoPlayer.SetActive(false);
+        //VideoPlayer.SetActive(false);
     }
     #endregion
     #region GAME MECHANICS

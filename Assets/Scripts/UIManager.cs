@@ -14,7 +14,9 @@ public class UIManager : MonoBehaviour
     public Slider Light, Health, Stamina;
     
     public Text GameOverMessage;
-    public GameObject gameoverpanel;
+    public GameObject gameoverPanel;
+    public GameObject loadingPanel;
+    public GameObject Logo;
     public Text Scoretext;
     private void Awake()
     {
@@ -22,6 +24,14 @@ public class UIManager : MonoBehaviour
         {
             instance = this;
         }
+    }
+    public void ToggleLogo(bool b)
+    {
+        Logo.SetActive(!b);
+    }
+    public void SetLoadingActive(bool b)
+    {
+        loadingPanel.SetActive(b);
     }
 
     public void SetActiveMainCanvas(bool b)
@@ -41,7 +51,7 @@ public class UIManager : MonoBehaviour
 
     public void SetActiveGameOverPanel(bool b,string testo)
     {
-        gameoverpanel.SetActive(b);
+        gameoverPanel.SetActive(b);
         GameOverMessage.text = testo;
     }
     public void SetLastScore(int x)

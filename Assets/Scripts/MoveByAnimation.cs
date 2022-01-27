@@ -7,7 +7,7 @@ using UnityEngine.Animations.Rigging;
 public class MoveByAnimation : MonoBehaviour
 {
     Animator anim;
-    GatherInput gI;
+    public GatherInput gI { get; private set; }
     public CinemachineVirtualCamera virtualcamera;
     public GameObject target;
     public bool isRight = true;
