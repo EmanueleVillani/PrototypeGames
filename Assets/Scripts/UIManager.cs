@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
     
     public Text GameOverMessage;
     public GameObject gameoverPanel;
+    public GameObject pausePanel;
     public GameObject loadingPanel;
     public GameObject Logo;
     public Text Scoretext;

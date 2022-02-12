@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector]
     public bool gameOver;
-    private Text scoreText;
+    public Text scoreText;
     public int scoreKilled;
 
     #region Level variables
@@ -38,16 +38,26 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
+        //scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
         scoreText.gameObject.SetActive(false);
         LoadLevel(0);
     }
     public bool go = false;
+    bool paused = false;
     private void Update()
     {
 
         if (PlayerManager.Instance.player != null)
         {
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                if (!paused)
+                    Pause();
+                else
+                    Resume();
+            }
+
             if(!go)
             go = (PlayerManager.Instance.player.gI.valueX > 0);
 
@@ -58,10 +68,12 @@ public class GameManager : MonoBehaviour
                 UIManager.instance.Timer.text = waitIntSec.ToString();
                 //textTime.text = waitIntSec.ToString();
             }
-        }
-    }
-    
 
+
+        }
+
+
+    }
     #endregion
     #region LEVELS
     public IEnumerator UnloadCurretScene()
@@ -97,6 +109,10 @@ public class GameManager : MonoBehaviour
         currentlevel = level;
         yield return null;
     }
+    public void ReloadLevel()
+    {
+        LoadLevel(currentlevel);
+    }
     public IEnumerator LoadLevel(Level level)
     {
         yield return StartCoroutine(UnloadCurretScene());// Unload old level
@@ -106,20 +122,39 @@ public class GameManager : MonoBehaviour
     {
       StartCoroutine(LoadLevel(levels[x]));
     }
-    public GameObject VideoPlayer;
+    public GameObject VideoPlayer1, VideoPlayer2, VideoPlayer3;
     public void LoadFirstLevel()
     {
-        //VideoPlayer.SetActive(true);
-        LoadLevel(1);
-        //Invoke("LoadFirst", 4f);
+        VideoPlayer1.SetActive(true);
+        Invoke("LoadFirst", 4f);
+    }
+    public void LoadSecondLevel()
+    {
+        VideoPlayer2.SetActive(true);
+        Invoke("LoadSecond", 4f);
+    }
+    public void LoadSecond()
+    {
+      //  LoadLevel(3);
+        VideoPlayer2.SetActive(false);
     }
     public void LoadFirst()
     {
-        LoadLevel(1);
-        //VideoPlayer.SetActive(false);
+        LoadLevel(2);
+        VideoPlayer1.SetActive(false);
     }
     #endregion
     #region GAME MECHANICS
+    public void Pause()
+    {
+        UIManager.instance.pausePanel.SetActive(true);
+        Time.timeScale = 0;
+    }
+    public void Resume()
+    {
+        UIManager.instance.pausePanel.SetActive(false);
+        Time.timeScale = 1;
+    }
     public void Quit()
     {
 #if UNITY_EDITOR

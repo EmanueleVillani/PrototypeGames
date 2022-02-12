@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
 {
-    public  int currentHealth = 100;
-   
+    public int currentHealth = 100;
+
     public static bool gameOver;
     public static bool winLevel;
     public int conditionVictory = 3; // CONDIZIONE DI VITTORIA
@@ -17,8 +17,7 @@ public class PlayerManager : MonoBehaviour
     public MoveByAnimation player;
 
     public static PlayerManager Instance;
-
-
+    public bool level1done = false;
     private void Awake()
     {
        
@@ -74,7 +73,6 @@ public class PlayerManager : MonoBehaviour
                 UIManager.instance.SetActiveGameOverPanel(true, "Sei Sopravvissuto!");
                 return;
             }
-
             //game over
             if (currentHealth < 0 && gameOver == false)
             {
@@ -84,7 +82,6 @@ public class PlayerManager : MonoBehaviour
                 UIManager.instance.SetLastScore(InventoryManager.Instance.HowMany(Item.kill));
                 UIManager.instance.SetActiveGameOverPanel(true, @"Sei morto male");
                 GameManager.Instance.gameOver = true;
-
             }
 
             if (currentHealth < 25 && gameOver == false)
@@ -102,6 +99,7 @@ public class PlayerManager : MonoBehaviour
             }
         }
     }
+   
     public void ResetPlayer()
     {
         gameOver = winLevel = false;
@@ -109,7 +107,7 @@ public class PlayerManager : MonoBehaviour
         GameManager.Instance.go = false;
         currentHealth = 100;
         UIManager.instance.Timer.text = ""+60;
-
+        level1done = false;
         InventoryManager.Instance.HardSetInventory(Item.kill,0);
         InventoryManager.Instance.HardSetInventory(Item.Gem,0);
         InventoryManager.Instance.HardSetInventory(Item.Ammo, 16);

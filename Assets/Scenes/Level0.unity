@@ -1026,6 +1026,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3214593361678709251}
     m_Modifications:
+    - target: {fileID: 1360838732, guid: 392d4af9551becb4fa08c6a7071b6d86, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1360838732, guid: 392d4af9551becb4fa08c6a7071b6d86, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1621868788263027968, guid: 392d4af9551becb4fa08c6a7071b6d86, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -3527,10 +3535,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20b86fedf1cb847ac87a13dc6b0fd07a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefabs: {fileID: 1621868788263027969, guid: 392d4af9551becb4fa08c6a7071b6d86, type: 3}
-  player_: {fileID: 991791889}
-  enemyCount: 0
-  waveNumberEnemy: 1
 --- !u!4 &1857634867 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2281349212530141742, guid: e2074d19ddc0c3344966a246c03bba65, type: 3}
@@ -4227,6 +4231,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3214593361618112350, guid: a4e056c4f32637d459807ba4f3d9bf71, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3214593361618112350, guid: a4e056c4f32637d459807ba4f3d9bf71, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3214593361675994313, guid: a4e056c4f32637d459807ba4f3d9bf71, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -4238,6 +4250,14 @@ PrefabInstance:
     - target: {fileID: 4187941593509612050, guid: a4e056c4f32637d459807ba4f3d9bf71, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4187941593678776993, guid: a4e056c4f32637d459807ba4f3d9bf71, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4187941593678776993, guid: a4e056c4f32637d459807ba4f3d9bf71, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5649120716253548981, guid: a4e056c4f32637d459807ba4f3d9bf71, type: 3}
       propertyPath: m_AnchorMax.x
