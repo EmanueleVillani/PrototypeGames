@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+
 public class Enemy : MonoBehaviour
 {
     private string currentState = "IdleState";
@@ -143,6 +144,7 @@ public class Enemy : MonoBehaviour
             AudioManager.instance.Play("DeathEnemy");
             healthBar.gameObject.SetActive(false);
             Die();
+            RemoveFromList();  //SOLO SCENA LIVELLO 2
         }
     }
     public bool isstunned = false;
@@ -169,5 +171,13 @@ public class Enemy : MonoBehaviour
         controller.enabled = false;
         Destroy(gameObject, 3);
         this.enabled = false;
+    }
+
+    void RemoveFromList()
+    {
+       
+        if(SpawnLv2.instance!=null)
+        SpawnLv2.instance.CheckToSpawnNewWave(gameObject);
+
     }
 }
