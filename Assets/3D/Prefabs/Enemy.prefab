@@ -433,6 +433,7 @@ GameObject:
   - component: {fileID: 1621868788263027999}
   - component: {fileID: 1621868788263027998}
   - component: {fileID: 1621868788263027995}
+  - component: {fileID: 2077977565}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -563,6 +564,22 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.938713, z: 0}
+--- !u!114 &2077977565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1621868788263027969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cea567ecdc91a6247a222dc55fc89182, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collectables:
+  - {fileID: 9192830259762533561, guid: 8a35946f3604d8243a4362ae1a50d539, type: 3}
+  - {fileID: 2281349212530141738, guid: e2074d19ddc0c3344966a246c03bba65, type: 3}
+  - {fileID: 4442227810877869477, guid: 59678178ba0429d4797a6e45cf51d35e, type: 3}
 --- !u!95 &1621868787087564738
 Animator:
   serializedVersion: 3

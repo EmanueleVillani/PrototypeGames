@@ -326,7 +326,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9013400626276337048, guid: 2146e344264870941951bb3306088137, type: 3}
       propertyPath: attackDistance
-      value: 8
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2146e344264870941951bb3306088137, type: 3}
@@ -557,7 +557,7 @@ GameObject:
   - component: {fileID: 1584220620}
   - component: {fileID: 1584220621}
   m_Layer: 0
-  m_Name: SpawnManager
+  m_Name: SpawnManagerLv2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -591,8 +591,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 1621868788263027969, guid: 392d4af9551becb4fa08c6a7071b6d86, type: 3}
   spawnWaitTime: 2
-  countEnemyToSpawn_min: 5
-  countEnemyToSpawn_max: 10
+  countEnemyToSpawn_min: 2
+  countEnemyToSpawn_max: 4
 --- !u!1 &1822389220
 GameObject:
   m_ObjectHideFlags: 0

@@ -175,9 +175,12 @@ public class Enemy : MonoBehaviour
 
     void RemoveFromList()
     {
-       
-        if(SpawnLv2.instance!=null)
-        SpawnLv2.instance.CheckToSpawnNewWave(gameObject);
 
+        if (SpawnLv2.instance != null)
+        {
+            GetComponent<DropCollectable>().CheckToSpawnCollectable();  //SPAWNING COLLECTABLE
+            SpawnLv2.instance.CheckToSpawnNewWave(gameObject);
+        }
+       
     }
 }
