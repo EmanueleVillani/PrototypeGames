@@ -52,7 +52,8 @@ public class MosquitoAnimation : MonoBehaviour
     {
         if (!isStunning)
         {
-             isStunning = true;
+          //  GetComponentInChildren<Animator>().applyRootMotion = true;
+            isStunning = true;
              GetComponentInParent<FlyingEnemy>().canMove = false;
              anim.SetBool("Stun", true);
             StartCoroutine(_ReturnNormal(timeStun));
@@ -66,7 +67,7 @@ public class MosquitoAnimation : MonoBehaviour
 
         anim.SetBool("Stun", false);
         GetComponentInParent<FlyingEnemy>().canMove = true;
-
+     
         isStunning = false;
     }
 

@@ -25,6 +25,9 @@ public class FlyingEnemy : MonoBehaviour
     private float distanceTarget;
 
     [SerializeField]
+    private float distancePauseAttack = 22f;
+
+    [SerializeField]
     private Animator anim;
  
     public float speed = 10f;
@@ -42,9 +45,7 @@ public class FlyingEnemy : MonoBehaviour
     [SerializeField]
     private float attackDistance = 20f; //distanza mosquito-player quando attacca
 
-    [SerializeField]
-    private float idleDistance = 30f;  // distanza mosquito-player quando la mosquito si ritira
-
+    private float minAttackDistance = 8f; 
     public bool isDead;
     
     private void Start()
@@ -52,7 +53,6 @@ public class FlyingEnemy : MonoBehaviour
         healthBar.maxValue = enemyHealth;
         healthBar.value = enemyHealth;
         target = GameObject.FindWithTag("Player").transform;
-        transform.rotation = Quaternion.Euler(0, 90, 0);
         canMove = true;
         yPosition = transform.position.y;
 
@@ -67,7 +67,7 @@ public class FlyingEnemy : MonoBehaviour
         distanceTarget = Vector3.Distance(transform.position, target.position);
         healthBar.value = enemyHealth;
 
-
+     
         if (!isFlying)
         {
             transform.position = new Vector3(transform.position.x, yPosition, transform.position.z);
@@ -86,7 +86,8 @@ public class FlyingEnemy : MonoBehaviour
         
         else if (current_State == "AttackState")
         {
-                 AttackAir();              
+           
+            AttackAir();              
         }
 
         else if (current_State == "PauseAttack")
@@ -119,26 +120,43 @@ public class FlyingEnemy : MonoBehaviour
     }
 
     void MoveEnemy()
-    {       
-        if (Vector3.Distance(transform.position, target.position) < idleDistance)
-            transform.Translate(Vector3.forward * speed * Time.deltaTime);     
+    {
+       
+        if (Vector3.Distance(transform.position, target.position) < distancePauseAttack)
+        {
+             
+              transform.Translate(Vector3.forward * speed * Time.deltaTime);
+
+        }
+
+        if(Vector3.Distance(transform.position, target.position) > distancePauseAttack+5f)
+        {
+            anim.applyRootMotion = false;
+
+            if(transform.position.x < target.position.x)
+             transform.position = new Vector3(target.position.x - distancePauseAttack, transform.position.y, transform.position.z);
+            else
+            transform.position = new Vector3(target.position.x + distancePauseAttack, transform.position.y, transform.position.z);
+        }
+      
     }
     
     void AttackAir()
     {
-        if (Vector3.Distance(transform.position, target.position) < attackDistance)
-            transform.Translate(Vector3.forward * speed * Time.deltaTime);
-        else if(Vector3.Distance(transform.position, target.position) > attackDistance+3f)
-            transform.Translate(-Vector3.forward * speed * Time.deltaTime);
+        anim.applyRootMotion = true;
 
-        if (Time.time > timerAttackFly)
+        if (Vector3.Distance(transform.position, target.position) > attackDistance)
         {
-            
-          timerAttackFly = Time.time + attackTimeFlyThreshold;
-          GetComponentInChildren<MosquitoAnimation>().Stun();
-          anim.SetTrigger("attackFly");
-
+            transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
         }
+
+        anim.SetTrigger("attackFly");
+        timerAttackFly = Time.time + attackTimeFlyThreshold;
+      
+        GetComponentInChildren<MosquitoAnimation>().Stun();
+
+        if (attackDistance < minAttackDistance)
+            attackDistance = minAttackDistance;
     }
 
 
@@ -160,11 +178,13 @@ public class FlyingEnemy : MonoBehaviour
         {
             yield return new WaitForSeconds(timerPause);
             current_State = "AttackState";
+            attackDistance--;
+          
         }
 
         StartCoroutine(_ChangeState());
     }
 
-
+   
    
 }
