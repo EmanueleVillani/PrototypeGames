@@ -111,11 +111,16 @@ public class GameManager : MonoBehaviour
     }
     public void ReloadLevel()
     {
-        LoadLevel(currentlevel);
+        StartCoroutine(ReLoadLevel(currentlevel));
     }
     public IEnumerator LoadLevel(Level level)
     {
         yield return StartCoroutine(UnloadCurretScene());// Unload old level
+        yield return StartCoroutine(LoadScene(level));//load new level
+    }
+    public IEnumerator ReLoadLevel(Level level)
+    {
+        yield return SceneManager.UnloadSceneAsync(currentlevel.Name);
         yield return StartCoroutine(LoadScene(level));//load new level
     }
     public void LoadLevel(int x)
@@ -123,15 +128,36 @@ public class GameManager : MonoBehaviour
       StartCoroutine(LoadLevel(levels[x]));
     }
     public GameObject VideoPlayer1, VideoPlayer2, VideoPlayer3;
+    Coroutine co1,co2;
     public void LoadFirstLevel()
     {
         VideoPlayer1.SetActive(true);
-        Invoke("LoadFirst", 4f);
+        co1 = StartCoroutine(CoLoadFirst());
+    }
+    public IEnumerator CoLoadFirst()
+    {
+        yield return new WaitForSeconds(60);
+        LoadFirst();
+    }
+    public IEnumerator CoLoadSecond()
+    {
+        yield return new WaitForSeconds(5);
+        LoadSecond();
+    }
+    public void SkipFirst()
+    {
+        StopCoroutine(co1);
+        LoadFirst();
+    }
+    public void SkipSecond()
+    {
+        StopCoroutine(co2);
+        LoadSecond();
     }
     public void LoadSecondLevel()
     {
         VideoPlayer2.SetActive(true);
-        Invoke("LoadSecond", 4f);
+        co2 = StartCoroutine(CoLoadSecond());
     }
     public void LoadSecond()
     {

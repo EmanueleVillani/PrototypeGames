@@ -102,10 +102,7 @@ public class FlyingEnemy : MonoBehaviour
     {
         enemyHealth -= damageAmount;
 
-        if (enemyHealth < 0)
-            enemyHealth = 0;
-
-        if (enemyHealth == 0)
+        if (enemyHealth <= 0)
         {
             isDead = true;
             InventoryManager.Instance.ModifyInventory(Item.kill,true,1);
@@ -121,42 +118,68 @@ public class FlyingEnemy : MonoBehaviour
 
     void MoveEnemy()
     {
+        anim.SetBool("attackFly", false);
+        point = Vector3.zero;
+       if (Vector3.Distance(transform.position, target.position) < distancePauseAttack)
+       {
+           transform.Translate(Vector3.forward * speed * Time.deltaTime);
+       }
        
-        if (Vector3.Distance(transform.position, target.position) < distancePauseAttack)
-        {
-             
-              transform.Translate(Vector3.forward * speed * Time.deltaTime);
-
-        }
-
-        if(Vector3.Distance(transform.position, target.position) > distancePauseAttack+5f)
-        {
-            anim.applyRootMotion = false;
-
-            if(transform.position.x < target.position.x)
-             transform.position = new Vector3(target.position.x - distancePauseAttack, transform.position.y, transform.position.z);
-            else
-            transform.position = new Vector3(target.position.x + distancePauseAttack, transform.position.y, transform.position.z);
-        }
-      
+       if(Vector3.Distance(transform.position, target.position) > distancePauseAttack+5f)
+       {
+           anim.applyRootMotion = false;
+       
+           if(transform.position.x < target.position.x)
+            transform.position = new Vector3(target.position.x - distancePauseAttack, transform.position.y, transform.position.z);
+           else
+           transform.position = new Vector3(target.position.x + distancePauseAttack, transform.position.y, transform.position.z);
+       }
+     
     }
-    
+    Vector3 point = Vector3.zero;
     void AttackAir()
     {
-        anim.applyRootMotion = true;
+       // anim.applyRootMotion = true;
+       //
+       // if (Vector3.Distance(transform.position, target.position) > attackDistance)
+       // {
+       //     transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+       // }
+       //
+       // anim.SetTrigger("attackFly");
+       // timerAttackFly = Time.time + attackTimeFlyThreshold;
+       //
+       // GetComponentInChildren<MosquitoAnimation>().Stun();
+       //
+       // if (attackDistance < minAttackDistance)
+       //     attackDistance = minAttackDistance;
 
-        if (Vector3.Distance(transform.position, target.position) > attackDistance)
+        anim.applyRootMotion = false;
+        float z = transform.position.z;
+       
+        if(point==Vector3.zero)
         {
-            transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+            point = target.transform.position+Vector3.up*2f + (Vector3)Random.insideUnitCircle * 3;
         }
 
-        anim.SetTrigger("attackFly");
+        point.z = z;
+        Vector3 dir = (point - transform.position).normalized;
+        
+        Debug.DrawLine(transform.position,point);
+
+        if (Vector3.Distance(transform.position, point ) > 3f) 
+        {
+            transform.position = Vector3.MoveTowards(transform.position, point, speed * Time.deltaTime);
+        }
+
+        anim.SetBool("attackFly",true);
         timerAttackFly = Time.time + attackTimeFlyThreshold;
-      
+
         GetComponentInChildren<MosquitoAnimation>().Stun();
 
         if (attackDistance < minAttackDistance)
             attackDistance = minAttackDistance;
+
     }
 
 

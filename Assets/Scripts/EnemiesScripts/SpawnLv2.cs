@@ -46,7 +46,7 @@ public class SpawnLv2 : MonoBehaviour
         {
             Vector3 spawnPos = new Vector3(playerPosition.position.x + Random.Range(30f, 50f), playerPosition.position.y, playerPosition.position.z);
 
-            GameObject newEnemy = Instantiate(enemy, spawnPos, transform.rotation);
+            GameObject newEnemy = Instantiate(enemy, spawnPos, transform.rotation,transform);
             spawnedEnemies.Add(newEnemy);
 
         }

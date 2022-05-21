@@ -30,9 +30,14 @@ public class Enemy : MonoBehaviour
     {
         attacks =gameObject.GetComponentInChildren<EnemyAttacks>(true);
         target = GameObject.FindGameObjectWithTag("Player").transform;
-        axis = target.GetComponent<MoveByAnimation>().axis;
+        if (target.GetComponent<MoveByAnimation>() != null)
+            axis = target.GetComponent<MoveByAnimation>().axis;
+        else
+            axis = -1;
+
         health = maxHealth;
-        AudioManager.instance.Play3DSound(gameObject,"IdleEnemy");
+        if(AudioManager.instance!=null)
+            AudioManager.instance.Play3DSound(gameObject,"IdleEnemy");
 
         healthBar.maxValue = maxHealth;
         healthBar.value = health;
@@ -139,7 +144,7 @@ public class Enemy : MonoBehaviour
         if (!isstunned && currentState!= "AttackState")
             currentState = "ChaseState";
 
-        if (health < 0)
+        if (health <= 0)
         {
             AudioManager.instance.Play("DeathEnemy");
             healthBar.gameObject.SetActive(false);

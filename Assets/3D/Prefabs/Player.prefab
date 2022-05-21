@@ -636,7 +636,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 0.94274926, b: 0, a: 1}
-  m_Intensity: 1354.5425
+  m_Intensity: 186833.44
   m_Range: 100
   m_SpotAngle: 29.999996
   m_InnerSpotAngle: 29.999996
@@ -853,7 +853,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalLight: 100
-  lightBar: {fileID: 0}
   toHit:
     serializedVersion: 2
     m_Bits: 131072
@@ -2753,7 +2752,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 1.4118086, y: 2.2372305, z: 9.267539}
+  m_Size: {x: 2.823618, y: 4.474462, z: 18.535078}
   m_Center: {x: -0.05059519, y: 0.37023762, z: 1.1139697}
 --- !u!1773428102 &7745761327055712467
 ParentConstraint:
@@ -2767,7 +2766,7 @@ ParentConstraint:
   m_TranslationAtRest: {x: 1.817, y: 2.7466884, z: 1.322}
   m_RotationAtRest: {x: 0.002981376, y: 52.445526, z: 91.55769}
   m_TranslationOffsets:
-  - {x: 0.382787, y: -0.062312722, z: -0.019401312}
+  - {x: 0.38278675, y: -0.062312722, z: -0.01940155}
   m_RotationOffsets:
   - {x: 0.0031196873, y: 92.6245, z: 91.55473}
   m_AffectTranslationX: 1
@@ -2815,6 +2814,7 @@ MonoBehaviour:
   gI: {fileID: 7745761327540471701}
   anim: {fileID: 0}
   vfx: {fileID: 7745761327496269772}
+  Vfxtrasform: {fileID: 0}
 --- !u!1 &7593450059289311752
 GameObject:
   m_ObjectHideFlags: 0

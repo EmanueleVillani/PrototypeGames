@@ -505,6 +505,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc8e5636e6a1fb94e9a308e932920f34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isStunning: 0
   rotationSpeed: 500
 --- !u!114 &1555988498
 MonoBehaviour:
@@ -515,12 +516,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2832185804183696375}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f188b3c0c2fab24699582ad718cc158, type: 3}
+  m_Script: {fileID: 11500000, guid: 4be283a0254b4564c894820ad9c717c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealth: 100
-  healthBar: {fileID: 1555763230}
-  isDead: 0
+  maxHealth: 100
+  currentHealth: 0
 --- !u!1 &3138050348646381895
 GameObject:
   m_ObjectHideFlags: 0
@@ -565,12 +565,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af6c6223373176046a8234131dd9cce4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chaseRange: 15
-  distanceToAttackOnAir: 6.5
   canMove: 0
+  timerAttack: 10
+  timerPause: 10
+  distancePauseAttack: 22
   anim: {fileID: 8855780576306164535}
   speed: 10
   isFlying: 0
+  enemyHealth: 100
+  healthBar: {fileID: 0}
+  attackDistance: 20
+  isDead: 0
 --- !u!1001 &3138050348007607974
 PrefabInstance:
   m_ObjectHideFlags: 0
