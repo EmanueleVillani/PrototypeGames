@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class AttackFlyScript : MonoBehaviour
 {
-    [SerializeField]
-    private Transform ballAttackStartPoint;
+    public Transform ballAttackStartPoint;
 
     [SerializeField]
     private GameObject ball;
@@ -13,12 +12,9 @@ public class AttackFlyScript : MonoBehaviour
    
     public void AttackFly()
     {
-        Instantiate(ball, ballAttackStartPoint.position, Quaternion.identity);       
+        GameObject atk=Instantiate(ball, ballAttackStartPoint.position, Quaternion.identity);
+        atk.GetComponent<BallAttackScript>().Shoot(GetComponentInParent<FlyingEnemy>().attackDirection);
     }
-
-  
-   
-
 
 
 }

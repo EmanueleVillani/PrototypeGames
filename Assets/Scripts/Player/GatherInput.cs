@@ -7,11 +7,7 @@ using UnityEngine.InputSystem;
 
 public class GatherInput : MonoBehaviour
 {
-
-
     private Controls myControls;
-
-
     // Inizializzazione variabile  Movimento 
     public float valueX;
     public Vector2 mousedelta;
@@ -73,7 +69,7 @@ public class GatherInput : MonoBehaviour
     }
     public void Update()
     {
-        fireInput= myControls.Player.Fire.triggered;
+        fireInput = myControls.Player.Fire.triggered;
         tryAttack= myControls.Player.Attack.triggered;
         tryDodge = myControls.Player.Dodge.triggered;
         jumpInput = myControls.Player.Jump.triggered;

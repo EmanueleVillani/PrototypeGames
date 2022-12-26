@@ -304,5 +304,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 0
-  m_self: 1
+  m_self: 0
   howmany: 8

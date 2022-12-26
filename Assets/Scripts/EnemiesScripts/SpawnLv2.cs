@@ -17,9 +17,7 @@ public class SpawnLv2 : MonoBehaviour
 
     [SerializeField]
     private int countEnemyToSpawn_min=20, countEnemyToSpawn_max=40;
-
     private int countEnemyToSpawn;
-
     private Transform playerPosition;
 
     private void Awake()
@@ -67,5 +65,14 @@ public class SpawnLv2 : MonoBehaviour
         if (spawnedEnemies.Count == 0)
             StartCoroutine(_SpawnWave(spawnWaitTime));
 
+    }
+
+    public void FreezeAllEnemies()
+    {
+        foreach (GameObject sp in spawnedEnemies)
+        {
+            if (sp != null)
+                sp.SetActive(false);
+        }
     }
 }

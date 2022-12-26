@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GunBehaviour : MonoBehaviour
 {
-    public int Ammunition = 8;
+    public int Ammunition = 30;
     public GameObject fireBall;
     public Transform fireBallPoint;
     public Transform looktransform;
@@ -17,7 +17,8 @@ public class GunBehaviour : MonoBehaviour
     void Start()
     {
         move= FindObjectOfType<MoveByAnimation>();
-        InventoryManager.Instance.ModifyInventory(Item.Ammo,true,8);
+        InventoryManager.Instance.ModifyInventory(Item.Ammo,true,1);
+        InventoryManager.Instance.HardSetInventory(Item.Ammo, Ammunition);
         anim = gI.GetComponent<Animator>();
     }
 
@@ -26,8 +27,9 @@ public class GunBehaviour : MonoBehaviour
     {
         if (gI.fireInput)
         {
+            if (!UIManager.instance.CheckHitUi() && Time.timeScale>0 && !GameManager.Instance.VideoPlayer2.activeSelf && !GameManager.Instance.VideoPlayer3.activeSelf)
+                FireBallAttack();
             //  anim.SetTrigger("fire");
-            FireBallAttack();
         }
         //Debug.Log(looktransform.position);
         Vector3 pos= looktransform.position;

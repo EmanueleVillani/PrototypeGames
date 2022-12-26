@@ -23,6 +23,8 @@ public class FollowMouse : MonoBehaviour
     // Start is called before the first frame update
     void Update()
     {
+        if (Time.timeScale == 0)
+            return;
         if (gI.mousedelta.magnitude != 0)
         {
             Vector3 pos = gI.mouseposition;

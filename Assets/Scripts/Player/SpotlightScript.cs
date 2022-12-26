@@ -17,6 +17,7 @@ public class SpotlightScript : MonoBehaviour
     public LayerMask toHit;
     public bool isOn = false;
     public Light spotlight;
+    public bool infinitepower=true;
     void Start()
     {
         anim =GetComponent<Animator>();
@@ -38,7 +39,7 @@ public class SpotlightScript : MonoBehaviour
             //wordspace globale e quindi somma tutte le transformazione degli antenati (padre padre del padre etc etc ) transform.position
             //local space quella locale senza trasnformazione transform.localposition
             
-            hits = Physics.SphereCastAll(transform.position, 2f, transform.forward, 10f, toHit);
+            hits = Physics.SphereCastAll(transform.position, 2f, transform.forward, 10f, toHit, QueryTriggerInteraction.Collide);
             if (hits.Length>0)
             {
                 foreach (RaycastHit hit in hits)
@@ -47,7 +48,8 @@ public class SpotlightScript : MonoBehaviour
                    // hit.transform.GetComponentInParent<MosquitoAnimation>()?.Stun();
                 }
             }
-
+            if (infinitepower)
+                return;
             currentLight -= Time.deltaTime * 3;
             UIManager.instance.Light.value = currentLight;
             if (currentLight <= 20)

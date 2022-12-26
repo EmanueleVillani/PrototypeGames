@@ -5,14 +5,12 @@ using UnityEngine.UI;
 
 public class FlyingEnemy : MonoBehaviour
 {
- 
-    private string current_State;
-
-
+    public string current_State;
     public bool canMove;
-
+    public Vector3 attackDirection;
     private float timerAttackFly;
     private float attackTimeFlyThreshold = 2f;   //regola l'attacco mentre l'enemy vola
+    Vector3[] frustumCorners = new Vector3[4];
 
     [SerializeField]
     private float timerAttack = 5f;  //Durata dell'attacco della mosquito prima di ritirarsi
@@ -22,7 +20,7 @@ public class FlyingEnemy : MonoBehaviour
 
     private Transform target;
 
-    private float distanceTarget;
+   // private float distanceTarget;
 
     [SerializeField]
     private float distancePauseAttack = 22f;
@@ -36,8 +34,7 @@ public class FlyingEnemy : MonoBehaviour
  
     public bool isFlying;
    
-    [SerializeField]
-    private int enemyHealth = 100;
+    public int enemyHealth = 100;
 
     [SerializeField]
     private Slider healthBar;
@@ -56,45 +53,49 @@ public class FlyingEnemy : MonoBehaviour
         canMove = true;
         yPosition = transform.position.y;
 
-        current_State = "PreAttack";
+        current_State = "PauseAttack";
         Invoke("StartFly", 1f);
+
+        Camera.main.CalculateFrustumCorners(new Rect(0, 0, 1, 1), Camera.main.transform.position.z - (-1.3f), Camera.MonoOrStereoscopicEye.Mono, frustumCorners);
+        for (int i = 0; i < 4; i++)
+        {
+            frustumCorners[i] = Camera.main.transform.TransformVector(frustumCorners[i]);
+        }
 
     }
 
 
     private void Update()
     {
-        distanceTarget = Vector3.Distance(transform.position, target.position);
+        //distanceTarget = Vector3.Distance(transform.position, target.position);
         healthBar.value = enemyHealth;
+        if (enemyHealth <= 0)
+            return;
 
-     
         if (!isFlying)
         {
             transform.position = new Vector3(transform.position.x, yPosition, transform.position.z);
-            current_State = "PreAttack";
+            current_State = "PauseAttack";
         }
-
-      
-        if (current_State == "PreAttack")  //Appena parte il livello la mosquito inizia a librarsi in aria
+        else
         {
-            if (isFlying)
-            {                            
-                current_State = "AttackState";
-                StartCoroutine(_ChangeState());
+            if (current_State == "PreAttack")  //Appena parte il livello la mosquito inizia a librarsi in aria
+            {
+                if (isFlying)
+                {
+                    current_State = "AttackState";
+                    StartCoroutine(_ChangeState());
+                }
             }
-        } 
-        
-        else if (current_State == "AttackState")
-        {
-           
-            AttackAir();              
+            else if (current_State == "AttackState")
+            {
+                GoToAttackZone();
+            }
+            else if (current_State == "PauseAttack")
+            {
+                MoveEnemy();
+            }
         }
-
-        else if (current_State == "PauseAttack")
-        {
-            MoveEnemy();
-        }
-        
     }
 
 
@@ -104,110 +105,154 @@ public class FlyingEnemy : MonoBehaviour
 
         if (enemyHealth <= 0)
         {
+            PlayerManager.Instance.inv = true;
             isDead = true;
-            InventoryManager.Instance.ModifyInventory(Item.kill,true,1);
+            InventoryManager.Instance.ModifyInventory(Item.kill, true, 1);
             //PlayerManager.Instance.AddCount();
+            AudioManager.instance.Play("MosquitoShot");
             gameObject.GetComponentInChildren<Animator>().SetTrigger("Death");
-            gameObject.GetComponentInParent<FlyingEnemy>().enabled = false;
+            anim.gameObject.transform.rotation = Quaternion.Euler(new Vector3(0, 90, 0));
             healthBar.gameObject.SetActive(false);
-
-            Destroy(gameObject, 1.5f);
+            anim.applyRootMotion = false;
+            GetComponentInChildren<Rigidbody>().isKinematic = false;
+            GetComponentInChildren<Rigidbody>().useGravity = true;
+            StartCoroutine(EndLevel());
         }
-
     }
-
+    public IEnumerator EndLevel()
+    {
+        yield return new WaitForSeconds(1f);
+        anim.enabled = false;
+        yield return new WaitForSeconds(3f);
+        FindObjectOfType<SpawnLv2>().gameObject.SetActive(false);
+        GameManager.Instance.gameOver = true;
+        AudioManager.instance.Stop("LifeUnder");
+        GameManager.Instance.LoadEnd();
+        Destroy(gameObject);
+    }
     void MoveEnemy()
     {
-        anim.SetBool("attackFly", false);
+        if (anim.GetBool("attackFly"))
+            anim.SetBool("attackFly", false);
+        
         point = Vector3.zero;
-       if (Vector3.Distance(transform.position, target.position) < distancePauseAttack)
-       {
-           transform.Translate(Vector3.forward * speed * Time.deltaTime);
-       }
-       
-       if(Vector3.Distance(transform.position, target.position) > distancePauseAttack+5f)
-       {
-           anim.applyRootMotion = false;
-       
-           if(transform.position.x < target.position.x)
-            transform.position = new Vector3(target.position.x - distancePauseAttack, transform.position.y, transform.position.z);
-           else
-           transform.position = new Vector3(target.position.x + distancePauseAttack, transform.position.y, transform.position.z);
-       }
-     
+        if (Vector3.Distance(transform.position, target.position) < distancePauseAttack)
+        {
+            transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        }
     }
     Vector3 point = Vector3.zero;
-    void AttackAir()
+    public void GoToAttackZone()
     {
-       // anim.applyRootMotion = true;
-       //
-       // if (Vector3.Distance(transform.position, target.position) > attackDistance)
-       // {
-       //     transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
-       // }
-       //
-       // anim.SetTrigger("attackFly");
-       // timerAttackFly = Time.time + attackTimeFlyThreshold;
-       //
-       // GetComponentInChildren<MosquitoAnimation>().Stun();
-       //
-       // if (attackDistance < minAttackDistance)
-       //     attackDistance = minAttackDistance;
+        // if(anim.applyRootMotion)
+        // anim.applyRootMotion = false;
+        if(!attack)
+            anim.gameObject.transform.LookAt(target, Vector3.up);
 
-        anim.applyRootMotion = false;
-        float z = transform.position.z;
-       
-        if(point==Vector3.zero)
+        if (point == Vector3.zero)
         {
-            point = target.transform.position+Vector3.up*2f + (Vector3)Random.insideUnitCircle * 3;
+            point = CalculateRandomPoint();
+            //point = target.transform.position + Vector3.up * 2f + (Vector3)Random.insideUnitCircle * 3;
         }
 
-        point.z = z;
-        Vector3 dir = (point - transform.position).normalized;
-        
-        Debug.DrawLine(transform.position,point);
+        Debug.DrawLine(transform.position, point);
 
-        if (Vector3.Distance(transform.position, point ) > 3f) 
+        if (Vector3.Distance(transform.position, point) > 0.1f)
         {
             transform.position = Vector3.MoveTowards(transform.position, point, speed * Time.deltaTime);
         }
-
-        anim.SetBool("attackFly",true);
+        else
+        {
+            if (!attack)
+            {
+                attack = true;
+                attackDirection =(target.transform.position + Vector3.up ) - GetComponentInChildren<AttackFlyScript>().ballAttackStartPoint.position ;
+               // Debug.DrawLine( GetComponentInChildren<AttackFlyScript>().ballAttackStartPoint.position, target.transform.position + Vector3.up);
+               // Debug.Break();
+                StartCoroutine(WaitAndAttack());
+            }
+        }
+    }
+    bool attack = false;
+    public IEnumerator WaitAndAttack()
+    {
+        yield return new WaitForSeconds(0.5f);
+        AudioManager.instance.Play("MosquitoAttack");
+        if (!anim.GetBool("attackFly"))
+            anim.SetBool("attackFly", true);
+        yield return new WaitForSeconds(0.5f);
+        attack = false;
+        current_State = "PauseAttack";
+    }
+    void AttackAir()
+    {
+        anim.SetBool("attackFly", true);
         timerAttackFly = Time.time + attackTimeFlyThreshold;
 
         GetComponentInChildren<MosquitoAnimation>().Stun();
 
         if (attackDistance < minAttackDistance)
             attackDistance = minAttackDistance;
-
     }
 
 
     void StartFly()
     {
         anim.SetTrigger("flyStart");
+        StartCoroutine(_ChangeState());
     }
    
 
     IEnumerator _ChangeState()
     {
-        if (current_State == "AttackState")
+        while (true)
         {
-            yield return new WaitForSeconds(timerAttack);
-            current_State = "PauseAttack";
+            if (current_State == "PauseAttack")
+            {
+                yield return new WaitForSeconds(timerPause);
+                current_State = "AttackState";
+                attackDistance--;
+            }
 
+            yield return null;
         }
-        else if (current_State == "PauseAttack")
+    }
+    private void OnDrawGizmos()
+    {
+        //point= CalculateRandomPoint();
+        if (point != Vector3.zero)
+            Gizmos.DrawSphere(point, 1);
+    }
+    private Vector3 CalculateRandomPoint()
+    {
+       // if (!Application.isPlaying)
+       //     return;
+        Camera.main.CalculateFrustumCorners(new Rect(0, 0, 1, 1), Camera.main.transform.position.z - (-1.3f), Camera.MonoOrStereoscopicEye.Mono, frustumCorners);
+        float xmax = -1000, xmin = 1000, z = 0, ymin = 1000, ymax = -1000;
+        for (int i = 0; i < 4; i++)
         {
-            yield return new WaitForSeconds(timerPause);
-            current_State = "AttackState";
-            attackDistance--;
-          
+            frustumCorners[i] = Camera.main.transform.TransformVector(frustumCorners[i]);
+            Debug.DrawRay(Camera.main.transform.position, frustumCorners[i], Color.red);
         }
-
-        StartCoroutine(_ChangeState());
+        z = frustumCorners[0].z;
+        for (int i = 0; i < 4; i++)
+        {
+            if (frustumCorners[i].x < xmin)
+                xmin = frustumCorners[i].x;
+            if (frustumCorners[i].x > xmax)
+                xmax = frustumCorners[i].x;
+            if (frustumCorners[i].y < ymin)
+                ymin = frustumCorners[i].y;
+            if (frustumCorners[i].y > ymax)
+                ymax = frustumCorners[i].y;
+        }
+        float yl = ymax - ymin;
+        ymax -= yl / 5;
+        ymin += yl / 2;
+        float x = Random.Range(xmin, xmax);
+        float y = Random.Range(ymin, ymax);
+        return Camera.main.transform.position + new Vector3(x, y, z);
     }
 
-   
-   
+
 }

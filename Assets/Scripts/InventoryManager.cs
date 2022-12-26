@@ -19,17 +19,17 @@ public class InventoryManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        foreach (ItemLogic i in ItemSprites)
-        {
-            if (i.alreadyimage)
-            {
-                GameObject newitem = Instantiate<GameObject>(ItemUI, Bag.transform);
-                newitem.GetComponentsInChildren<Image>()[2].sprite = ItemSprites[(int)i.item].sprite;
-                newitem.GetComponentInChildren<Text>().text = "0";
-
-                Inventory.Add(i.item, newitem);
-            }
-        }
+       // foreach (ItemLogic i in ItemSprites)
+       // {
+       //     if (i.alreadyimage)
+       //     {
+       //         GameObject newitem = Instantiate<GameObject>(ItemUI, Bag.transform);
+       //         newitem.GetComponentsInChildren<Image>()[0].sprite = ItemSprites[(int)i.item].sprite;
+       //         newitem.GetComponentInChildren<Text>().text = "0";
+       //
+       //         Inventory.Add(i.item, newitem);
+       //     }
+       // }
     }
 
     // Update is called once per frame
@@ -82,14 +82,6 @@ public class InventoryManager : MonoBehaviour
                     return;
                 value -= valor;
                 Inventory[item].GetComponentInChildren<Text>().text = "" + value;
-                //  if (value == 0)
-                //  {
-                //  //   Destroy(Inventory[item]);
-                //  //   Inventory.Remove(item);
-                //  }
-                //  else
-                //  {
-                //  }
             }
         }
     }
@@ -104,7 +96,7 @@ public class InventoryManager : MonoBehaviour
 }
 public enum Item
 {
-    Gem=0,Ammo=1, kill = 2,health =3,battery=4,time=5
+    Gem=1,Ammo=0, kill = 2,health =3,battery=4,time=5
 }
 [System.Serializable]
 public class ItemLogic

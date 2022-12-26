@@ -18,7 +18,8 @@ public class Enemy : MonoBehaviour
     public CharacterController controller;
     public float stunnedtime =1.2f;
     float cooldown = 2f;
-     float axis = -1f;
+    float axis = -1f;
+    float yaxis = 0.7f;
     public float timetowaitdestun = 0;
     private EnemyAttacks attacks;
 
@@ -79,7 +80,13 @@ public class Enemy : MonoBehaviour
 
         if(animator.GetCurrentAnimatorStateInfo(0).IsName("Mutant Attack"))
         {
-            currentState = "ChaseState";
+                currentState = "ChaseState";
+           // if (distance < attackRange)
+           //     currentState = "AttackState";
+           // else
+           //     currentState = "IdleState";
+            if(distance > attackRange)
+                animator.SetBool("isAttacking", false);
             return;
         }
 
@@ -129,6 +136,7 @@ public class Enemy : MonoBehaviour
     {
         Vector3 newp = transform.position;
         newp.z = axis;
+        newp.y = yaxis;
         transform.position = newp;
         if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Mutant Attack"))
         {
@@ -140,6 +148,7 @@ public class Enemy : MonoBehaviour
     }
     public void TakeDamage(int damage)
     {
+        Debug.Log(damage);
         health -= damage;
         if (!isstunned && currentState!= "AttackState")
             currentState = "ChaseState";
@@ -149,7 +158,7 @@ public class Enemy : MonoBehaviour
             AudioManager.instance.Play("DeathEnemy");
             healthBar.gameObject.SetActive(false);
             Die();
-            RemoveFromList();  //SOLO SCENA LIVELLO 2
+            RemoveFromList();  
         }
     }
     public bool isstunned = false;
@@ -180,10 +189,9 @@ public class Enemy : MonoBehaviour
 
     void RemoveFromList()
     {
-
+        GetComponent<DropCollectable>().CheckToSpawnCollectable();  //SPAWNING COLLECTABLE
         if (SpawnLv2.instance != null)
         {
-            GetComponent<DropCollectable>().CheckToSpawnCollectable();  //SPAWNING COLLECTABLE
             SpawnLv2.instance.CheckToSpawnNewWave(gameObject);
         }
        

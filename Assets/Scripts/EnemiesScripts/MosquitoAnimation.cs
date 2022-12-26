@@ -74,7 +74,6 @@ public class MosquitoAnimation : MonoBehaviour
     public void IsFlying()
     {
         GetComponentInParent<FlyingEnemy>().isFlying = true;
-
     }
 
 

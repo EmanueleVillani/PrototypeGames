@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Playables;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class GameManager : MonoBehaviour
     public bool gameOver;
     public Text scoreText;
     public int scoreKilled;
-
+    public event UnityAction secondEvent;
     #region Level variables
     public List<Level> levels;
     public Level currentlevel;
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour
     public PlayableDirector director;
     #endregion
     #region Timer variables
+    public float waitTotal;
     public float waitSecond;
     public int waitIntSec;
     #endregion
@@ -46,20 +48,18 @@ public class GameManager : MonoBehaviour
     bool paused = false;
     private void Update()
     {
-
         if (PlayerManager.Instance.player != null)
         {
-
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                if (!paused)
+                if (!paused && Time.timeScale!=0)
                     Pause();
-                else
+                else 
                     Resume();
             }
 
             if(!go)
-            go = (PlayerManager.Instance.player.gI.valueX > 0);
+                go = (PlayerManager.Instance.player.gI.valueX > 0);
 
             if (waitSecond >= 0 && go)
             {
@@ -67,12 +67,18 @@ public class GameManager : MonoBehaviour
                 waitIntSec = (int)waitSecond;
                 UIManager.instance.Timer.text = waitIntSec.ToString();
                 //textTime.text = waitIntSec.ToString();
+                if (waitSecond <= 0)
+                {
+                    AudioManager.instance.PlayBgMusic("Death");
+                    AudioManager.instance.Stop("LifeUnder");
+                    UIManager.instance.SetActiveGameOverPanel(true, @"Sei morto male");
+                    Cursor.visible = true;
+                    Time.timeScale = 0;
+                    // GameManager.Instance.Pause();
+                    gameOver = true;
+                }
             }
-
-
         }
-
-
     }
     #endregion
     #region LEVELS
@@ -115,11 +121,13 @@ public class GameManager : MonoBehaviour
     }
     public IEnumerator LoadLevel(Level level)
     {
+        UIManager.instance.SetLoadingActive(true);
         yield return StartCoroutine(UnloadCurretScene());// Unload old level
         yield return StartCoroutine(LoadScene(level));//load new level
     }
     public IEnumerator ReLoadLevel(Level level)
     {
+        UIManager.instance.SetLoadingActive(true);
         yield return SceneManager.UnloadSceneAsync(currentlevel.Name);
         yield return StartCoroutine(LoadScene(level));//load new level
     }
@@ -128,9 +136,11 @@ public class GameManager : MonoBehaviour
       StartCoroutine(LoadLevel(levels[x]));
     }
     public GameObject VideoPlayer1, VideoPlayer2, VideoPlayer3;
-    Coroutine co1,co2;
+    Coroutine co1,co2,co3;
     public void LoadFirstLevel()
     {
+        UIManager.instance.Timer.text = GameManager.Instance.waitTotal.ToString();
+        GameManager.Instance.waitSecond = (int)GameManager.Instance.waitTotal;
         VideoPlayer1.SetActive(true);
         co1 = StartCoroutine(CoLoadFirst());
     }
@@ -141,8 +151,13 @@ public class GameManager : MonoBehaviour
     }
     public IEnumerator CoLoadSecond()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds((float)VideoPlayer2.GetComponentInChildren<UnityEngine.Video.VideoPlayer>(true).clip.length);
         LoadSecond();
+    }
+    public IEnumerator CoLoadThird()
+    {
+        yield return new WaitForSeconds((float)VideoPlayer3.GetComponentInChildren<UnityEngine.Video.VideoPlayer>(true).clip.length);
+        LoadThird();
     }
     public void SkipFirst()
     {
@@ -154,30 +169,64 @@ public class GameManager : MonoBehaviour
         StopCoroutine(co2);
         LoadSecond();
     }
+    public void SkipThird()
+    {
+        StopCoroutine(co3);
+        LoadThird();
+    }
     public void LoadSecondLevel()
     {
         VideoPlayer2.SetActive(true);
+        Cursor.visible = true;
+        AudioManager.instance.StopBg();
+        AudioManager.instance.Stop("LifeUnder");
         co2 = StartCoroutine(CoLoadSecond());
+    }
+    public void LoadEnd()
+    {
+        VideoPlayer3.SetActive(true);
+        AudioManager.instance.StopBg();
+        AudioManager.instance.Stop("LifeUnder");
+        co3 = StartCoroutine(CoLoadThird());
     }
     public void LoadSecond()
     {
-      //  LoadLevel(3);
+        //  LoadLevel(3);
+        Debug.Log("second");
+        secondEvent?.Invoke();
+        AudioManager.instance.PlayBgMusic("MosquitoMaster");
         VideoPlayer2.SetActive(false);
+        Cursor.visible = false;
+    }
+    public void LoadThird()
+    {
+        //  LoadLevel(3);
+        Debug.Log("third");
+        VideoPlayer3.SetActive(false);
+        Resume();
+        LoadLevel(0);
     }
     public void LoadFirst()
     {
-        LoadLevel(2);
+        UIManager.instance.Timer.text = GameManager.Instance.waitTotal.ToString();
+        GameManager.Instance.waitSecond = (int)GameManager.Instance.waitTotal;
+        PlayerManager.Instance.inv = false;
+        PlayerManager.Instance.currentHealth = 100;
+        UIManager.instance.ShowRunText();
+        LoadLevel(1);
         VideoPlayer1.SetActive(false);
     }
     #endregion
     #region GAME MECHANICS
     public void Pause()
     {
+        Cursor.visible = true;
         UIManager.instance.pausePanel.SetActive(true);
         Time.timeScale = 0;
     }
     public void Resume()
     {
+        Cursor.visible = false;
         UIManager.instance.pausePanel.SetActive(false);
         Time.timeScale = 1;
     }

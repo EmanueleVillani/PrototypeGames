@@ -4,10 +4,14 @@ public class FireBall : MonoBehaviour
 {
     public GameObject damageEffect;
     public int damageAmount = 40;
+    bool hit = false;
     private void OnTriggerEnter(Collider other)
     {
+        if (hit)
+            return;
         if(other.tag == "Enemy")
         {
+            hit = true;
             if(damageEffect!=null)
             Instantiate(damageEffect, transform.position, damageEffect.transform.rotation);
             AudioManager.instance.Play("HitSomething");
@@ -17,7 +21,8 @@ public class FireBall : MonoBehaviour
 
         if (other.tag=="Insect")
         {
-            if(damageEffect!=null)
+            hit = true;
+            if(damageEffect != null)
             Instantiate(damageEffect, transform.position, damageEffect.transform.rotation);
             AudioManager.instance.Play("HitSomething");
             Destroy(gameObject);
@@ -26,6 +31,9 @@ public class FireBall : MonoBehaviour
         }
 
         if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            hit = true;
             Destroy(gameObject);
+        }
     }
 }

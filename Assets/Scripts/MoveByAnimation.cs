@@ -168,6 +168,10 @@ public class MoveByAnimation : MonoBehaviour
     
     public void EnableHit()
     {
+        if(isRight)
+            weapon.gameObject.transform.position = transform.position+Vector3.right;
+        else
+            weapon.gameObject.transform.position = transform.position+Vector3.left;
         weapon.enabled = true;
     }
 

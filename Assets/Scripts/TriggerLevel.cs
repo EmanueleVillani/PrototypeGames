@@ -15,6 +15,7 @@ public class TriggerLevel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameManager.Instance.secondEvent += SecondPhase;
     }
 
     // Update is called once per frame
@@ -25,16 +26,24 @@ public class TriggerLevel : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.LogError("enter");
-        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (other.gameObject.tag == "Player"&& Spawner1!=null)
         {
             PlayerManager.Instance.level1done = true;
             GameManager.Instance.LoadSecondLevel();
-            Destroy(gameObject);
-            camerago.SetActive(false);
-            camerablock.SetActive(true);
-            Spawner1.SetActive(false);
-            Spawner2.SetActive(true);
+            Destroy(Spawner1.gameObject);
         }
+    }
+
+    public void SecondPhase()
+    {
+        UIManager.instance.ShowKillText();
+        camerago.SetActive(false);
+        camerablock.SetActive(true);
+        Spawner2.SetActive(true);
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.Instance.secondEvent -= SecondPhase;
     }
 }

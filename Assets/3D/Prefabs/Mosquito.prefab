@@ -551,16 +551,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af6c6223373176046a8234131dd9cce4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  current_State: 
   canMove: 0
+  attackDirection: {x: 0, y: 0, z: 0}
   timerAttack: 3
   timerPause: 7
   distancePauseAttack: 30
   anim: {fileID: 3205610433594511332}
   speed: 15
   isFlying: 0
-  enemyHealth: 100
+  enemyHealth: 200
   healthBar: {fileID: 6240458801478937805}
-  attackDistance: 18
+  attackDistance: 12
   isDead: 0
 --- !u!1001 &9013400626845938293
 PrefabInstance:

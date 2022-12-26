@@ -6,7 +6,7 @@ public class MeleeAttack : MonoBehaviour
 {
     public GameObject damageEffect;
     public int damageAmount = 40;
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.tag == "Enemy")
         {

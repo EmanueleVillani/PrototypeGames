@@ -132,6 +132,13 @@ public class AudioManager : MonoBehaviour
             SoundLibrary[name].source.Stop();
         }
     }
+    public void StopBg()
+    {
+        if (SoundLibrary.ContainsKey(Bg))
+        {
+            SoundLibrary[Bg].source.Stop();
+        }
+    }
     public void Pause(string name)
     {
         if (SoundLibrary.ContainsKey(name))

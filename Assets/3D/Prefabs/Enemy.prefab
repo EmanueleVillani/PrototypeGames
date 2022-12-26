@@ -378,7 +378,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1510204341}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -578,7 +578,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collectables:
   - {fileID: 9192830259762533561, guid: 8a35946f3604d8243a4362ae1a50d539, type: 3}
-  - {fileID: 2281349212530141738, guid: e2074d19ddc0c3344966a246c03bba65, type: 3}
   - {fileID: 4442227810877869477, guid: 59678178ba0429d4797a6e45cf51d35e, type: 3}
 --- !u!95 &1621868787087564738
 Animator:

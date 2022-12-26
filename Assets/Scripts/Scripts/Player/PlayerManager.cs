@@ -18,6 +18,7 @@ public class PlayerManager : MonoBehaviour
 
     public static PlayerManager Instance;
     public bool level1done = false;
+    public bool inv = false;
     private void Awake()
     {
        
@@ -71,19 +72,24 @@ public class PlayerManager : MonoBehaviour
                 AudioManager.instance.PlayBgMusic("Victory");
                 UIManager.instance.SetLastScore(InventoryManager.Instance.HowMany(Item.kill));
                 UIManager.instance.SetActiveGameOverPanel(true, "Sei Sopravvissuto!");
-                GameManager.Instance.Pause();
+                Time.timeScale = 0;
+                //GameManager.Instance.Pause();
                 return;
             }
             //game over
-            if (currentHealth < 0 && gameOver == false)
+            if (!inv)
             {
-                gameOver = true;
-                AudioManager.instance.PlayBgMusic("Death");
-                AudioManager.instance.Stop("LifeUnder");
-                UIManager.instance.SetLastScore(InventoryManager.Instance.HowMany(Item.kill));
-                UIManager.instance.SetActiveGameOverPanel(true, @"Sei morto male");
-                GameManager.Instance.Pause();
-                GameManager.Instance.gameOver = true;
+                if (currentHealth < 0 && gameOver == false)
+                {
+                    gameOver = true;
+                    AudioManager.instance.PlayBgMusic("Death");
+                    AudioManager.instance.Stop("LifeUnder");
+                    //UIManager.instance.SetLastScore(InventoryManager.Instance.HowMany(Item.kill));
+                    UIManager.instance.SetActiveGameOverPanel(true, @"Sei morto male");
+                    Time.timeScale = 0;
+                    // GameManager.Instance.Pause();
+                    GameManager.Instance.gameOver = true;
+                }
             }
 
             if (currentHealth < 25 && gameOver == false)
@@ -108,7 +114,8 @@ public class PlayerManager : MonoBehaviour
         UIManager.instance.SetActiveGameOverPanel(false, "");
         GameManager.Instance.go = false;
         currentHealth = 100;
-        UIManager.instance.Timer.text = ""+60;
+        UIManager.instance.Timer.text = GameManager.Instance.waitTotal.ToString();
+        GameManager.Instance.waitSecond = (int)GameManager.Instance.waitTotal;
         level1done = false;
         InventoryManager.Instance.HardSetInventory(Item.kill,0);
         InventoryManager.Instance.HardSetInventory(Item.Gem,0);
